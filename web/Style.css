@@ -1,0 +1,208 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 31-mei-2018, 15:59:59
+    Author     : foppe
+*/
+
+#main
+{
+    color: black;
+    background-color:white;
+    height: 100%;
+
+    text-align: left;
+}
+.hoofd
+{
+    color: dimgrey;
+	margin: 10px;
+    text-align: left;
+    top: 20px;
+    position: relative;
+}
+
+#knop1{
+	position: absolute;
+	top: 20%;
+	left: 25%;
+	border: 0px solid black;
+	width: 20%;
+	height: 100px;
+}
+#knop2{
+	position: absolute;
+	top: 20%;
+	right: 25%;
+	border: 0px solid black;
+	width: 20%;
+	height: 100px;
+}
+#knop3{
+	margin: auto;
+	border: 0px solid black;
+	width: 10%;
+	height: 75px;
+}
+#knop4{
+	position: absolute;
+	top: 40%;
+	left: 30%;
+	border: 0px solid black;
+	width: 6%;
+	height: 30px;
+}
+#lijn{
+	margin: auto;
+	width: 740px;
+	border-top: 1px dashed grey;
+}
+
+.nr{
+	width: 75px;
+	border-style: solid;
+    border-width: 2px;
+    border-color: #cee1f2;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    height: 25px;
+}
+.tv{
+	width: 50px;
+	border-style: solid;
+    border-width: 2px;
+    border-color: #cee1f2;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    height: 25px;
+}
+#avl{
+	position: absolute;
+    top: 50%;
+    left: 35%;
+    height: 200px;
+	/*border: 1px solid black;*/
+    width: 380px; 
+    /*background-image: url("https://pbs.twimg.com/profile_images/773125939232382976/oVjlik_4_400x400.jpg");*/
+}
+
+#avl2{
+    margin-left: 35%;
+    height: 200px;
+	/*border: 1px solid black;*/
+    width: 380px; 
+    /*background-image: url("https://pbs.twimg.com/profile_images/773125939232382976/oVjlik_4_400x400.jpg");*/
+}
+
+.button {
+
+	background-color: #af1c23;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+    text-align: center;
+    font-size: 22px;
+    cursor: pointer;
+}
+.input{
+	border-style: solid;
+    border-width: 2px;
+    border-color: #cee1f2;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    height: 25px;
+}
+.textArea{
+	border-style: solid;
+    border-width: 2px;
+    border-color: #cee1f2;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    height: 100px;
+}
+
+.button:hover {
+    background-color: red;
+}
+
+.buttonInlog {
+	background-color: #af1c23;
+    border: none;
+    color: white;
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+
+.buttonInlog:hover {
+    background-color: red;
+}
+
+p
+{
+    margin: 5px;
+
+}
+
+#gegevens
+{
+   width: 98%;
+   position:relative;
+   background-color:white;
+   height: 460px;
+   top: 20px;
+   border-radius: 7px;
+   /*border: 1px solid black;*/
+   left: 1%;
+}
+
+table{
+	/*position: absolute;*/
+	left: 5%;
+	font-size: 17px;
+	font-family:verdana;
+}
+
+.inlog{
+	position: absolute;
+	left: 30%;
+	top: 20%;
+	font-size: 20px;
+}
+.p1{
+color: red;
+}
+
+h2
+{
+	text-align: left;
+}
+h3{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	text-decoration: underline;
+}
+td{
+	position: relative;
+	
+	
+}
+.Name{
+	width: 200px;
+	font-size: 20px;
+}
+.tabelletje{
+	align-content: center;
+}
+

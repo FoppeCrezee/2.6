@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Second opinion</title>
+        <link rel="stylesheet" href="Style.css"> 
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="script.js"></script>    
+    </head>
+    <body>
+        
+        <div id="main">
+            <div id="header" class="hoofd">
+				<a href="index.jsp">Terug</a>	
+            <h1>Aanvraagformulier patiënt</h1>
+				<h2>Zekerheid over uw diagnose binnen 72 uur</h2>
+		
+            </div>
+          
+            <div id="gegevens">
+            
+			<form id="invullen" action="registerservlet" onsubmit="return validateForm()" method="post">
+			<table align="center">
+				
+				<hr id="lijn">
+				
+				<tr>
+					<td>
+						<p class="p1">Patiëntgegevens</p>
+					</td>
+					<td>
+						<p>Achternaam:</p>
+					</td>
+					<td>
+						<input id=“aNaam” type="text" class="input" name="na" onfocusout="naam(this, naamReg)">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<p>Initialen:</p>
+					</td>
+					<td>
+						<input id=“Init” type="text" class="input" name="ini" onfocusout="naam(this, initReg)">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<p>Geslacht:</p>
+					</td>
+					<td>
+						<select class="input">
+							<option>Man</option>
+							<option>Vrouw</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<p>Geboortedatum:</p>
+					</td>
+					<td>
+						<input id=“date” type="date" class="input" onfocusout="nummer(this)">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<p>Adres:</p>
+					</td>
+					<td>
+						<input id=“adres” type="text" class="input" name="adres" onfocusout="naam(this, naamReg)">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<p>Huisnummer/ toevoeging:</p>
+					</td>
+					<td>
+						<input id=“Naam” type="text" class="nr" name="nu" onfocusout="naam(this, numReg)">
+						<input id=“Naam” type="text" class="tv">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<p>Postcode:</p>
+					</td>
+					<td>
+						<input id=“postCode” name="postCode" type="text" class="input" onfocusout="naam(this, postReg)">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<p>Plaats:</p>
+					</td>
+					<td>
+						<input id=“plaats” type="text" class="input" name="plaats" onfocusout="naam(this, naamReg)">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<p>Telefoonnummer:</p>
+					</td>
+					<td>
+						<input id=“Naam” type="number" class="input" name="teli" onfocusout="naam(this, telReg)">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<p>Emailadres:</p>
+					</td>
+					<td>
+						<input id=“Naam” type="text" class="input" name="madres" onfocusout="naam(this, mailReg)">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<p>BSN</p>
+					</td>
+					<td>
+						<input id=“Naam” type="number" class="input" name="bsNummer" onfocusout="naam(this, bsnReg)">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<p>Reeds in het AVL geweest?</p>
+					</td>
+					<td>
+						<input id=“Naam” type="checkbox" class="input">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<hr id="lijn">	
+					</td>
+					
+				</tr>
+				<tr>
+					<td>
+						<p class="p1">Afspraakbevestiging</p>
+					</td>
+					<td>
+						<p>Afspraakbevestiging sturen aan</p>
+					</td>
+					<td>
+						<input id=“Naam” type="checkbox"><label>Patiënt</label><br>
+						<input id=“Naam” type="checkbox"><label>Familie</label><br>
+						<input id=“Naam” type="checkbox"><label>Verwijzer</label>
+					</td>
+					
+				</tr>
+				<tr>
+					<td colspan="3">
+						<hr id="lijn">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p class="p1">Verwijsmateriaal</p>
+					</td>
+					<td>
+						<p>Verwijsbrief</p>
+					</td>
+					<td>
+						<input id=“Naam” type="file" class="input">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td width="240px">
+							<p>Indien de verwijsbrief (nog) niet beschikbaar is, hier vraagstelling en eerder uitgevoerde onderzoeken beschrijven</p>
+					</td>
+					<td>
+						<textarea id="Naam" type="text" rows="2" class="textArea"> </textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<p>Verslagen</p>
+					</td>
+					<td>
+						<input id=“Naam” type="file" class="input">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+						<input id=“Naam” type="file" class="input">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+						<input id=“Naam” type="file" class="input">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+						<input id=“Naam” type="file" class="input">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+						<input id=“Naam” type="file" class="input">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<hr id="lijn">
+					</td>
+				</tr>
+			</table>
+				<div id="knop3">
+				<input type="submit" class="buttonInlog">
+				</div>
+			</form>			
+               <img src="https://www.avl.nl/media/8869707/logo-NL-Antoni-van-Leeuwenhoek_jpeg_grootformaat.jpg" id="avl2" ><br><br>
+            </div> 
+        </div>
+           
+        
+    </body>
+
+</html>
