@@ -20,7 +20,7 @@
             <h1>Secondopinion.nl</h1>
 				<h2>Zekerheid over uw diagnose binnen 72 uur</h2>
 				
-				<a href="inlog.html?"><h3 id="login">Inloggen</h3></a>
+				<a href="inlog.html"><h3 id="login">Inloggen</h3></a>
 		
             </div>
             

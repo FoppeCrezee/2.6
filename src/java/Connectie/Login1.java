@@ -32,7 +32,7 @@ public class Login1 {
             info.put("password", "Foppe");
 
             try {
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException ex) {
                 System.out.println(ex);
             }

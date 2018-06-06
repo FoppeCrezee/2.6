@@ -133,7 +133,7 @@ public class Test extends HttpServlet {
         
         
         //String query = "INSERT into ding (een, twee)" + " values (?,?);";
-        /*Connection con = null;
+        Connection con = null;
         String vNaam = request.getParameter("voorNaam");
         String ww = request.getParameter("wachtWoord");
 
@@ -144,7 +144,7 @@ public class Test extends HttpServlet {
             info.put("password", "Foppe");
 
             try {
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException ex) {
                 System.out.println(ex);
             }
@@ -155,13 +155,13 @@ public class Test extends HttpServlet {
             //pst.setString(1, vNaam);
             //pst.setString(2, ww);
             //pst.execute();
-            //Statement statement = con.createStatement();
-            //statement.executeUpdate("INSERT into ding values('Foppe', 'test')");
+            Statement statement = con.createStatement();
+            statement.executeUpdate("INSERT into ding values('Betrr', 'doet')");
         } catch (Exception ex) {
             System.out.println("geen connectie: " + e);
             e = ex;
-        }*/
-        Insert add = new Insert("String", "strinf");
+        }
+        //Insert add = new Insert("String", "strinf");
         
         doGet(request, response);
     }
