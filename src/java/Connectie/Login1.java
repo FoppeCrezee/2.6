@@ -8,6 +8,7 @@ package Connectie;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
@@ -24,7 +25,9 @@ public class Login1 {
         String vNaa = "TEstje";
         Connection con = null;
         PreparedStatement pst = null;
-
+        
+        String s = "Niet Foppe";
+        String wacht = "Niet Test";
         try {
             String url = "jdbc:mysql://localhost:3306/login?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&verifyServerCertificate=false&useSSL=true";
             Properties info = new Properties();
@@ -39,7 +42,16 @@ public class Login1 {
             con = DriverManager.getConnection(url, info);
             System.out.println("gelukt");
             Statement statement = con.createStatement();
-            System.out.println(statement.executeQuery("SELECT * FROM ding"));
+            
+            ResultSet rs = statement.executeQuery("SELECT * FROM ding where een = 'Foppe'");
+            if(rs.next()){
+            s = rs.getString("een");
+            wacht = rs.getString("twee");
+            }
+            
+            
+            System.out.println(s);
+            System.out.println(wacht);
             
             
             //statement.executeUpdate("INSERT into ding values(" + vNaa + "," + vNaa + ")");
