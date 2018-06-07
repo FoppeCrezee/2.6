@@ -103,21 +103,76 @@ public class Test extends HttpServlet {
                 = "<!doctype html public \"-//w3c//dtd html 4.0 "
                 + "transitional//en\">\n";
 
-        out.println(docType
-                + "<html>\n"
-                + "<head><title>" + title + "</title></head>\n"
-                + "<body bgcolor = \"#f0f0f0\">\n"
-                + "<h1 align = \"center\">" + title + "</h1>\n"
-                + "<ul>\n"
-                + "  <li><b>First Name</b>: "
-                + request.getParameter("voorNaam") + "\n"
-                + "  <li><b>Last Name</b>: "
-                + request.getParameter("wachtWoord") + "\n"
-                + "  <li><b>Last Name</b>: "
-                + e + "\n"
-                + "</ul>\n"
-                + "</body>"
-                + "</html>"
+//        out.println(docType
+//                + "<html>\n"
+//                + "<head><title>" + title + "</title></head>\n"
+//                + "<body bgcolor = \"#f0f0f0\">\n"
+//                + "<h1 align = \"center\">" + title + "</h1>\n"
+//                + "<ul>\n"
+//                + "  <li><b>First Name</b>: "
+//                + request.getParameter("voorNaam") + "\n"
+//                + "  <li><b>Last Name</b>: "
+//                + request.getParameter("wachtWoord") + "\n"
+//                + "  <li><b>Last Name</b>: "
+//                + e + "\n"
+//                + "</ul>\n"
+//                + "</body>"
+//                + "</html>"
+                
+        out.println(
+                "<html>\n" +
+"    <head>\n" +
+"        <title>Second opinion</title>\n" +
+"        <link rel=\"stylesheet\" href=\"Styles.css\"> \n" +
+"        <script src=\"https://code.jquery.com/jquery-3.2.1.min.js\"></script>\n" +
+"        <script src=\"script.js\"></script>    \n" +
+"    </head>\n" +
+"    <body>\n" +
+"        \n" +
+"        <div id=\"main\">\n" +
+"            <div id=\"header\" class=\"hoofd\">\n" +
+"				<img src=\"https://www.avl.nl/media/8869707/logo-NL-Antoni-van-Leeuwenhoek_jpeg_grootformaat.jpg\" id=\"avl3\">\n" +
+"            <h1 align=\"center\">Second opinion portaal</h1>\n" +
+"				<div id=\"uitlog\">\n" +
+"					<a href=\"Home.html\"><button class=\"uitloggen\">Uitloggen</button></a>\n" +
+"				</div>\n" +
+"            </div>\n" +
+"          \n" +
+"            <div id=\"gegevens2\">\n" +
+"           \n" +
+"				<div id=\"menu\">\n" +
+"					<a href=\"gegevens.html\">\n" +
+"						<div class=\"menuKnopGekozen\" id=\"eerste\">\n" +
+"							<p class=\"gekozen\">Mijn gegevens</p>\n" +
+"							<div id=\"driehoek\">\n" +
+"							</div>\n" +
+"						</div>\n" +
+"					</a>\n" +
+"					<a href=\"aanvraag.html\">\n" +
+"						<div class=\"menuKnop\" id=\"tweede\">\n" +
+"							<p class=\"boven\">Mijn aanvraag</p>\n" +
+"						</div>\n" +
+"					</a>\n" +
+"					<a href=\"behandeling.html\">\n" +
+"						<div class=\"menuKnop\" id=\"derde\">\n" +
+"							<p class=\"boven\">Mijn arts</p>\n" +
+"						</div>\n" +
+"					</a>\n" +
+"					<a href=\"contact.html\">\n" +
+"						<div class=\"menuKnop\" id=\"vierde\">\n" +
+"							<p class=\"boven\">Contact</p>\n" +
+"						</div>\n" +
+"					</a>			\n" +
+"				</div>\n" +
+"				<div id=\"content\">\n" +
+"					<p align=\"center\" id=\"titel\">Gegevens</p>\n" +
+"                                       <p>Naam:" + request.getParameter("voorNaam") +"</p>         \n"+   
+"                                       <p>Naam:" + request.getParameter("wachtWoord") +"</p>         \n"+ 
+"				</div>\n" +
+"            </div>\n" +
+"        </div>\n" +
+"     </body>\n" +
+"</html>\n" 
         );
     }
 
@@ -150,13 +205,11 @@ public class Test extends HttpServlet {
             }
             con = DriverManager.getConnection(url, info);
             //System.out.println("gelukt");
-//            PreparedStatement pst = null;
+            PreparedStatement pst = null;
 //            pst = con.prepareStatement(query);
 //            pst.setString(1, vNaam);
 //            pst.setString(2, ww);
 //            pst.execute();
-            //Statement statement = con.createStatement();
-            //statement.executeUpdate("INSERT into ding values('Betrr', 'doet')");
         } catch (Exception ex) {
             System.out.println("geen connectie: " + e);
             e = ex;
