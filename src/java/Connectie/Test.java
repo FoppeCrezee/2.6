@@ -132,7 +132,7 @@ public class Test extends HttpServlet {
         ja.main(vNaam, ww);*/
         
         
-        //String query = "INSERT into ding (een, twee)" + " values (?,?);";
+        String query = "INSERT into ding (een, twee)" + " values (?,?);";
         Connection con = null;
         String vNaam = request.getParameter("voorNaam");
         String ww = request.getParameter("wachtWoord");
@@ -150,13 +150,13 @@ public class Test extends HttpServlet {
             }
             con = DriverManager.getConnection(url, info);
             //System.out.println("gelukt");
-            //PreparedStatement pst = null;
-            //pst = con.prepareStatement(query);
-            //pst.setString(1, vNaam);
-            //pst.setString(2, ww);
-            //pst.execute();
-            Statement statement = con.createStatement();
-            statement.executeUpdate("INSERT into ding values('Betrr', 'doet')");
+//            PreparedStatement pst = null;
+//            pst = con.prepareStatement(query);
+//            pst.setString(1, vNaam);
+//            pst.setString(2, ww);
+//            pst.execute();
+            //Statement statement = con.createStatement();
+            //statement.executeUpdate("INSERT into ding values('Betrr', 'doet')");
         } catch (Exception ex) {
             System.out.println("geen connectie: " + e);
             e = ex;

@@ -31,6 +31,7 @@ public class Insert {
         String vNaa = "TEstje";
         Connection con = null;
         PreparedStatement pst = null;
+        String query = "INSERT into ding (een, twee)" + " values (?,?)";
 
         try {
             String url = "jdbc:mysql://localhost:3306/login?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&verifyServerCertificate=false&useSSL=true";
@@ -47,11 +48,18 @@ public class Insert {
             
             
             System.out.println("gelukt");
+            
+            //PreparedStatement pst = null;
+            pst = con.prepareStatement(query);
+            pst.setString(1, vNaam);
+            pst.setString(2, ww);
+            pst.execute();
+            
             Statement statement = con.createStatement();
             //System.out.println(statement.executeQuery("SELECT * FROM ding"));
             
             
-            statement.executeUpdate("INSERT into ding(een, twee) values('hopelijk', 'odet')");
+            //statement.executeUpdate("INSERT into ding(een, twee) values('hopelijk', 'odet')");
         } catch (SQLException e) {
             System.out.println("geen connectie: " + e);
 
