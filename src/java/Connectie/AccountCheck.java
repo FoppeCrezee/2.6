@@ -61,7 +61,10 @@ public class AccountCheck {
         } catch (Exception e) {
         
         }
-        if(s.equals(vNaam)){
+        if(s == null){
+            return 2;
+        }
+        else if(s.equals(vNaam)){
             if(w.equals(ww)){
                 return 1;
             }
