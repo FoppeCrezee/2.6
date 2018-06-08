@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Properties;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -20,27 +21,12 @@ public class AccountCheck {
     private String vNaam;
     private String ww;
     private Connection con = null;
-    private String url = "jdbc:mysql://localhost:3306/login?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&verifyServerCertificate=false&useSSL=true";
 
     public AccountCheck(String vNaam, String ww) {
         this.vNaam = vNaam;
         this.ww = ww;
-
-        try {
-            Properties info = new Properties();
-            info.put("user", "root");
-            info.put("password", "Foppe");
-
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-            } catch (ClassNotFoundException ex) {
-                System.out.println(ex);
-            }
-            con = DriverManager.getConnection(url, info);
-        } catch (Exception ex) {
-            System.out.println("geen connectie: " + ex);
-        }
-
+        Connectie conn = new Connectie();
+        con = conn.connectie();
     }
 
     public int con() {
@@ -61,10 +47,8 @@ public class AccountCheck {
         } catch (Exception e) {
         
         }
-        if(s == null){
-            return 2;
-        }
-        else if(s.equals(vNaam)){
+
+        if(s.equals(vNaam)){
             if(w.equals(ww)){
                 return 1;
             }
