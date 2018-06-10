@@ -43,7 +43,8 @@ public class Login1 {
             System.out.println("gelukt");
             Statement statement = con.createStatement();
             
-            ResultSet rs = statement.executeQuery("SELECT * FROM ding where een = 'Foppe'");
+            //ResultSet rs = statement.executeQuery("SELECT * FROM ding where een = 'Foppe'");
+            ResultSet rs = statement.executeQuery("INSERT ding values(Boaz, Bob)");
             if(rs.next()){
             s = rs.getString("een");
             wacht = rs.getString("twee");

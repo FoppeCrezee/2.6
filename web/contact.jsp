@@ -24,6 +24,7 @@
                 user = (String) session.getAttribute("user");
             }
             String userName = null;
+            String wachtwoord = null;
             String sessionID = null;
             Cookie[] cookies = request.getCookies();
             if (cookies != null) {
@@ -33,6 +34,9 @@
                     }
                     if (cookie.getName().equals("JSESSIONID")) {
                         sessionID = cookie.getValue();
+                    }
+                    if (cookie.getName().equals("wachtwoord")) {
+                        wachtwoord = cookie.getValue();
                     }
                 }
             }
@@ -77,6 +81,7 @@
                 </div>
                 <div id="content">
                     <p align="center" id="titel">Contact</p>
+                    <%=wachtwoord%>
                 </div>
 
 

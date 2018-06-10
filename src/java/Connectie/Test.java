@@ -7,12 +7,6 @@ package Connectie;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Properties;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -43,16 +37,33 @@ public class Test extends HttpServlet {
 
         String vNaam = request.getParameter("voorNaam");
         String ww = request.getParameter("wachtWoord");
+        Patient patient;
+        
         AccountCheck check = new AccountCheck(vNaam, ww);
         if (check.con() == 1) {
-
+            RequestData data = new RequestData(vNaam);
+            patient = data.getData();
+            
+            
             HttpSession session = request.getSession();
             session.setAttribute("user", vNaam);
             //setting session to expiry in 30 mins
             session.setMaxInactiveInterval(30 * 60);
+            
+            //setup Cookies
             Cookie userName = new Cookie("user", vNaam);
+            Cookie wachtwoord = new Cookie("wachtwoord", patient.getWachtwoord());
+            //Cookie patientje = new Cookie("patient", patient);
+            
+            //Geef ze een tijd
             userName.setMaxAge(30 * 60);
+            wachtwoord.setMaxAge(30 * 60);
+            
+            //voeg de cookies toe
             response.addCookie(userName);
+            response.addCookie(wachtwoord);
+            
+            //redirect
             response.sendRedirect("Ingelogd.jsp");
 
             //doGet(request, response);
@@ -66,8 +77,8 @@ public class Test extends HttpServlet {
     public void wrong(HttpServletRequest request, HttpServletResponse response, String message) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println(
-                "<html>\n"
+        out.println(          
+                 "<html>\n"
                 + "    <head>\n"
                 + "        <title>Second opinion</title>\n"
                 + "        <link rel=\"stylesheet\" href=\"Styless.css\"> \n"
@@ -84,32 +95,30 @@ public class Test extends HttpServlet {
                 + "            </div>\n"
                 + "          \n"
                 + "            <div id=\"gegevens\">\n"
-                + "            <form id=\"Inloggen\">\n"
+                + "                <form id=\"Inloggen\" action=\"Test\" method=\"POST\">\n"
                 + "				<table class=\"inlog\">\n"
                 + "				\n"
                 + "					<tr>\n"
                 + "						<td>\n"
                 + "							<p>Naam:</p>\n"
-                + "							<input id=“Naam” type=\"text\" class=\"Name\" onfocus=\"vrij(this, default_value_nummer) \"onfocusout=\"nummer(this)\">\n"
+                + "							<input id=“voorNaam” type=\"text\" name=\"voorNaam\" class=\"Name\">\n"
                 + "						</td>\n"
                 + "						<td>\n"
                 + "							<p>Wachtwoord:</p>\n"
-                + "							<input id=“Naam” type=\"password\" class=\"Name\" onfocus=\"vrij(this, default_value_nummer) \"onfocusout=\"nummer(this)\">\n"
+                + "							<input id=“wachtWoord” type=\"password\" name=\"wachtWoord\" class=\"Name\">\n"
                 + "						</td>\n"
                 + "					</tr>\n"
-                + "					<tr>\n"
+                + "                                     <tr>\n"
                 + "						<td colspan=\"2\">\n"
                 + "							<p id=\"verkeerd\">" + message + "</p>\n"
                 + "						</td>\n"
                 + "					</tr>\n"
-                + "					\n"
                 + "				</table>\n"
                 + "				\n"
                 + "				<div id=\"knop4\">\n"
                 + "					<input type=\"submit\" class=\"buttonInlog\">\n"
                 + "				</div>\n"
-                + "			</form>\n"
-                + "				<a href=\"gegevens.html\">inlog</a>\n"
+                + "		</form>\n"
                 + "                <img src=\"https://www.avl.nl/media/8869707/logo-NL-Antoni-van-Leeuwenhoek_jpeg_grootformaat.jpg\" id=\"avl\">\n"
                 + "            </div>\n"
                 + "        </div>\n"
@@ -117,7 +126,8 @@ public class Test extends HttpServlet {
                 + "        \n"
                 + "    </body>\n"
                 + "\n"
-                + "</html>");
+                + "</html>"
+        );
     }
 
 }

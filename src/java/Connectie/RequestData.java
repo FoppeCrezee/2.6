@@ -6,56 +6,47 @@
 package Connectie;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Properties;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author foppe
  */
-public class AccountCheck {
-
-    private String vNaam;
-    private String ww;
-    private Connection con = null;
-
-    public AccountCheck(String vNaam, String ww) {
-        this.vNaam = vNaam;
-        this.ww = ww;
+public class RequestData {
+    
+    protected Connection con = null;
+    protected String id;
+    protected ResultSet rs;
+    private Patient patient;
+    
+    public RequestData(String id){
         Connectie conn = new Connectie();
         con = conn.connectie();
+        this.id = id;
     }
-
-    public int con() {
+    
+    public Patient getData(){
+        //Voor andere tabel, in AccountCheck wordt alleen ww met id aangevraagd. Hier komt de hele tabel... geen wachtwoord
+        //ding wordt patient
         String query = "SELECT * FROM ding where een = ?";
-        String s = "niks";
+        String s = null;
         String w = null;
         try {
             PreparedStatement pst = null;
             pst = con.prepareStatement(query);
-            pst.setString(1, vNaam);
-            ResultSet rs = pst.executeQuery();
+            pst.setString(1, id);
+            rs = pst.executeQuery();
             if (rs.next()) {
                 s = rs.getString("een");
                 w = rs.getString("twee");
             }
+        patient = new Patient(s, w);
         } catch (NullPointerException e) {
-            return 3;
         } catch (Exception e) {
-
         }
-
-        if (s.equals(vNaam)) {
-            if (w.equals(ww)) {
-                return 1;
-            }
-            return 2;
-        } else {
-            return 3;
-        }
+        return patient;
+        
     }
-
+    
 }

@@ -17,18 +17,18 @@ import java.util.Properties;
  * @author foppe
  */
 public class Insert {
-    
+
     private String vNaam;
     private String ww;
-    
-    public Insert(String vNaam, String ww){
+
+    public Insert(String vNaam, String ww) {
         this.vNaam = vNaam;
         this.ww = ww;
     }
-    
-    public void add(){
-    
-        String vNaa = "TEstje";
+
+    public void add() {
+
+        String vNaa = "Boaz";
         Connection con = null;
         PreparedStatement pst = null;
         String query = "INSERT into ding (een, twee)" + " values (?,?)";
@@ -45,28 +45,24 @@ public class Insert {
                 System.out.println(ex);
             }
             con = DriverManager.getConnection(url, info);
-            
-            
+
             System.out.println("gelukt");
-            
+
             //PreparedStatement pst = null;
             pst = con.prepareStatement(query);
             pst.setString(1, vNaam);
             pst.setString(2, ww);
             pst.execute();
-            
+
             Statement statement = con.createStatement();
             //System.out.println(statement.executeQuery("SELECT * FROM ding"));
-            
-            
+
             //statement.executeUpdate("INSERT into ding(een, twee) values('hopelijk', 'odet')");
         } catch (SQLException e) {
             System.out.println("geen connectie: " + e);
 
         }
-        
-        
+
     }
-    
-    
+
 }
