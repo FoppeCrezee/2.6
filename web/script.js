@@ -54,3 +54,17 @@ function validateForm() {
 		return true;
 	}
 }
+
+function validateWijzigingen() {
+	'use strict';
+	naam($('input[name="vNaam"]').get(0), naamReg);
+        naam($('input[name="ww"]').get(0), naamReg);
+	
+	if (naam($('input[name="vNaam"]').get(0), naamReg) ||
+			naam($('input[name="ww"]').get(0), naamReg)) {
+        alert("Niet alles is ingevuld");
+        return false;
+    } else {
+		return true;
+	}
+}

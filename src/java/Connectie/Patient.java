@@ -27,4 +27,12 @@ public class Patient {
     public String getWachtwoord(){
         return wachtwoord;
     } 
+    
+    public void setNaam(String naam){
+        this.naam = naam;
+    }
+    
+    public void setWachtwoord(String wachtwoord){
+        this.wachtwoord = wachtwoord;
+    }
 }

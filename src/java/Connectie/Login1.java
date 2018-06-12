@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+
 import javax.servlet.annotation.WebServlet;
 
 /**
@@ -24,8 +25,8 @@ public class Login1 {
 
         String vNaa = "TEstje";
         Connection con = null;
-        PreparedStatement pst = null;
-        
+        //PreparedStatement pst = null;
+
         String s = "Niet Foppe";
         String wacht = "Niet Test";
         try {
@@ -41,20 +42,33 @@ public class Login1 {
             }
             con = DriverManager.getConnection(url, info);
             System.out.println("gelukt");
-            Statement statement = con.createStatement();
-            
+            //Statement statement = con.createStatement();
+
+            String Naam = "Beter";
+            String ww = "Test";
+            String naamm = "Betrr";
+            String query = "UPDATE ding SET een = ? , twee = ? WHERE een = ?";
+            PreparedStatement pst = null;
+            try {
+                pst = con.prepareStatement(query);
+                pst.setString(1, Naam);
+                pst.setString(2, ww);
+                pst.setString(3, naamm);
+                pst.executeUpdate();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+
             //ResultSet rs = statement.executeQuery("SELECT * FROM ding where een = 'Foppe'");
-            ResultSet rs = statement.executeQuery("INSERT ding values(Boaz, Bob)");
+            //statement.executeUpdate("UPDATE ding SET een = 'Betrr' , twee = 'test' WHERE een = 'Beter'");
+            /* ResultSet rs = statement.executeQuery("UPDATE ding SET een = Betrr , twee = test WHERE een = Beter");
             if(rs.next()){
             s = rs.getString("een");
             wacht = rs.getString("twee");
-            }
-            
-            
+            }*/
             System.out.println(s);
             System.out.println(wacht);
-            
-            
+
             //statement.executeUpdate("INSERT into ding values(" + vNaa + "," + vNaa + ")");
         } catch (SQLException e) {
             System.out.println("geen connectie: " + e);

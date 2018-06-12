@@ -62,7 +62,7 @@ public class Test extends HttpServlet {
             //voeg de cookies toe
             response.addCookie(userName);
             response.addCookie(wachtwoord);
-            
+                       
             //redirect
             response.sendRedirect("Ingelogd.jsp");
 

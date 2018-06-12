@@ -1,8 +1,9 @@
 <%-- 
-    Document   : Ingelogd
-    Created on : 8-jun-2018, 12:11:24
+    Document   : Wijzig
+    Created on : 12-jun-2018, 15:34:01
     Author     : foppe
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,7 +23,7 @@
             } else {
                 user = (String) session.getAttribute("user");
             }
-
+            
             String userName = null;
             String sessionID = null;
             String wachtwoord = null;
@@ -81,6 +82,12 @@
 
                 <div id="content">
                     <p align="center" id="titel">Gegevens</p>
+                    <!--
+                    <h3>Hi <%=userName%>, Login successful. Your Session ID=<%=sessionID%></h3>
+                    <br>
+                    User=<%=user%>-->
+                    
+                    <form id="Wijzigen gegevens" onsubmit="return validateWijzigingen()" action="WijzigServlet" method="post">
                         <table class="data">
 
                             <tr>
@@ -88,7 +95,7 @@
                                     <p>Naam:</p>
                                 </td>
                                 <td>
-                                    <input id=“Naam” name="vNaam" value="<%=userName%>" type="text"  onfocusout= "naam(this, naamReg)" readonly>
+                                    <input id=“Naam” name="vNaam" value="<%=userName%>" type="text"  onfocusout= "naam(this, naamReg)">
                                 </td>
                             </tr>
                             <tr>
@@ -96,21 +103,16 @@
                                     <p>Wachtwoord:</p>
                                 </td>
                                 <td>
-                                    <input id=“Naam” name="ww" value="<%=wachtwoord%>" type="text"  onfocusout="naam(this, naamReg)" readonly>
+                                    <input id=“Naam” name="ww" value="<%=wachtwoord%>" type="text"  onfocusout="naam(this, naamReg)">
                                 </td>
                             </tr>
-
-
-                        </table>	
-
-                        <!--<div id="knop4">
+                        <div id="knop4">
                             <input type="submit" class="buttonInlog" value="Wijzigen">
                         </div>
-                    </form>-->
-                        
-                        <div id="knop4">
-                    <a href="Wijzig.jsp"><button class="buttonInlog">Wijzig gegevens</button></a>
-                </div>
+                        <div id="knop5">
+                             <a href="Ingelogd.jsp"><button class="buttonInlog">Annuleren</button></a>
+                         </div>
+                    </form>
 
                 </div>
 
@@ -119,4 +121,5 @@
         </div>
     </body>
 </html>
+
 

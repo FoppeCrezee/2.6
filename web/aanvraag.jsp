@@ -15,6 +15,29 @@
         <script src="script.js"></script>    
     </head>
     <body>
+        
+        <%
+        //allow access only if session exists
+            String user = null;
+            if (session.getAttribute("user") == null) {
+                response.sendRedirect("inlog.html");
+            } else {
+                user = (String) session.getAttribute("user");
+            }
+            String userName = null;
+            String sessionID = null;
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("user")) {
+                        userName = cookie.getValue();
+                    }
+                    if (cookie.getName().equals("JSESSIONID")) {
+                        sessionID = cookie.getValue();
+                    }
+                }
+            }
+        %>
 
         <div id="main">
             <div id="header" class="hoofd">
