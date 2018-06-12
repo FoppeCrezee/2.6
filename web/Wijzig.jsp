@@ -26,7 +26,12 @@
             
             String userName = null;
             String sessionID = null;
-            String wachtwoord = null;
+            String ini = null;
+            String sex = null;
+            String postcode = null;
+            String plaats = null;
+            String adres = null;
+            
             Cookie[] cookies = request.getCookies();
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
@@ -36,8 +41,20 @@
                     if (cookie.getName().equals("JSESSIONID")) {
                         sessionID = cookie.getValue();
                     }
-                    if (cookie.getName().equals("wachtwoord")) {
-                        wachtwoord = cookie.getValue();
+                    if (cookie.getName().equals("init")) {
+                        ini = cookie.getValue();
+                    }
+                    if (cookie.getName().equals("sex")) {
+                        sex = cookie.getValue();
+                    }
+                    if (cookie.getName().equals("adres")) {
+                        adres = cookie.getValue();
+                    }
+                    if (cookie.getName().equals("postcode")) {
+                        postcode = cookie.getValue();
+                    }
+                    if (cookie.getName().equals("plaats")) {
+                        plaats = cookie.getValue();
                     }
                 }
             }
@@ -92,18 +109,50 @@
 
                             <tr>
                                 <td>
-                                    <p>Naam:</p>
+                                    <p>Mail:</p>
                                 </td>
                                 <td>
-                                    <input id=“Naam” name="vNaam" value="<%=userName%>" type="text"  onfocusout= "naam(this, naamReg)">
+                                    <input id="Naam" name="vNaam" value="<%=userName%>" type="text"  onfocusout= "naam(this, mailReg)">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <p>Wachtwoord:</p>
+                                    <p>Initialen:</p>
                                 </td>
                                 <td>
-                                    <input id=“Naam” name="ww" value="<%=wachtwoord%>" type="text"  onfocusout="naam(this, naamReg)">
+                                    <input id="Naam" name="ini" value="<%=ini%>" type="text"  onfocusout= "naam(this, initReg)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Geslacht:</p>
+                                </td>
+                                <td>
+                                    <input id=“Naam” name="sex" value="<%=sex%>" type="text" onfocusout= "naam(this, naamReg)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Adres:</p>
+                                </td>
+                                <td>
+                                    <input id="Naam" name="adres" value="<%=adres%>" type="text" onfocusout= "naam(this, initReg)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Postcode:</p>
+                                </td>
+                                <td>
+                                    <input id=“Naam” name="postcode" value="<%=postcode%>" type="text" onfocusout= "naam(this, postReg)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Plaats:</p>
+                                </td>
+                                <td>
+                                    <input id=“Naam” name="plaats" value="<%=plaats%>" type="text" onfocusout= "naam(this, naamReg)">
                                 </td>
                             </tr>
                         <div id="knop4">

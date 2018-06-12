@@ -30,12 +30,15 @@ public class WijzigServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String vNaam = request.getParameter("vNaam");
-        String ww = request.getParameter("ww");
-        ChangeData change = new ChangeData(vNaam, ww, request, response);
-        
-        
-        
+        String mail = request.getParameter("vNaam");
+        String ini = request.getParameter("ini");
+        String adres = request.getParameter("adres");
+        String sex = request.getParameter("sex");
+        String postcode = request.getParameter("postcode");
+        String plaats = request.getParameter("plaats");
+
+        ChangeData change = new ChangeData(mail, ini, sex, adres, postcode, plaats, request, response);
+
         response.sendRedirect("Ingelogd.jsp");
         
         

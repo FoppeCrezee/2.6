@@ -25,7 +25,12 @@
 
             String userName = null;
             String sessionID = null;
-            String wachtwoord = null;
+            String ini = null;
+            String sex = null;
+            String postcode = null;
+            String plaats = null;
+            String adres = null;
+            
             Cookie[] cookies = request.getCookies();
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
@@ -35,8 +40,20 @@
                     if (cookie.getName().equals("JSESSIONID")) {
                         sessionID = cookie.getValue();
                     }
-                    if (cookie.getName().equals("wachtwoord")) {
-                        wachtwoord = cookie.getValue();
+                    if (cookie.getName().equals("init")) {
+                        ini = cookie.getValue();
+                    }
+                    if (cookie.getName().equals("sex")) {
+                        sex = cookie.getValue();
+                    }
+                    if (cookie.getName().equals("adres")) {
+                        adres = cookie.getValue();
+                    }
+                    if (cookie.getName().equals("postcode")) {
+                        postcode = cookie.getValue();
+                    }
+                    if (cookie.getName().equals("plaats")) {
+                        plaats = cookie.getValue();
                     }
                 }
             }
@@ -85,18 +102,50 @@
 
                             <tr>
                                 <td>
-                                    <p>Naam:</p>
+                                    <p>Mail:</p>
                                 </td>
                                 <td>
-                                    <input id=“Naam” name="vNaam" value="<%=userName%>" type="text"  onfocusout= "naam(this, naamReg)" readonly>
+                                    <input id=“Naam” name="vNaam" value="<%=userName%>" type="text"  readonly>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <p>Wachtwoord:</p>
+                                    <p>Initialen:</p>
                                 </td>
                                 <td>
-                                    <input id=“Naam” name="ww" value="<%=wachtwoord%>" type="text"  onfocusout="naam(this, naamReg)" readonly>
+                                    <input id=“Naam” name="ww" value="<%=ini%>" type="text"   readonly>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Geslacht:</p>
+                                </td>
+                                <td>
+                                    <input id=“Naam” name="ww" value="<%=sex%>" type="text"  readonly>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Adres:</p>
+                                </td>
+                                <td>
+                                    <input id=“Naam” name="ww" value="<%=adres%>" type="text"   readonly>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Postcode:</p>
+                                </td>
+                                <td>
+                                    <input id=“Naam” name="ww" value="<%=postcode%>" type="text" readonly>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Plaats:</p>
+                                </td>
+                                <td>
+                                    <input id=“Naam” name="ww" value="<%=plaats%>" type="text" readonly>
                                 </td>
                             </tr>
 

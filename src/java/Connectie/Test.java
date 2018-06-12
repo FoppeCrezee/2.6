@@ -51,17 +51,32 @@ public class Test extends HttpServlet {
             session.setMaxInactiveInterval(30 * 60);
             
             //setup Cookies
-            Cookie userName = new Cookie("user", vNaam);
-            Cookie wachtwoord = new Cookie("wachtwoord", patient.getWachtwoord());
+            Cookie userName = new Cookie("user", patient.getMail());
+            Cookie init = new Cookie("init", patient.getIni());
+            Cookie sex = new Cookie("sex", patient.getSex());
+            Cookie adres = new Cookie("adres", patient.getAdres());
+            Cookie postcode = new Cookie("postcode", patient.getPostcode());
+            Cookie plaats = new Cookie("plaats", patient.getPlaats());
+            //Cookie wachtwoord = new Cookie("wachtwoord", patient.getWachtwoord());
             //Cookie patientje = new Cookie("patient", patient);
             
             //Geef ze een tijd
             userName.setMaxAge(30 * 60);
-            wachtwoord.setMaxAge(30 * 60);
+            init.setMaxAge(30 * 60);
+            sex.setMaxAge(30 * 60);
+            adres.setMaxAge(30 * 60);
+            postcode.setMaxAge(30 * 60);
+            plaats.setMaxAge(30 * 60);
+            //wachtwoord.setMaxAge(30 * 60);
             
             //voeg de cookies toe
             response.addCookie(userName);
-            response.addCookie(wachtwoord);
+            response.addCookie(init);
+            response.addCookie(sex);
+            response.addCookie(adres);
+            response.addCookie(postcode);
+            response.addCookie(plaats);
+            //response.addCookie(wachtwoord);
                        
             //redirect
             response.sendRedirect("Ingelogd.jsp");

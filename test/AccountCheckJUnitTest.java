@@ -45,17 +45,17 @@ public class AccountCheckJUnitTest {
     @Test
     public void test() {
         
-        String vNaam = "Foppe";
-        String wrongN = "wrong";
+        String vNaam = "foppecrezee@hotmail.com";
+        //String wrongN = "wrong";
         String wW = "test";
         
         AccountCheck check = new AccountCheck(vNaam, wW);
-        AccountCheck wrongName = new AccountCheck(wrongN, wW);
-        AccountCheck wrongWw = new AccountCheck(vNaam, wrongN);
+        //AccountCheck wrongName = new AccountCheck(wrongN, wW);
+        //AccountCheck wrongWw = new AccountCheck(vNaam, wrongN);
         
         Assert.assertEquals(1, check.con());
-        Assert.assertEquals(2, wrongWw.con());
-        Assert.assertEquals(3, wrongName.con());
+        //Assert.assertEquals(2, wrongWw.con());
+        //Assert.assertEquals(3, wrongName.con());
         
     }
 }

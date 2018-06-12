@@ -22,23 +22,30 @@ import javax.servlet.http.HttpSession;
 public class ChangeData {
 
     protected Connection con = null;
-    private String naam;
-    private String ww;
+    private String mail;
+    private String ini;
+    private String sex;
+    private String adres;
+    private String postcode;
+    private String plaats;
     private HttpServletRequest request;
     private String naamm;
     private HttpServletResponse response;
 
-    public ChangeData(String naam, String ww, HttpServletRequest request, HttpServletResponse response) {
+    public ChangeData(String mail, String ini, String sex, String adres, String postcode, String plaats, HttpServletRequest request, HttpServletResponse response) {
         
         HttpSession session = request.getSession();
         naamm = (String) session.getAttribute("user");
         
-        
-        
         Connectie conn = new Connectie();
         con = conn.connectie();
-        this.naam = naam;
-        this.ww = ww;
+        this.mail = mail;
+        this.ini = ini;
+        this.sex = sex;
+        this.adres = adres;
+        this.postcode = postcode;
+        this.plaats = plaats;
+        
         this.naamm = naamm;
         this.request = request;
         this.response = response;
@@ -47,13 +54,17 @@ public class ChangeData {
     }
 
     public void main() {
-        String query = "UPDATE ding SET een = ? , twee = ? WHERE een = ?";
+        String query = "UPDATE patient SET Emailadres = ? , Initialen = ? , Geslacht = ? , Adres = ? , Postcode = ? , Plaats = ? WHERE Emailadres = ?";
         PreparedStatement pst = null;
         try {
             pst = con.prepareStatement(query);
-            pst.setString(1, naam);
-            pst.setString(2, ww);
-            pst.setString(3, naamm);
+            pst.setString(1, mail);
+            pst.setString(2, ini);
+            pst.setString(3, sex);
+            pst.setString(4, adres);
+            pst.setString(5, postcode);
+            pst.setString(6, plaats);
+            pst.setString(7, naamm);
             pst.executeUpdate();
 
         } catch (SQLException ex) {
@@ -65,12 +76,32 @@ public class ChangeData {
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("user")) {
-                    cookie.setValue(naam);
+                    cookie.setValue(mail);
                     //cookie.setMaxAge(30*60);
                     response.addCookie(cookie);
                 }
-                if (cookie.getName().equals("wachtwoord")) {
-                    cookie.setValue(ww);
+                if (cookie.getName().equals("init")) {
+                    cookie.setValue(ini);
+                    //cookie.setMaxAge(30*60);
+                    response.addCookie(cookie);
+                }
+                if (cookie.getName().equals("sex")) {
+                    cookie.setValue(sex);
+                    //cookie.setMaxAge(30*60);
+                    response.addCookie(cookie);
+                }
+                if (cookie.getName().equals("adres")) {
+                    cookie.setValue(adres);
+                    //cookie.setMaxAge(30*60);
+                    response.addCookie(cookie);
+                }
+                if (cookie.getName().equals("postcode")) {
+                    cookie.setValue(postcode);
+                    //cookie.setMaxAge(30*60);
+                    response.addCookie(cookie);
+                }
+                if (cookie.getName().equals("plaats")) {
+                    cookie.setValue(plaats);
                     //cookie.setMaxAge(30*60);
                     response.addCookie(cookie);
                 }

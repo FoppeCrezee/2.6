@@ -30,7 +30,7 @@ public class AccountCheck {
     }
 
     public int con() {
-        String query = "SELECT * FROM ding where een = ?";
+        String query = "SELECT * FROM user where Emailadres = ?";
         String s = "niks";
         String w = null;
         try {
@@ -39,8 +39,8 @@ public class AccountCheck {
             pst.setString(1, vNaam);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                s = rs.getString("een");
-                w = rs.getString("twee");
+                s = rs.getString("Emailadres");
+                w = rs.getString("Wachtwoord");
             }
         } catch (NullPointerException e) {
             return 3;
