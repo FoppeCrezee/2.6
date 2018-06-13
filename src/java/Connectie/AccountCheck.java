@@ -43,18 +43,65 @@ public class AccountCheck {
                 w = rs.getString("Wachtwoord");
             }
         } catch (NullPointerException e) {
-            return 3;
+            //System.out.println("e");
+            //return 3;
         } catch (Exception e) {
-
         }
-
+        
         if (s.equals(vNaam)) {
             if (w.equals(ww)) {
-                return 1;
+                if(checkPatient())
+                    return 1;
+                else if(checkArts())
+                    return 2;
             }
-            return 2;
-        } else {
             return 3;
+        } else {
+            return 4;
+        }
+    }
+
+    public boolean checkPatient() {
+        String queryP = "SELECT * FROM patient where Emailadres = ?";
+        String email = null;
+        try {
+            PreparedStatement pst = null;
+            pst = con.prepareStatement(queryP);
+            pst.setString(1, vNaam);
+            ResultSet rs = pst.executeQuery();
+            //System.out.println(vNaam);
+            if (rs.next()) {
+                email = rs.getString("Emailadres");
+            }
+            if (email == null) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean checkArts() {
+        String queryA = "SELECT * FROM Arts where Emailadres = ?";
+        String email = null;
+        try {
+            PreparedStatement pst = null;
+            pst = con.prepareStatement(queryA);
+            pst.setString(1, vNaam);
+            ResultSet rs = pst.executeQuery();
+            //System.out.println(vNaam);
+            if (rs.next()) {
+                email = rs.getString("Emailadres");
+            }
+            if (email == null) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Exception e) {
+            return false;
         }
     }
 

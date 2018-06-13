@@ -18,7 +18,7 @@
         <%
         //allow access only if session exists
             String user = null;
-            if (session.getAttribute("user") == null) {
+            if (session.getAttribute("user") == null || session.getAttribute("beroep") != "patient") {
                 response.sendRedirect("inlog.html");
             } else {
                 user = (String) session.getAttribute("user");

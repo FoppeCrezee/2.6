@@ -12,6 +12,7 @@ package Connectie;
 public class Patient {
 
     //velden
+    private String naam;
     private String mail;
     //private String wachtwoord;
     //private int BSN;

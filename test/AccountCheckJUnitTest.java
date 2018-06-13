@@ -5,6 +5,7 @@
  */
 
 import Connectie.AccountCheck;
+import Connectie.RequestData;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -46,16 +47,26 @@ public class AccountCheckJUnitTest {
     public void test() {
         
         String vNaam = "foppecrezee@hotmail.com";
-        //String wrongN = "wrong";
+        String mail = "peterdevries@hotmail.com";
+        String wrongN = "wrong";
         String wW = "test";
         
         AccountCheck check = new AccountCheck(vNaam, wW);
-        //AccountCheck wrongName = new AccountCheck(wrongN, wW);
-        //AccountCheck wrongWw = new AccountCheck(vNaam, wrongN);
+        AccountCheck wrongName = new AccountCheck(mail, wW);
+        AccountCheck wrongWw = new AccountCheck(vNaam, wrongN);
         
         Assert.assertEquals(1, check.con());
         //Assert.assertEquals(2, wrongWw.con());
         //Assert.assertEquals(3, wrongName.con());
+        
+        Assert.assertEquals(true, check.checkPatient());
+        Assert.assertEquals(false, check.checkArts());
+        Assert.assertEquals(false, wrongName.checkPatient());
+        Assert.assertEquals(true, wrongName.checkArts());
+        
+        
+        RequestData data = new RequestData();
+        System.out.println(data.getPatienten().toString());
         
     }
 }

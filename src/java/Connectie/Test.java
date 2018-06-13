@@ -24,6 +24,9 @@ public class Test extends HttpServlet {
 
     private static final String WRONG_NAME = "Username bestaat niet";
     private static final String WRONG_PSSWRD = "Verkeerd wachtwoord";
+    private String vNaam;
+    private Patient patient;
+    private Arts arts;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,23 +38,26 @@ public class Test extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String vNaam = request.getParameter("voorNaam");
+        vNaam = request.getParameter("voorNaam");
         String ww = request.getParameter("wachtWoord");
-        Patient patient;
+        //Patient patient;
         
+        HttpSession session = request.getSession();
+
         AccountCheck check = new AccountCheck(vNaam, ww);
         if (check.con() == 1) {
-            RequestData data = new RequestData(vNaam);
-            patient = data.getData();
-            
-            
-            HttpSession session = request.getSession();
+            //setPatient(request, response);
+           // HttpSession session = request.getSession();
             session.setAttribute("user", vNaam);
+            session.setAttribute("beroep", "patient");
             //setting session to expiry in 30 mins
             session.setMaxInactiveInterval(30 * 60);
-            
+            setPatient(request, response);
+
+            //RequestData data = new RequestData(vNaam);
+            //patient = data.getPatientData();
             //setup Cookies
-            Cookie userName = new Cookie("user", patient.getMail());
+            /*Cookie userName = new Cookie("user", patient.getMail());
             Cookie init = new Cookie("init", patient.getIni());
             Cookie sex = new Cookie("sex", patient.getSex());
             Cookie adres = new Cookie("adres", patient.getAdres());
@@ -79,21 +85,92 @@ public class Test extends HttpServlet {
             //response.addCookie(wachtwoord);
                        
             //redirect
-            response.sendRedirect("Ingelogd.jsp");
-
+            response.sendRedirect("Ingelogd.jsp");*/
             //doGet(request, response);
         } else if (check.con() == 2) {
-            wrong(request, response, WRONG_PSSWRD);
+            setArts(request, response);
+            //setPatient(request, response);
+            
+            session.setAttribute("user", vNaam);
+            session.setAttribute("beroep", "arts");
+            //setting session to expiry in 30 mins
+            session.setMaxInactiveInterval(30 * 60);
+
+            // RequestData data = new RequestData(vNaam);
+            //arts = data.getArtsData(vNaam);
+           
         } else if (check.con() == 3) {
+            wrong(request, response, WRONG_PSSWRD);
+        } else if (check.con() == 4) {
             wrong(request, response, WRONG_NAME);
+        }
+    }
+
+    private void setPatient(HttpServletRequest request, HttpServletResponse response) {
+        RequestData data = new RequestData();
+        patient = data.getPatientData(vNaam);
+
+        //setup Cookies
+        //Cookie beroep = new Cookie("beroep", "patient");
+        Cookie userName = new Cookie("user", patient.getMail());
+        Cookie init = new Cookie("init", patient.getIni());
+        Cookie sex = new Cookie("sex", patient.getSex());
+        Cookie adres = new Cookie("adres", patient.getAdres());
+        Cookie postcode = new Cookie("postcode", patient.getPostcode());
+        Cookie plaats = new Cookie("plaats", patient.getPlaats());
+        //Cookie wachtwoord = new Cookie("wachtwoord", patient.getWachtwoord());
+        //Cookie patientje = new Cookie("patient", patient);
+
+        //Geef ze een tijd
+        // beroep.setMaxAge(30*60);
+        userName.setMaxAge(30 * 60);
+        init.setMaxAge(30 * 60);
+        sex.setMaxAge(30 * 60);
+        adres.setMaxAge(30 * 60);
+        postcode.setMaxAge(30 * 60);
+        plaats.setMaxAge(30 * 60);
+        //wachtwoord.setMaxAge(30 * 60);
+
+        //voeg de cookies toe
+        //response.addCookie(beroep);
+        response.addCookie(userName);
+        response.addCookie(init);
+        response.addCookie(sex);
+        response.addCookie(adres);
+        response.addCookie(postcode);
+        response.addCookie(plaats);
+        //response.addCookie(wachtwoord);
+        try {
+            //redirect
+            response.sendRedirect("Ingelogd.jsp");
+        } catch (IOException ex) {
+        }
+    }
+
+    private void setArts(HttpServletRequest request, HttpServletResponse response) {
+        RequestData data = new RequestData();
+        arts = data.getArtsData(vNaam);
+        
+        Cookie mail = new Cookie("mail", arts.getMail());
+        Cookie naam = new Cookie("naam", arts.getNaam());
+        
+        mail.setMaxAge(30 * 60);
+        naam.setMaxAge(30 * 60);
+        
+        response.addCookie(mail);
+        response.addCookie(naam);
+        
+        try {
+            response.sendRedirect("artsGegevens.jsp");
+        } catch (IOException ex) {
         }
     }
 
     public void wrong(HttpServletRequest request, HttpServletResponse response, String message) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println(          
-                 "<html>\n"
+        out.println(
+                "<html>\n"
                 + "    <head>\n"
                 + "        <title>Second opinion</title>\n"
                 + "        <link rel=\"stylesheet\" href=\"Styless.css\"> \n"
