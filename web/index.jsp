@@ -27,7 +27,7 @@
             <div id="gegevens">
 
                 <div id="knop1">
-                    <a href="patient.html"><button class="button">U bent een patiënt</button></a>
+                    <a href="patientAanvraag.html"><button class="button">U bent een patiënt</button></a>
                 </div>
                 <div id="knop2">
                     <a href= "arts.html"><button class="button">U bent een arts</button></a>

@@ -5,7 +5,7 @@
  */
 
 import Connectie.AccountCheck;
-import Connectie.RequestData;
+import Data.RequestData;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;

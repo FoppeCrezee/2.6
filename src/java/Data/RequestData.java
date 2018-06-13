@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Connectie;
+package Data;
 
+import Connectie.Arts;
+import Connectie.Connectie;
+import Connectie.Patient;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

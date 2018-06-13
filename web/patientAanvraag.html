@@ -23,7 +23,7 @@ and open the template in the editor.
 
             <div id="gegevens">
 
-                <form id="invullen" action="registerservlet" onsubmit="return validateForm()" method="post">
+                <form id="invullen" action="registerServlet" onsubmit="return validateForm()" method="post">
                     <table align="center">
 
                         <hr id="lijn">
@@ -37,6 +37,18 @@ and open the template in the editor.
                             </td>
                             <td>
                                 <input id=“aNaam” type="text" class="input" name="na" onfocusout="naam(this, naamReg)">
+                            </td>
+                        </tr>
+                        <hr id="lijn">
+
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <p>Wachtwoord:</p>
+                            </td>
+                            <td>
+                                <input id=“aNaam” type="password" class="input" name="ww" onfocusout="naam(this, naamReg)">
                             </td>
                         </tr>
                         <tr>
@@ -90,7 +102,7 @@ and open the template in the editor.
                             </td>
                             <td>
                                 <input id=“Naam” type="text" class="nr" name="nu" onfocusout="naam(this, numReg)">
-                                <input id=“Naam” type="text" class="tv">
+                                <input id=“Naam” type="text" class="tv" name="toevoeging">
                             </td>
                         </tr>
                         <tr>
@@ -150,7 +162,7 @@ and open the template in the editor.
                                 <p>Reeds in het AVL geweest?</p>
                             </td>
                             <td>
-                                <input id=“Naam” type="checkbox" class="input">
+                                <input id=“Naam” type="checkbox" class="input" name="geweest">
                             </td>
                         </tr>
                         <tr>

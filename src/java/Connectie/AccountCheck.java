@@ -1,20 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Connectie;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Properties;
-import javax.servlet.http.HttpSession;
+import java.sql.SQLException;
 
 /**
- *
- * @author foppe
+ * @author Foppe Crezee
+ * Class is gemaakt voor het valideren van de wachtwoorden en checkt of de user een arts, of een patient is
  */
 public class AccountCheck {
 
@@ -22,6 +15,10 @@ public class AccountCheck {
     private String ww;
     private Connection con = null;
 
+    /**
+     * @param vNaam is het mailadres van de user
+     * @param ww is het wachtwoord van de user
+     */
     public AccountCheck(String vNaam, String ww) {
         this.vNaam = vNaam;
         this.ww = ww;
@@ -29,12 +26,20 @@ public class AccountCheck {
         con = conn.connectie();
     }
 
+    /**
+     * Valideert het mailadres en het bijbehorende wachtwoord. 
+     * @return geeft een int terug voor hoe de validatie is verlopen:
+     * 1 betekent dat de user is gevalideert en een patient is.
+     * 2 betekent dat de user is gevalideert en een arts is.
+     * 3 betekent dat het wachtwoord niet klopte.
+     * 4 betekent dat de user niet is gevonden.
+     */
     public int con() {
         String query = "SELECT * FROM user where Emailadres = ?";
         String s = "niks";
         String w = null;
         try {
-            PreparedStatement pst = null;
+            PreparedStatement pst;
             pst = con.prepareStatement(query);
             pst.setString(1, vNaam);
             ResultSet rs = pst.executeQuery();
@@ -42,10 +47,7 @@ public class AccountCheck {
                 s = rs.getString("Emailadres");
                 w = rs.getString("Wachtwoord");
             }
-        } catch (NullPointerException e) {
-            //System.out.println("e");
-            //return 3;
-        } catch (Exception e) {
+        } catch (NullPointerException | SQLException e) {
         }
         
         if (s.equals(vNaam)) {
@@ -61,15 +63,19 @@ public class AccountCheck {
         }
     }
 
+    
+    /**
+     * Checkt of de User nadat deze is gevalideerd in de tabel van patient staat
+     * @return true als deze in de tabel van patient staat, false als deze niet in de tabel van patient staat
+     */
     public boolean checkPatient() {
         String queryP = "SELECT * FROM patient where Emailadres = ?";
         String email = null;
         try {
-            PreparedStatement pst = null;
+            PreparedStatement pst;
             pst = con.prepareStatement(queryP);
             pst.setString(1, vNaam);
             ResultSet rs = pst.executeQuery();
-            //System.out.println(vNaam);
             if (rs.next()) {
                 email = rs.getString("Emailadres");
             }
@@ -83,6 +89,10 @@ public class AccountCheck {
         }
     }
 
+     /**
+     * Checkt of de User nadat deze is gevalideerd in de tabel van arts staat
+     * @return true als deze in de tabel van arts staat, false als deze niet in de tabel van arts staat
+     */
     public boolean checkArts() {
         String queryA = "SELECT * FROM Arts where Emailadres = ?";
         String email = null;
@@ -91,7 +101,6 @@ public class AccountCheck {
             pst = con.prepareStatement(queryA);
             pst.setString(1, vNaam);
             ResultSet rs = pst.executeQuery();
-            //System.out.println(vNaam);
             if (rs.next()) {
                 email = rs.getString("Emailadres");
             }

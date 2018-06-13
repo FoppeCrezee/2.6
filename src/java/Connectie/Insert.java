@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Connectie;
+/*package Connectie;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,7 +16,7 @@ import java.util.Properties;
  *
  * @author foppe
  */
-public class Insert {
+/*public class Insert {
 
     private String vNaam;
     private String ww;
@@ -65,4 +65,4 @@ public class Insert {
 
     }
 
-}
+}*/

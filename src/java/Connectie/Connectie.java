@@ -19,7 +19,7 @@ public class Connectie {
     private java.sql.Connection con = null;
     private String url = "jdbc:mysql://localhost:3306/login?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&verifyServerCertificate=false&useSSL=true";
 
-    protected java.sql.Connection connectie() {
+    public java.sql.Connection connectie() {
         try {
             Properties info = new Properties();
             info.put("user", "root");
