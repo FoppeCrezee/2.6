@@ -164,17 +164,28 @@ public class Patienten extends HttpServlet {
         ArrayList<Patient> lijst = new ArrayList<Patient>();
         lijst = data.getPatienten();
         for (Patient patient : lijst) {
-            allemaal = allemaal 
-                    + "<tr>\n"
+            allemaal = allemaal
+                    + /*+ "<tr>\n"
                     + "						<td>\n"
-                    + "							<p>" + patient.getMail() + "</p>\n"
+                    + "							<a href=\"PatientInfoServlet\">" + patient.getMail() + "</a>\n"
                     + "						</td>\n"
-                    + "					</tr>";
+                    + "					</tr>";*/ "<form action=\"PatientInfoServlet\" method=\"post\">\n"
+                    + "								<tr>\n"
+                    + "									<td>\n"
+                    + "										<input type=\"text\" value=\""+patient.getMail()+"\" name=\"mail\" readonly>\n"
+                    + "									</td>\n"
+                    + "									<td>\n"
+                    + "										<input type=\"submit\" value=\"Meer gegevens\">\n"
+                    + "									</td>\n"
+                    + "								</tr>\n"
+                    + "							</form>";
+
         }
-        if(allemaal.equals(""))
+        if (allemaal.equals("")) {
             return "Geen patienten gevonden";
-        else
+        } else {
             return allemaal;
+        }
     }
 
     /**
