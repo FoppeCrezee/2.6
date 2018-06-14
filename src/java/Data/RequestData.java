@@ -9,6 +9,7 @@ import Connectie.Arts;
 import Connectie.Connectie;
 import Connectie.Patient;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -61,17 +62,19 @@ public class RequestData {
         String query = "SELECT * FROM patient where Emailadres = ?";
         //String query = "SELECT * FROM ding where een = ?";
         String mail = null;
-        int BSN;
+        int BSN = 0;
         String initialen = null;
+        String naam = null;
         //man = 
         String sex = null;
         //TODO ff naar kijken String?
-        String gebDatum;
+        Date gebDatum = null;
         String adres = null;
-        int toevoeging;
+        String toevoeging = null;
         String postcode = null;
         String plaats = null;
-        int telNummer;
+        long telNummer = 0;
+        int huisNummer = 0;
         //boolean avl_Geweest;
 
         try {
@@ -80,15 +83,21 @@ public class RequestData {
             pst.setString(1, id);
             rs = pst.executeQuery();
             if (rs.next()) {
+                naam = rs.getString("Achternaam");
                 mail = rs.getString("Emailadres");
-                //BSN = rs.getInt("BSN");
+                BSN = rs.getInt("BSN");
                 initialen = rs.getString("Initialen");
                 sex = rs.getString("Geslacht");
                 adres = rs.getString("Adres");
                 postcode = rs.getString("Postcode");
-                plaats = rs.getString("Plaats");               
+                plaats = rs.getString("Plaats");  
+                telNummer = rs.getLong("Telefoonnummer");
+                gebDatum = rs.getDate("Geboortedatum");
+                huisNummer = rs.getInt("Huisnummer");
+                toevoeging = rs.getString("toevoeging");
+                
             }
-            patient = new Patient(mail, initialen, sex, adres, postcode, plaats);
+            patient = new Patient(naam, mail, BSN, initialen, sex, gebDatum, adres, postcode, plaats, telNummer, huisNummer, toevoeging);
         } catch (NullPointerException e) {
         } catch (Exception e) {
         }
@@ -103,11 +112,16 @@ public class RequestData {
         String mail = null;
         String initialen = null;
         String sex = null;
+        String naam = null;
+        int BSN = 0;
         //TODO ff naar kijken String?
-        String gebDatum;
+        Date gebDatum = null;
+        long telNummer = 0;
+        int huisNummer = 0;
         String adres = null;
         String postcode = null;
         String plaats = null;
+        String toevoeging = null;
         //boolean avl_Geweest;
 
         try {
@@ -118,13 +132,19 @@ public class RequestData {
             rs = pst.executeQuery();
             //System.out.println("2");
             while (rs.next()) {
+                naam = rs.getString("Achternaam");
                 mail = rs.getString("Emailadres");
+                BSN = rs.getInt("BSN");
                 initialen = rs.getString("Initialen");
                 sex = rs.getString("Geslacht");
                 adres = rs.getString("Adres");
                 postcode = rs.getString("Postcode");
                 plaats = rs.getString("Plaats");  
-                Patient patient = new Patient(mail, initialen, sex, adres, postcode, plaats);
+                gebDatum = rs.getDate("Geboortedatum");
+                telNummer = rs.getLong("Telefoonnummer");
+                huisNummer = rs.getInt("Huisnummer");
+                toevoeging = rs.getString("toevoeging");
+                Patient patient = new Patient(naam, mail, BSN, initialen, sex, gebDatum, adres, postcode, plaats, telNummer, huisNummer, toevoeging);
                 lijst.add(patient);
                 //System.out.println("3");
             }

@@ -24,6 +24,7 @@
                 user = (String) session.getAttribute("user");
             }
 
+            
             String naam = null;
             String mail = null;
             

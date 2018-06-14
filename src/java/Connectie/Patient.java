@@ -5,6 +5,8 @@
  */
 package Connectie;
 
+import java.sql.Date;
+
 /**
  *
  * @author foppe
@@ -15,32 +17,79 @@ public class Patient {
     private String naam;
     private String mail;
     //private String wachtwoord;
-    //private int BSN;
+    private int bsn;
     private String initialen;
-    //man = 
+    //man = 1
+    //vrouw = 2
     private String sex;
     //TODO ff naar kijken String?
-    //private String gebDatum;
+    private Date gebDatum;
     private String adres;
-    //private int toevoeging;
+    private int huisNummer;
+    private String toevoeging;
     private String postcode;
     private String plaats;
-    //private int telNummer;
+    private long telNummer;
     //private boolean avl_Geweest;
 
-    public Patient(String mail, /*int BSN,*/ String initialen, String sex, /*String geb_datum,*/
-            String adres, String postcode, String plaats/*, int telNummer*/) {
+    
+    /**
+     * @param mail mailadres
+     * @param BSN bsn
+     * @param initialen initialen
+     * @param sex geslacht
+     * @param adres adres
+     * @param postcode postcode
+     * @param plaats plaats
+     * @param telNummer telefoonnummer
+     */
+    public Patient(String naam, String mail, int BSN, String initialen, String sex, Date geb_datum,
+            String adres, String postcode, String plaats, long telNummer, int huisNummer, String toevoeging) {
+        this.naam = naam;
+        this.huisNummer = huisNummer;
         this.mail = mail;
         this.initialen = initialen;
         this.sex = sex;
         this.adres = adres;
         this.postcode = postcode;
         this.plaats = plaats;
+        this.bsn = BSN;
+        this.gebDatum = geb_datum;
+        this.telNummer = telNummer;
+        if(toevoeging == null){
+            toevoeging = "";
+            this.toevoeging = "";
+        }else
+            this.toevoeging = toevoeging;
+        
         //this.wachtwoord = wachtwoord;
     }
 
     public String getMail() {
         return mail;
+    }
+    
+    public String getToevoeging(){
+        return toevoeging;
+    }
+    
+    public int getHuisNummer(){
+       return huisNummer;
+    }
+    
+    public String getNaam(){
+        return naam;
+    }
+    
+    public Date getDatum(){
+        return gebDatum;
+    }
+    
+    public int getBSN(){
+        return bsn;
+    }
+    public long getTelNummer(){
+        return telNummer;
     }
     
     public String getIni() {

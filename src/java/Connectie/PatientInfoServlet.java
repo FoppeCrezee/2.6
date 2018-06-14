@@ -33,7 +33,7 @@ public class PatientInfoServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
         //allow access only if session exists
         String user = null;
@@ -42,7 +42,7 @@ public class PatientInfoServlet extends HttpServlet {
         } else {
             user = (String) session.getAttribute("user");
         }
-        
+
         String naam = request.getParameter("mail");
         RequestData data = new RequestData();
         Patient patient = data.getPatientData(naam);
@@ -78,10 +78,18 @@ public class PatientInfoServlet extends HttpServlet {
                     + "\n"
                     + "                            <tr>\n"
                     + "                                <td>\n"
+                    + "                                    <p>Achternaam:</p>\n"
+                    + "                                </td>\n"
+                    + "                                <td>\n"
+                    + "                                    <input id=“Naam” name=\"vNaam\" value=\"" + patient.getNaam() + "\" type=\"text\"  readonly>\n"
+                    + "                                </td>\n"
+                    + "                            </tr>\n"
+                    + "                            <tr>\n"
+                    + "                                <td>\n"
                     + "                                    <p>Mail:</p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
-                    + "                                    <input id=“Naam” name=\"vNaam\" value=\""+patient.getMail()+"\" type=\"text\"  readonly>\n"
+                    + "                                    <input id=“Naam” name=\"vNaam\" value=\"" + patient.getMail() + "\" type=\"text\"  readonly>\n"
                     + "                                </td>\n"
                     + "                            </tr>\n"
                     + "                            <tr>\n"
@@ -89,7 +97,7 @@ public class PatientInfoServlet extends HttpServlet {
                     + "                                    <p>Initialen:</p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
-                    + "                                    <input id=“Naam” name=\"ww\" value=\""+patient.getIni()+"\" type=\"text\"   readonly>\n"
+                    + "                                    <input id=“Naam” name=\"ww\" value=\"" + patient.getIni() + "\" type=\"text\"   readonly>\n"
                     + "                                </td>\n"
                     + "                            </tr>\n"
                     + "                            <tr>\n"
@@ -97,7 +105,31 @@ public class PatientInfoServlet extends HttpServlet {
                     + "                                    <p>Geslacht:</p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
-                    + "                                    <input id=“Naam” name=\"ww\" value=\""+patient.getSex()+"\" type=\"text\"  readonly>\n"
+                    + "                                    <input id=“Naam” name=\"ww\" value=\"" + patient.getSex() + "\" type=\"text\"  readonly>\n"
+                    + "                                </td>\n"
+                    + "                            </tr>\n"
+                    + "                            <tr>\n"
+                    + "                                <td>\n"
+                    + "                                    <p>BSN:</p>\n"
+                    + "                                </td>\n"
+                    + "                                <td>\n"
+                    + "                                    <input id=“Naam” name=\"vNaam\" value=\"" + patient.getBSN() + "\" type=\"text\"  readonly>\n"
+                    + "                                </td>\n"
+                    + "                            </tr>\n"
+                    + "                            <tr>\n"
+                    + "                                <td>\n"
+                    + "                                    <p>GeboorteDatum:</p>\n"
+                    + "                                </td>\n"
+                    + "                                <td>\n"
+                    + "                                    <input id=“Naam” name=\"vNaam\" value=\"" + patient.getDatum() + "\" type=\"date\"  readonly>\n"
+                    + "                                </td>\n"
+                    + "                            </tr>\n"
+                    + "                            <tr>\n"
+                    + "                                <td>\n"
+                    + "                                    <p>Telefoonnummer:</p>\n"
+                    + "                                </td>\n"
+                    + "                                <td>\n"
+                    + "                                    <input id=“Naam” name=\"vNaam\" value=\"" + patient.getTelNummer() + "\" type=\"text\"  readonly>\n"
                     + "                                </td>\n"
                     + "                            </tr>\n"
                     + "                            <tr>\n"
@@ -105,15 +137,24 @@ public class PatientInfoServlet extends HttpServlet {
                     + "                                    <p>Adres:</p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
-                    + "                                    <input id=“Naam” name=\"ww\" value=\""+patient.getAdres()+"\" type=\"text\"   readonly>\n"
+                    + "                                    <input id=“Naam” name=\"ww\" value=\"" + patient.getAdres() + "\" type=\"text\"   readonly>\n"
                     + "                                </td>\n"
                     + "                            </tr>\n"
+                    + "                            <tr>\n"
+                    + "                            <td>\n"
+                    + "                                <p>Huisnummer/ toevoeging:</p>\n"
+                    + "                            </td>\n"
+                    + "                            <td>\n"
+                    + "                                <input id=“Naam” type=\"text\" class=\"nr\" name=\"nu\" value=\"" + patient.getHuisNummer() + "\" readonly>\n"
+                    + "                                <input id=“Naam” type=\"text\" class=\"tv\" name=\"toevoeging\" value=\"" + patient.getToevoeging() + "\" readonly>\n"
+                    + "                            </td>\n"
+                    + "                        </tr>"
                     + "                            <tr>\n"
                     + "                                <td>\n"
                     + "                                    <p>Postcode:</p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
-                    + "                                    <input id=“Naam” name=\"ww\" value=\""+patient.getPostcode()+"\" type=\"text\" readonly>\n"
+                    + "                                    <input id=“Naam” name=\"ww\" value=\"" + patient.getPostcode() + "\" type=\"text\" readonly>\n"
                     + "                                </td>\n"
                     + "                            </tr>\n"
                     + "                            <tr>\n"
@@ -121,7 +162,7 @@ public class PatientInfoServlet extends HttpServlet {
                     + "                                    <p>Plaats:</p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
-                    + "                                    <input id=“Naam” name=\"ww\" value=\""+patient.getPlaats()+"\" type=\"text\" readonly>\n"
+                    + "                                    <input id=“Naam” name=\"ww\" value=\"" + patient.getPlaats() + "\" type=\"text\" readonly>\n"
                     + "                                </td>\n"
                     + "                            </tr>\n"
                     + "\n"
