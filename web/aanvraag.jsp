@@ -4,6 +4,8 @@
     Author     : foppe
 --%>
 
+<%@page import="Connectie.Patient"%>
+<%@page import="Data.RequestData"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,6 +28,10 @@
             }
             String userName = null;
             String sessionID = null;
+            Patient patient;
+            int stadium;
+            RequestData data = new RequestData();
+            
             Cookie[] cookies = request.getCookies();
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
@@ -37,6 +43,8 @@
                     }
                 }
             }
+            patient = data.getPatientData(userName);
+            stadium = patient.getStadium();
         %>
 
         <div id="main">
@@ -79,6 +87,7 @@
                 </div>
                 <div id="content">
                     <p align="center" id="titel">Aanvraag</p>
+                    <img src="pictures/stadium<%=stadium%>.png" class="stadium" >
                 </div>
             </div>
         </div>

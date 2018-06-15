@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "PatientInfoServlet", urlPatterns = {"/PatientInfoServlet"})
 public class PatientInfoServlet extends HttpServlet {
+    private Patient patient;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,7 +46,7 @@ public class PatientInfoServlet extends HttpServlet {
 
         String naam = request.getParameter("mail");
         RequestData data = new RequestData();
-        Patient patient = data.getPatientData(naam);
+        patient = data.getPatientData(naam);
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>\n"
@@ -167,11 +168,18 @@ public class PatientInfoServlet extends HttpServlet {
                     + "                            </tr>\n"
                     + "\n"
                     + "\n"
-                    + "                        </table>	\n"
-                    + "\n"
+                    + "                        </table>	\n "
+                    + "                         <div id=\"rechts\">\n"
+                    + "						<form action=\"WijzigStadium\" method=\"post\">\n"
+                    + "  							<input type=\"radio\" name=\"gender\" " + getStadium(0) + "value=\"0\"> Aanvraag is ingediend<br><br>\n"
+                    + "  							<input type=\"radio\" name=\"gender\" " + getStadium(1) + "value=\"1\"> Medisch dossier is opgevraagd<br><br>\n"
+                    + "  							<input type=\"radio\" name=\"gender\" "+ getStadium(2) + "value=\"2\"> Medisch dossier is binnen<br>  <br>\n"
+                    + "                                                         <input type=\"radio\" name=\"gender\" "+ getStadium(3) + "value=\"3\"> Aanvraag wordt besproken<br>  <br>\n"
+                    + "                                                         <input type=\"radio\" name=\"gender\" "+ getStadium(4) + "value=\"4\"> Aanvraag is besproken<br>  <br>\n"
+                    + "  						<input type=\"submit\" value=\"Submit\">\n"
+                    + "						</form>\n"
+                    + "					</div>"
                     + "                </div>\n"
-                    + "\n"
-                    + "\n"
                     + "            </div>\n"
                     + "        </div>\n"
                     + "    </body>\n"
@@ -179,6 +187,14 @@ public class PatientInfoServlet extends HttpServlet {
         }
     }
 
+    private String getStadium(int i){
+        String form = "";
+            if(patient.getStadium() == i){
+                form = "checked ";
+            }
+        return form;
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

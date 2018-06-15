@@ -75,6 +75,7 @@ public class RequestData {
         String plaats = null;
         long telNummer = 0;
         int huisNummer = 0;
+        int stadium = 0;
         //boolean avl_Geweest;
 
         try {
@@ -95,9 +96,10 @@ public class RequestData {
                 gebDatum = rs.getDate("Geboortedatum");
                 huisNummer = rs.getInt("Huisnummer");
                 toevoeging = rs.getString("toevoeging");
+                stadium = rs.getInt("stadium");
                 
             }
-            patient = new Patient(naam, mail, BSN, initialen, sex, gebDatum, adres, postcode, plaats, telNummer, huisNummer, toevoeging);
+            patient = new Patient(naam, mail, BSN, initialen, sex, gebDatum, adres, postcode, plaats, telNummer, huisNummer, toevoeging, stadium);
         } catch (NullPointerException e) {
         } catch (Exception e) {
         }
@@ -122,6 +124,7 @@ public class RequestData {
         String postcode = null;
         String plaats = null;
         String toevoeging = null;
+        int stadium = 0;
         //boolean avl_Geweest;
 
         try {
@@ -144,7 +147,9 @@ public class RequestData {
                 telNummer = rs.getLong("Telefoonnummer");
                 huisNummer = rs.getInt("Huisnummer");
                 toevoeging = rs.getString("toevoeging");
-                Patient patient = new Patient(naam, mail, BSN, initialen, sex, gebDatum, adres, postcode, plaats, telNummer, huisNummer, toevoeging);
+                stadium = rs.getInt("stadium");
+                
+                Patient patient = new Patient(naam, mail, BSN, initialen, sex, gebDatum, adres, postcode, plaats, telNummer, huisNummer, toevoeging, stadium);
                 lijst.add(patient);
                 //System.out.println("3");
             }

@@ -13,6 +13,7 @@ and open the template in the editor.
     background-color:white;
     height: 90%;
     text-align: left;
+    font-family: "Arial", sans-serif;
 }
 .hoofd{
     color: dimgrey;
@@ -315,4 +316,19 @@ td{
 .data{
 	position: absolute;
 	font-size: 14px;
+}
+#rechts{
+	position: absolute;
+	font-size: 20px;
+	font-family: sans-serif;
+	right: 20px;
+	width: 400px;
+	height: 300px;
+}
+.stadium{
+	position: absolute;
+	top: 50px;
+        left: 20px;
+	height: 300px;
+	width: 1287px;
 }

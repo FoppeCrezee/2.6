@@ -30,6 +30,7 @@ public class Patient {
     private String postcode;
     private String plaats;
     private long telNummer;
+    private int stadium;
     //private boolean avl_Geweest;
 
     
@@ -44,7 +45,7 @@ public class Patient {
      * @param telNummer telefoonnummer
      */
     public Patient(String naam, String mail, int BSN, String initialen, String sex, Date geb_datum,
-            String adres, String postcode, String plaats, long telNummer, int huisNummer, String toevoeging) {
+            String adres, String postcode, String plaats, long telNummer, int huisNummer, String toevoeging, int stadium) {
         this.naam = naam;
         this.huisNummer = huisNummer;
         this.mail = mail;
@@ -56,6 +57,7 @@ public class Patient {
         this.bsn = BSN;
         this.gebDatum = geb_datum;
         this.telNummer = telNummer;
+        this.stadium = stadium;
         if(toevoeging == null){
             toevoeging = "";
             this.toevoeging = "";
@@ -67,6 +69,10 @@ public class Patient {
 
     public String getMail() {
         return mail;
+    }
+    
+    public int getStadium(){
+        return stadium;
     }
     
     public String getToevoeging(){
