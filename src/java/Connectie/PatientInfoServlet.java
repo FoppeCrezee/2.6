@@ -5,6 +5,7 @@
  */
 package Connectie;
 
+import Data.ChangeData;
 import Data.RequestData;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -77,9 +78,10 @@ public class PatientInfoServlet extends HttpServlet {
                     + "                    <p align=\"center\" id=\"titel\">Gegevens</p>\n"
                     + "                        <table class=\"data\">\n"
                     + "\n"
+                    + "						<form action=\"PatientInfoServlet\" method=\"GET\">\n"
                     + "                            <tr>\n"
                     + "                                <td>\n"
-                    + "                                    <p>Achternaam:</p>\n"
+                    + "                                    <p>Achternaam: </p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
                     + "                                    <input id=“Naam” name=\"vNaam\" value=\"" + patient.getNaam() + "\" type=\"text\"  readonly>\n"
@@ -90,7 +92,7 @@ public class PatientInfoServlet extends HttpServlet {
                     + "                                    <p>Mail:</p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
-                    + "                                    <input id=“Naam” name=\"vNaam\" value=\"" + patient.getMail() + "\" type=\"text\"  readonly>\n"
+                    + "                                    <input id=“Naam” name=\"mail\" value=\"" + patient.getMail() + "\" type=\"text\"  readonly>\n"
                     + "                                </td>\n"
                     + "                            </tr>\n"
                     + "                            <tr>\n"
@@ -170,12 +172,12 @@ public class PatientInfoServlet extends HttpServlet {
                     + "\n"
                     + "                        </table>	\n "
                     + "                         <div id=\"rechts\">\n"
-                    + "						<form action=\"WijzigStadium\" method=\"post\">\n"
-                    + "  							<input type=\"radio\" name=\"gender\" " + getStadium(0) + "value=\"0\"> Aanvraag is ingediend<br><br>\n"
-                    + "  							<input type=\"radio\" name=\"gender\" " + getStadium(1) + "value=\"1\"> Medisch dossier is opgevraagd<br><br>\n"
-                    + "  							<input type=\"radio\" name=\"gender\" "+ getStadium(2) + "value=\"2\"> Medisch dossier is binnen<br>  <br>\n"
-                    + "                                                         <input type=\"radio\" name=\"gender\" "+ getStadium(3) + "value=\"3\"> Aanvraag wordt besproken<br>  <br>\n"
-                    + "                                                         <input type=\"radio\" name=\"gender\" "+ getStadium(4) + "value=\"4\"> Aanvraag is besproken<br>  <br>\n"
+                    //+ "						<form action=\"PatientInfoServlet\" method=\"GET\">\n"
+                    + "  							<input type=\"radio\" name=\"stadium\" " + getStadium(0) + "value=\"0\"> Aanvraag is ingediend<br><br>\n"
+                    + "  							<input type=\"radio\" name=\"stadium\" " + getStadium(1) + "value=\"1\"> Medisch dossier is opgevraagd<br><br>\n"
+                    + "  							<input type=\"radio\" name=\"stadium\" "+ getStadium(2) + "value=\"2\"> Medisch dossier is binnen<br>  <br>\n"
+                    + "                                                         <input type=\"radio\" name=\"stadium\" "+ getStadium(3) + "value=\"3\"> Aanvraag wordt besproken<br>  <br>\n"
+                    + "                                                         <input type=\"radio\" name=\"stadium\" "+ getStadium(4) + "value=\"4\"> Aanvraag is besproken<br>  <br>\n"
                     + "  						<input type=\"submit\" value=\"Submit\">\n"
                     + "						</form>\n"
                     + "					</div>"
@@ -207,7 +209,15 @@ public class PatientInfoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        String user = request.getParameter("mail");
+        String artsMail = (String) session.getAttribute("user");
+        int stadium = Integer.parseInt(request.getParameter("stadium"));
+        ChangeData data = new ChangeData();
+        data.changeStadium(user, artsMail, stadium);
         processRequest(request, response);
+        
     }
 
     /**

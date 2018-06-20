@@ -33,6 +33,14 @@ public class ChangeData {
     private String naamm;
     private HttpServletResponse response;
 
+    
+    
+    public ChangeData(){
+        Connectie conn = new Connectie();
+        con = conn.connectie();
+    }
+    
+    
     public ChangeData(String mail, String ini, String sex, String adres, String postcode, String plaats, HttpServletRequest request, HttpServletResponse response) {
         
         HttpSession session = request.getSession();
@@ -70,7 +78,7 @@ public class ChangeData {
 
         } catch (SQLException ex) {
         }
-        Cookie[] cookies = request.getCookies();
+        /*Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("user")) {
@@ -108,8 +116,22 @@ public class ChangeData {
 
             }
 
-        }
+        }*/
 
+    }
+    
+    public void changeStadium(String patientNaam, String artsNaam, int stadium){
+        String query= "UPDATE patient SET stadium = ?, beh_arts = ? WHERE Emailadres = ?;";
+        PreparedStatement pst = null;
+        try {
+            pst = con.prepareStatement(query);
+            pst.setInt(1, stadium);
+            pst.setString(2, artsNaam);
+            pst.setString(3, patientNaam);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+        }
+        
     }
 
 }

@@ -4,6 +4,8 @@
     Author     : foppe
 --%>
 
+<%@page import="Connectie.Patient"%>
+<%@page import="Data.RequestData"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,15 +26,27 @@
                 user = (String) session.getAttribute("user");
             }
             
-            String userName = null;
+            /*String userName = null;
             String sessionID = null;
             String ini = null;
             String sex = null;
             String postcode = null;
             String plaats = null;
-            String adres = null;
+            String adres = null;*/
             
-            Cookie[] cookies = request.getCookies();
+            RequestData data = new RequestData();
+            Patient patient = data.getPatientData(user);
+            
+            String userName = patient.getMail();
+            
+            String ini = patient.getIni();
+            String sex = patient.getSex();
+            String postcode = patient.getPostcode();
+            String plaats = patient.getPlaats();
+            String adres = patient.getAdres();
+            
+            
+            /*Cookie[] cookies = request.getCookies();
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
                     if (cookie.getName().equals("user")) {
@@ -57,7 +71,7 @@
                         plaats = cookie.getValue();
                     }
                 }
-            }
+            }*/
         %>
         <div id="main">
             <div id="header" class="hoofd">
@@ -99,10 +113,7 @@
 
                 <div id="content">
                     <p align="center" id="titel">Gegevens</p>
-                    <!--
-                    <h3>Hi <%=userName%>, Login successful. Your Session ID=<%=sessionID%></h3>
-                    <br>
-                    User=<%=user%>-->
+
                     
                     <form id="Wijzigen gegevens" onsubmit="return validateWijzigingen()" action="WijzigServlet" method="post">
                         <table class="data">

@@ -12,10 +12,17 @@ package Connectie;
 public class Arts {
     private String email;
     private String naam;
+    private String ini;
+    private String spec;
+    private String bio;
     
-    public Arts(String email, String naam){
+    public Arts(String email, String naam, String ini, String spec, String bio){
         this.email = email;
         this.naam = naam;
+        this.bio = bio;
+        this.ini = ini;
+        this.spec = spec;
+        
     }
     
     public String getMail(){
@@ -26,4 +33,15 @@ public class Arts {
         return naam;
     }
     
+    public String getIni(){
+        return ini;
+    }
+    
+    public String getSpec(){
+        return spec;
+    }
+    
+    public String getBio(){
+        return bio;
+    }
 }

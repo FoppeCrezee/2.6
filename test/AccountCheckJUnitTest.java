@@ -5,6 +5,7 @@
  */
 
 import Connectie.AccountCheck;
+import Data.ChangeData;
 import Data.RequestData;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -68,5 +69,7 @@ public class AccountCheckJUnitTest {
         RequestData data = new RequestData();
         System.out.println(data.getPatienten().toString());
         
+        ChangeData datas = new ChangeData();
+        datas.changeStadium("foppecrezee@hotmail.com", "arts@arts.nl" , 2);
     }
 }

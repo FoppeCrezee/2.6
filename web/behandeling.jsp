@@ -4,6 +4,9 @@
     Author     : foppe
 --%>
 
+<%@page import="Connectie.Arts"%>
+<%@page import="Connectie.Patient"%>
+<%@page import="Data.RequestData"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,25 +19,29 @@
     </head>
     <body>
         <%
-        //allow access only if session exists
+            //allow access only if session exists
             String user = null;
             if (session.getAttribute("user") == null || session.getAttribute("beroep") != "patient") {
                 response.sendRedirect("inlog.html");
             } else {
                 user = (String) session.getAttribute("user");
             }
-            String userName = null;
-            String sessionID = null;
-            Cookie[] cookies = request.getCookies();
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
-                    if (cookie.getName().equals("user")) {
-                        userName = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("JSESSIONID")) {
-                        sessionID = cookie.getValue();
-                    }
-                }
+            RequestData data = new RequestData();
+            Patient patient = data.getPatientData(user);
+            Arts arts = data.getArtsData(patient.getArts());
+            String artsNaam = "";
+            String artsMail = "";
+            String artsBio = "";
+            String artsSpec = "";
+            String artsIni = "";
+            String heeftArts = "U heeft nog geen behandelend arts";
+            if (arts.getNaam() != null) {
+                artsNaam = arts.getNaam();
+                artsMail = arts.getMail();
+                artsBio = arts.getBio();
+                artsSpec = arts.getSpec();
+                artsIni = arts.getIni();
+                heeftArts = "";
             }
         %>
         <div id="main">
@@ -77,6 +84,51 @@
                 </div>
                 <div id="content">
                     <p align="center" id="titel">Arts</p>
+
+                    <div id="plaatje">
+                        plaatje
+                    </div>
+                    <div id="Artsinfo">
+                        <%=heeftArts%>
+                        <table>
+                            <tr>
+                                <td>
+                                    Naam:
+                                </td>
+                                <td>
+                                    <%=artsNaam%>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Initialen:
+                                </td>
+                                <td>
+                                    <%=artsIni%>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Specialisme:
+                                </td>
+                                <td>
+                                    <%=artsSpec%>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Email:
+                                </td>
+                                <td>
+                                    <%=artsMail%>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="biografie">
+                        <textarea id="bio" rows="4" cols="50" readonly><%=artsBio%></textarea>
+
+                    </div>
                 </div>
             </div>
         </div>

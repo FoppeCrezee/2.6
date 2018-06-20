@@ -3,6 +3,8 @@
     Created on : 8-jun-2018, 12:11:24
     Author     : foppe
 --%>
+<%@page import="Connectie.Patient"%>
+<%@page import="Data.RequestData"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,15 +25,27 @@
                 user = (String) session.getAttribute("user");
             }
 
-            String userName = null;
+            //String naam = request.getParameter("mail");
+            RequestData data = new RequestData();
+            Patient patient = data.getPatientData(user);
+
+            /*String userName = null;
             String sessionID = null;
             String ini = null;
             String sex = null;
             String postcode = null;
             String plaats = null;
-            String adres = null;
+            String adres = null;*/
+
+            String userName = patient.getMail();
             
-            Cookie[] cookies = request.getCookies();
+            String ini = patient.getIni();
+            String sex = patient.getSex();
+            String postcode = patient.getPostcode();
+            String plaats = patient.getPlaats();
+            String adres = patient.getAdres();
+            
+            /*Cookie[] cookies = request.getCookies();
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
                     if (cookie.getName().equals("user")) {
@@ -56,7 +70,7 @@
                         plaats = cookie.getValue();
                     }
                 }
-            }
+            }*/
         %>
         <div id="main">
             <div id="header" class="hoofd">
@@ -98,68 +112,68 @@
 
                 <div id="content">
                     <p align="center" id="titel">Gegevens</p>
-                        <table class="data">
+                    <table class="data">
 
-                            <tr>
-                                <td>
-                                    <p>Mail:</p>
-                                </td>
-                                <td>
-                                    <input id=“Naam” name="vNaam" value="<%=userName%>" type="text"  readonly>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>Initialen:</p>
-                                </td>
-                                <td>
-                                    <input id=“Naam” name="ww" value="<%=ini%>" type="text"   readonly>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>Geslacht:</p>
-                                </td>
-                                <td>
-                                    <input id=“Naam” name="ww" value="<%=sex%>" type="text"  readonly>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>Adres:</p>
-                                </td>
-                                <td>
-                                    <input id=“Naam” name="ww" value="<%=adres%>" type="text"   readonly>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>Postcode:</p>
-                                </td>
-                                <td>
-                                    <input id=“Naam” name="ww" value="<%=postcode%>" type="text" readonly>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>Plaats:</p>
-                                </td>
-                                <td>
-                                    <input id=“Naam” name="ww" value="<%=plaats%>" type="text" readonly>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                <p>Mail:</p>
+                            </td>
+                            <td>
+                                <input id=“Naam” name="vNaam" value="<%=userName%>" type="text"  readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Initialen:</p>
+                            </td>
+                            <td>
+                                <input id=“Naam” name="ww" value="<%=ini%>" type="text"   readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Geslacht:</p>
+                            </td>
+                            <td>
+                                <input id=“Naam” name="ww" value="<%=sex%>" type="text"  readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Adres:</p>
+                            </td>
+                            <td>
+                                <input id=“Naam” name="ww" value="<%=adres%>" type="text"   readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Postcode:</p>
+                            </td>
+                            <td>
+                                <input id=“Naam” name="ww" value="<%=postcode%>" type="text" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Plaats:</p>
+                            </td>
+                            <td>
+                                <input id=“Naam” name="ww" value="<%=plaats%>" type="text" readonly>
+                            </td>
+                        </tr>
 
 
-                        </table>	
+                    </table>	
 
-                        <!--<div id="knop4">
-                            <input type="submit" class="buttonInlog" value="Wijzigen">
-                        </div>
-                    </form>-->
-                        
-                        <div id="knop4">
-                    <a href="Wijzig.jsp"><button class="buttonInlog">Wijzig gegevens</button></a>
-                </div>
+                    <!--<div id="knop4">
+                        <input type="submit" class="buttonInlog" value="Wijzigen">
+                    </div>
+                </form>-->
+
+                    <div id="knop4">
+                        <a href="Wijzig.jsp"><button class="buttonInlog">Wijzig gegevens</button></a>
+                    </div>
 
                 </div>
 

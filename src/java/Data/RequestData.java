@@ -37,6 +37,9 @@ public class RequestData {
         
         String mail = null;
         String naam = null;
+        String ini = null;
+        String spec = null;
+        String bio = null;
         
         try {
             PreparedStatement pst = null;
@@ -45,9 +48,12 @@ public class RequestData {
             rs = pst.executeQuery();
             if (rs.next()) {
                 mail = rs.getString("Emailadres");
-                naam = rs.getString("Achternaam");              
+                naam = rs.getString("Achternaam");   
+                ini = rs.getString("Initialen");
+                spec = rs.getString("Specialisme");
+                bio = rs.getString("Biografie");
             }
-            arts = new Arts(mail, naam);
+            arts = new Arts(mail, naam, ini, spec, bio);
         } catch (NullPointerException e) {
         } catch (Exception e) {
         }
@@ -76,6 +82,7 @@ public class RequestData {
         long telNummer = 0;
         int huisNummer = 0;
         int stadium = 0;
+        String arts = null;
         //boolean avl_Geweest;
 
         try {
@@ -97,9 +104,10 @@ public class RequestData {
                 huisNummer = rs.getInt("Huisnummer");
                 toevoeging = rs.getString("toevoeging");
                 stadium = rs.getInt("stadium");
+                arts = rs.getString("beh_Arts");
                 
             }
-            patient = new Patient(naam, mail, BSN, initialen, sex, gebDatum, adres, postcode, plaats, telNummer, huisNummer, toevoeging, stadium);
+            patient = new Patient(naam, mail, BSN, initialen, sex, gebDatum, adres, postcode, plaats, telNummer, huisNummer, toevoeging, stadium, arts);
         } catch (NullPointerException e) {
         } catch (Exception e) {
         }
@@ -125,6 +133,7 @@ public class RequestData {
         String plaats = null;
         String toevoeging = null;
         int stadium = 0;
+        String arts = null;
         //boolean avl_Geweest;
 
         try {
@@ -148,8 +157,9 @@ public class RequestData {
                 huisNummer = rs.getInt("Huisnummer");
                 toevoeging = rs.getString("toevoeging");
                 stadium = rs.getInt("stadium");
+                arts = rs.getString("beh_Arts");
                 
-                Patient patient = new Patient(naam, mail, BSN, initialen, sex, gebDatum, adres, postcode, plaats, telNummer, huisNummer, toevoeging, stadium);
+                Patient patient = new Patient(naam, mail, BSN, initialen, sex, gebDatum, adres, postcode, plaats, telNummer, huisNummer, toevoeging, stadium, arts);
                 lijst.add(patient);
                 //System.out.println("3");
             }
