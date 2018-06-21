@@ -4,6 +4,8 @@
     Author     : foppe
 --%>
 
+<%@page import="Connectie.Arts"%>
+<%@page import="Data.RequestData"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,21 +25,21 @@
             } else {
                 user = (String) session.getAttribute("user");
             }
-
-            
-            String naam = null;
-            String mail = null;
-            
-            Cookie[] cookies = request.getCookies();
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
-                    if (cookie.getName().equals("naam")) {
-                        naam = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("mail")) {
-                        mail = cookie.getValue();
-                    }
-                }
+            RequestData data = new RequestData();
+            Arts arts = data.getArtsData(user);
+            String artsNaam = "";
+            String artsMail = "";
+            String artsBio = "";
+            String artsSpec = "";
+            String artsIni = "";
+            String heeftArts = "U heeft nog geen behandelend arts";
+            if (arts.getNaam() != null) {
+                artsNaam = arts.getNaam();
+                artsMail = arts.getMail();
+                artsBio = arts.getBio();
+                artsSpec = arts.getSpec();
+                artsIni = arts.getIni();
+                heeftArts = "";
             }
         %>
         <div id="main">
@@ -66,50 +68,75 @@
                             <p class="boven">Patient aanvragen</p>
                         </div>
                     </a>
-                   <!-- <a href="behandeling.jsp">
-                        <div class="menuKnop" id="derde">
-                            <p class="boven">Mijn arts</p>
-                        </div>
-                    </a>
-                    <a href="contact.jsp">
-                        <div class="menuKnop" id="vierde">
-                            <p class="boven">Contact</p>
-                        </div>
-                    </a>-->			
+                    <!-- <a href="behandeling.jsp">
+                         <div class="menuKnop" id="derde">
+                             <p class="boven">Mijn arts</p>
+                         </div>
+                     </a>
+                     <a href="contact.jsp">
+                         <div class="menuKnop" id="vierde">
+                             <p class="boven">Contact</p>
+                         </div>
+                     </a>-->			
                 </div>
 
                 <div id="content">
-                    <p align="center" id="titel">Gegevens</p>
-                        <table class="data">
+                    <p align="center" id="titel">Arts</p>
 
+                    <div id="plaatje">
+                        plaatje
+                    </div>
+                    <div id="Artsinfo">
+                        <%=heeftArts%>
+                        <table>
                             <tr>
                                 <td>
-                                    <p>Mail:</p>
+                                    Naam:
                                 </td>
                                 <td>
-                                    <input id=“Naam” name="vNaam" value="<%=mail%>" type="text"  readonly>
+                                    <%=artsNaam%>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <p>Achternaam:</p>
+                                    Initialen:
                                 </td>
                                 <td>
-                                    <input id=“Naam” name="ww" value="<%=naam%>" type="text"   readonly>
+                                    <%=artsIni%>
                                 </td>
                             </tr>
-                      
+                            <tr>
+                                <td>
+                                    Specialisme:
+                                </td>
+                                <td>
+                                    <%=artsSpec%>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Email:
+                                </td>
+                                <td>
+                                    <%=artsMail%>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="biografie">
+                        <textarea id="bio" rows="4" cols="50" readonly><%=artsBio%></textarea>
 
-                        </table>	
+                    </div>
+                </div>	
 
-                        <!--<div id="knop4">
-                            <input type="submit" class="buttonInlog" value="Wijzigen">
-                        </div>
-                    </form>-->
-                        
-                        <!--<div id="knop4">
-                    <a href="Wijzig.jsp"><button class="buttonInlog">Wijzig gegevens</button></a>
-                </div>-->
+                    <!--<div id="knop4">
+                        <input type="submit" class="buttonInlog" value="Wijzigen">
+                    </div>
+                </form>-->
+
+                    <!--<div id="knop4">
+                <a href="Wijzig.jsp"><button class="buttonInlog">Wijzig gegevens</button></a>
+            </div>-->
 
                 </div>
 

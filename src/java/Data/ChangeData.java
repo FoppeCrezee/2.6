@@ -29,8 +29,13 @@ public class ChangeData {
     private String adres;
     private String postcode;
     private String plaats;
+    private String naam;
+    private long tel;
+    private int bsn;
+    private int nummer;
+    private String toevoeging;
     private HttpServletRequest request;
-    private String naamm;
+    private String eersteMail;
     private HttpServletResponse response;
 
     
@@ -41,21 +46,25 @@ public class ChangeData {
     }
     
     
-    public ChangeData(String mail, String ini, String sex, String adres, String postcode, String plaats, HttpServletRequest request, HttpServletResponse response) {
+    public ChangeData(String ini, String sex, String adres, String postcode, String plaats, 
+            String naam, int bsn, long tel, int nummer, String toevoeging, HttpServletRequest request, HttpServletResponse response) {
         
         HttpSession session = request.getSession();
-        naamm = (String) session.getAttribute("user");
+        eersteMail = (String) session.getAttribute("user");
         
         Connectie conn = new Connectie();
         con = conn.connectie();
         this.mail = mail;
+        this.naam = naam;
         this.ini = ini;
         this.sex = sex;
         this.adres = adres;
         this.postcode = postcode;
         this.plaats = plaats;
-        
-        this.naamm = naamm;
+        this.bsn = bsn;
+        this.nummer = nummer;
+        this.toevoeging = toevoeging;
+        this.tel = tel;
         this.request = request;
         this.response = response;
         this.main();
@@ -63,17 +72,23 @@ public class ChangeData {
     }
 
     public void main() {
-        String query = "UPDATE patient SET Emailadres = ? , Initialen = ? , Geslacht = ? , Adres = ? , Postcode = ? , Plaats = ? WHERE Emailadres = ?";
+        String query = "UPDATE patient SET Achternaam = ?, BSN = ?, Huisnummer = ?, toevoeging = ?, Telefoonnummer = ?, Emailadres = ? , "
+                + "Initialen = ? , Geslacht = ? , Adres = ? , Postcode = ? , Plaats = ? WHERE Emailadres = ?";
         PreparedStatement pst = null;
         try {
             pst = con.prepareStatement(query);
-            pst.setString(1, mail);
-            pst.setString(2, ini);
-            pst.setString(3, sex);
-            pst.setString(4, adres);
-            pst.setString(5, postcode);
-            pst.setString(6, plaats);
-            pst.setString(7, naamm);
+            pst.setString(1, naam);
+            pst.setInt(2, bsn);
+            pst.setInt(3, nummer);
+            pst.setString(4, toevoeging);
+            pst.setLong(5, tel);
+            pst.setString(6, mail);
+            pst.setString(7, ini);
+            pst.setString(8, sex);
+            pst.setString(9, adres);
+            pst.setString(10, postcode);
+            pst.setString(11, plaats);
+            pst.setString(12, eersteMail);
             pst.executeUpdate();
 
         } catch (SQLException ex) {

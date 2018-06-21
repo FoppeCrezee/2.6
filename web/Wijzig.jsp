@@ -25,7 +25,7 @@
             } else {
                 user = (String) session.getAttribute("user");
             }
-            
+
             /*String userName = null;
             String sessionID = null;
             String ini = null;
@@ -33,19 +33,23 @@
             String postcode = null;
             String plaats = null;
             String adres = null;*/
-            
             RequestData data = new RequestData();
             Patient patient = data.getPatientData(user);
-            
+
             String userName = patient.getMail();
-            
+
+            String mail = patient.getMail();
+            String naam = patient.getNaam();
             String ini = patient.getIni();
             String sex = patient.getSex();
             String postcode = patient.getPostcode();
             String plaats = patient.getPlaats();
             String adres = patient.getAdres();
-            
-            
+            int huisNummer = patient.getHuisNummer();
+            long tel = patient.getTelNummer();
+            String toev = patient.getToevoeging();
+            int bsn = patient.getBSN();
+
             /*Cookie[] cookies = request.getCookies();
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
@@ -114,16 +118,16 @@
                 <div id="content">
                     <p align="center" id="titel">Gegevens</p>
 
-                    
+
                     <form id="Wijzigen gegevens" onsubmit="return validateWijzigingen()" action="WijzigServlet" method="post">
-                        <table class="data">
+                        <table align="center">
 
                             <tr>
                                 <td>
-                                    <p>Mail:</p>
+                                    <p>Naam:</p>
                                 </td>
                                 <td>
-                                    <input id="Naam" name="vNaam" value="<%=userName%>" type="text"  onfocusout= "naam(this, mailReg)">
+                                    <input id="veld" name="vNaam" value="<%=naam%>" type="text"  onfocusout= "naam(this, mailReg)">
                                 </td>
                             </tr>
                             <tr>
@@ -131,7 +135,15 @@
                                     <p>Initialen:</p>
                                 </td>
                                 <td>
-                                    <input id="Naam" name="ini" value="<%=ini%>" type="text"  onfocusout= "naam(this, initReg)">
+                                    <input id="veld" name="ini" value="<%=ini%>" type="text"  onfocusout= "naam(this, initReg)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>BSN:</p>
+                                </td>
+                                <td>
+                                    <input id="veld" name="bsn" value="<%=bsn%>" type="text"  onfocusout= "naam(this, bsnReg)">
                                 </td>
                             </tr>
                             <tr>
@@ -139,7 +151,7 @@
                                     <p>Geslacht:</p>
                                 </td>
                                 <td>
-                                    <input id=“Naam” name="sex" value="<%=sex%>" type="text" onfocusout= "naam(this, naamReg)">
+                                    <input id="veld" name="sex" value="<%=sex%>" type="text" onfocusout= "naam(this, naamReg)">
                                 </td>
                             </tr>
                             <tr>
@@ -147,7 +159,16 @@
                                     <p>Adres:</p>
                                 </td>
                                 <td>
-                                    <input id="Naam" name="adres" value="<%=adres%>" type="text" onfocusout= "naam(this, initReg)">
+                                    <input id="veld" name="adres" value="<%=adres%>" type="text" onfocusout= "naam(this, initReg)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Huisnummer/ toevoeging:</p>
+                                </td>
+                                <td>
+                                    <input id="Naam"  type="text" class="nr2" name="nummer" value="<%=huisNummer%>" onfocusout= "naam(this, numReg)">
+                                    <input id="Naam" type="text" class="tv2" name="toevoeging" value="<%=toev%>">
                                 </td>
                             </tr>
                             <tr>
@@ -155,7 +176,7 @@
                                     <p>Postcode:</p>
                                 </td>
                                 <td>
-                                    <input id=“Naam” name="postcode" value="<%=postcode%>" type="text" onfocusout= "naam(this, postReg)">
+                                    <input id="veld" name="postcode" value="<%=postcode%>" type="text" onfocusout= "naam(this, postReg)">
                                 </td>
                             </tr>
                             <tr>
@@ -163,15 +184,31 @@
                                     <p>Plaats:</p>
                                 </td>
                                 <td>
-                                    <input id=“Naam” name="plaats" value="<%=plaats%>" type="text" onfocusout= "naam(this, naamReg)">
+                                    <input id="veld" name="plaats" value="<%=plaats%>" type="text" onfocusout= "naam(this, naamReg)">
                                 </td>
                             </tr>
-                        <div id="knop4">
-                            <input type="submit" class="buttonInlog" value="Wijzigen">
-                        </div>
-                        <div id="knop5">
-                             <a href="Ingelogd.jsp"><button class="buttonInlog">Annuleren</button></a>
-                         </div>
+                            <tr>
+                                <td>
+                                    <p>Telefoonnummer:</p>
+                                </td>
+                                <td>
+                                    <input id="veld" name="tel" value="<%=tel%>" type="text" onfocusout= "naam(this, telReg)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Mail:</p>
+                                </td>
+                                <td>
+                                    <input id="veld" name="mail" value="<%=mail%>" type="text" readonly>
+                                </td>
+                            </tr>
+                            <div id="knop7">
+                                <input type="submit" class="buttonInlog" value="Wijzigen">
+                            </div>
+                            <div align="center" id="knop5">
+                                <a href="Ingelogd.jsp"><button class="buttonInlog">Annuleren</button></a>
+                            </div>
                     </form>
 
                 </div>

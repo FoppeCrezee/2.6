@@ -17,67 +17,90 @@ and open the template in the editor.
 }
 .hoofd{
     color: dimgrey;
-	margin: 10px;
+    margin: 10px;
     text-align: left;
     position: relative;
 }
 
 #knop1{
-	position: absolute;
-	top: 20%;
-	left: 25%;
-	border: 0px solid black;
-	width: 20%;
-	height: 100px;
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    border: 0px solid black;
+    width: 20%;
+    height: 100px;
 }
 #knop2{
-	position: absolute;
-	top: 20%;
-	right: 25%;
-	border: 0px solid black;
-	width: 20%;
-	height: 100px;
+    position: absolute;
+    top: 20%;
+    right: 25%;
+    border: 0px solid black;
+    width: 20%;
+    height: 100px;
 }
 #knop3{
-	margin: auto;
-	border: 0px solid black;
-	width: 10%;
-	height: 75px;
+    margin: auto;
+    border: 0px solid black;
+    width: 10%;
+    height: 75px;
 }
 #knop4{
-	position: absolute;
-	top: 40%;
-	left: 30%;
-	border: 0px solid black;
-	width: 6%;
-	height: 30px;
+/*    position: absolute;
+    top: 370px;
+    left: 327px;*/
+    border: 0px solid black;
+    height: 30px;
 }
 #knop5{
-	position: absolute;
-	top: 40%;
-	left: 20%;
-	border: 0px solid black;
-	width: 6%;
-	height: 30px;
+    position: absolute;
+    left: 20%;
+    border: 0px solid black;
+    height: 30px;
+    left: 40%;
+    right: 60%;
+    transform: translate(-50%, -50%);
+    bottom: 130px;
+}
+#knop6{
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    border: 0px solid black;
+    height: 30px;
+}
+#knop7{
+    position: absolute;
+    border: 0px solid black;
+    height: 30px;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    bottom: 130px;
 }
 #lijn{
-	margin: auto;
-	width: 740px;
-	border-top: 1px dashed grey;
+    margin: auto;
+    width: 740px;
+    border-top: 1px dashed grey;
 }
 
 .nr{
-	width: 75px;
-	border-style: solid;
+    width: 75px;
+    border-style: solid;
     border-width: 2px;
     border-color: #cee1f2;
     border-radius: 3px;
     -moz-border-radius: 3px;
     height: 25px;
 }
+.nr2{
+    width: 100px;
+}
+.tv2{
+    width: 90px;
+}
 .tv{
-	width: 50px;
-	border-style: solid;
+    width: 50px;
+    border-style: solid;
     border-width: 2px;
     border-color: #cee1f2;
     border-radius: 3px;
@@ -85,7 +108,7 @@ and open the template in the editor.
     height: 25px;
 }
 #avl{
-	position: absolute;
+    position: absolute;
     top: 50%;
     left: 35%;
     height: 200px;
@@ -100,24 +123,24 @@ and open the template in the editor.
     position: absolute;
     height: 80px;
     width: 152px; 
-	top: -15px;
-	left: 15px;
+    top: -15px;
+    left: 15px;
 }
 .button{
 
-	background-color: #af1c23;
+    background-color: #af1c23;
     border: none;
     color: white;
     padding: 15px 25px;
-	width: 100%;
-	height: 100%;
-	border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
     text-align: center;
     font-size: 22px;
     cursor: pointer;
 }
 .input{
-	border-style: solid;
+    border-style: solid;
     border-width: 2px;
     border-color: #cee1f2;
     border-radius: 3px;
@@ -125,7 +148,7 @@ and open the template in the editor.
     height: 25px;
 }
 .textArea{
-	border-style: solid;
+    border-style: solid;
     border-width: 2px;
     border-color: #cee1f2;
     border-radius: 3px;
@@ -138,12 +161,12 @@ and open the template in the editor.
 }
 
 .buttonInlog{
-	background-color: #af1c23;
+    background-color: #af1c23;
     border: none;
     color: white;
-	width: 100%;
-	height: 100%;
-	border-radius: 5px;
+/*    width: 100%;*/
+    height: 100%;
+    border-radius: 5px;
     text-align: center;
     font-size: 12px;
     cursor: pointer;
@@ -157,143 +180,144 @@ p{
     margin: 5px;
 }
 body{
-	margin-left: 0px;
-	margin-right: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 #gegevens{
-   width: 98%;
-   position:relative;
-   background-color:white;
-   height: 460px;
-   top: 20px;
-   border-radius: 7px;
-   border: 0px solid black;
-   left: 1%;
+    width: 98%;
+    position:relative;
+    background-color:white;
+    height: 460px;
+    top: 20px;
+    border-radius: 7px;
+    border: 0px solid black;
+    left: 1%;
 }
 #gegevens2{
-   width: 100%;
-   position: absolute;
-   background-color:#F5F5F5;
-   height: 550px;
-   top: 100px;
-   border: 0px solid gray;
-   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    width: 100%;
+    position: absolute;
+    background-color:#F5F5F5;
+    height: 550px;
+    top: 100px;
+    border: 0px solid gray;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 #menu{
-	height: 100%;
-	width: 200px;
-	background-color: aliceblue;
-	position: absolute;
+    height: 100%;
+    width: 200px;
+    background-color: aliceblue;
+    position: absolute;
 }
 .menuKnop{
-	position: relative;
-	margin: auto;
-	width: 100%;
-	height: 24.8%;
-	border-top: 1px solid lightgray;
-	border-right: 1px solid lightgray;
-	background-color: white;
-	text-align: center
+    position: relative;
+    margin: auto;
+    width: 100%;
+    height: 24.8%;
+    border-top: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    background-color: white;
+    text-align: center
 }
 .menuKnopGekozen{
-	position: relative;
-	margin: auto;
-	width: 97.5%;
-	height: 24.8%;
-	border-top: 1px solid lightgray;
-	border-right: 1px solid lightgray;
-	background-color: white;
-	border-left: 5px solid red;
-	text-align: center
+    position: relative;
+    margin: auto;
+    width: 97.5%;
+    height: 24.8%;
+    border-top: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    background-color: white;
+    border-left: 5px solid red;
+    text-align: center
 }
 .menuKnop:hover{
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-	width: 102%;
-	border-left: 5px solid red;
-	transition-duration: 0.2s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    width: 102%;
+    border-left: 5px solid red;
+    transition-duration: 0.2s;
 }
 #derde{
-	top: 0px;
+    top: 0px;
 }
 #tweede{
-	top: 0px;
+    top: 0px;
 }
 #vierde{
-	top: 0px;
-	border-bottom: 1px solid lightgray;
+    top: 0px;
+    border-bottom: 1px solid lightgray;
 }
 #driehoek{
-	width: 0;
-	height: 0;
-	border-style: solid;
-	border-width: 10px 0 10px 20px;
-	border-color: transparent transparent transparent #ff0000;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 0 10px 20px;
+    border-color: transparent transparent transparent #ff0000;
 }
 .boven{
-	padding-top: 32px;
-	font-family: sans-serif;
-	color: darkslategrey;
+    padding-top: 32px;
+    font-family: sans-serif;
+    color: darkslategrey;
 }
 .gekozen{
-	padding-top: 32px;
-	font-family: sans-serif;
-	font-weight: bold;
-	color: darkslategrey;
+    padding-top: 32px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: darkslategrey;
 }
 a{
-	text-decoration: none;
+    text-decoration: none;
 }
 
 table{
-	left: 20px;
-	font-size: 17px;
-	font-family:verdana;
+    left: 20px;
+    font-size: 17px;
+    font-family:verdana;
 }
 .inlog{
-	position: absolute;
-	left: 30%;
-	top: 20%;
-	font-size: 20px;
+    position: absolute;
+    left: 30%;
+    top: 20%;
+    font-size: 20px;
 }
 .p1{
-color: red;
+    color: red;
 }
 h2{
-	text-align: left;
+    text-align: left;
 }
 h3{
-	position: absolute;
-	top: 5px;
-	right: 5px;
-	text-decoration: underline;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    text-decoration: underline;
 }
 #titel{
-font-size: 20px;
+    font-size: 20px;
+    font-weight: bold;
 }
 #content{
-	position: relative;
-	width: 75%;
-	height: 550px;
-	left: 200px;
-	padding-left: 20px; 
+    position: relative;
+    width: 75%;
+    height: 550px;
+    left: 200px;
+    padding-left: 20px; 
 }
 td{
-	position: relative;	
+    position: relative;	
 }
 .Name{
-	width: 200px;
-	font-size: 20px;
+    width: 250px;
+    height: 20px;
 }
 .tabelletje{
-	align-content: center;
+    align-content: center;
 }
 .uitloggen{
-	background-color: #af1c23;
+    background-color: #af1c23;
     border: none;
     color: white;
-	width: 100%;
-	height: 100%;
-	border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
     text-align: center;
     font-size: 15px;
     cursor: pointer;
@@ -302,58 +326,60 @@ td{
     background-color: red;
 }
 #uitlog{
-	position: absolute;
-	top: 10%;
-	right: 0%;
-	border: 0px solid black;
-	width: 150px;
-	height: 30px;
+    position: absolute;
+    top: 10%;
+    right: 0%;
+    border: 0px solid black;
+    width: 150px;
+    height: 30px;
 }
 #verkeerd{
-	font-size: 12px;
-	color: red;
+    font-size: 12px;
+    color: red;
 }
 .data{
-	position: absolute;
-	font-size: 14px;
+    position: absolute;
+    font-size: 14px;
 }
 #rechts{
-	position: absolute;
-	font-size: 20px;
-	font-family: sans-serif;
-	right: 20px;
-	width: 400px;
-	height: 300px;
+    position: absolute;
+    font-size: 20px;
+    font-family: sans-serif;
+    right: 20px;
+    width: 400px;
+    height: 300px;
 }
 .stadium{
-	position: absolute;
-	top: 50px;
-        left: 20px;
-	height: 300px;
-	width: 1287px;
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    height: 300px;
+    width: 1287px;
 }
 #plaatje{
-	position: absolute;
-	width: 150px;
-	height: 200px;
-	border: 1px solid black;
+    position: absolute;
+    width: 150px;
+    height: 200px;
+    border: 1px solid black;
 }
 #Artsinfo{
-	position: absolute;
-	width: 1000px;
-	height: 200px;
-	left: 200px;
-	border: 1px solid black;
+    position: absolute;
+    width: 1000px;
+    height: 200px;
+    left: 200px;
+    border: 1px solid black;
 }
 #biografie{
-	position: absolute;
-	width: 1000px;
-	height: 200px;
-	left: 200px;
-	top: 250px;
-	border: 1px solid black;
+    position: absolute;
+    width: 1000px;
+    height: 200px;
+    left: 200px;
+    top: 250px;
 }
 #bio{
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
+}
+#veld{
+    width: 200px;
 }

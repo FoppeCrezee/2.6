@@ -31,14 +31,19 @@ public class WijzigServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String mail = request.getParameter("vNaam");
+        //String mail = request.getParameter("mail");
+        String naam = request.getParameter("vNaam");
         String ini = request.getParameter("ini");
         String adres = request.getParameter("adres");
         String sex = request.getParameter("sex");
         String postcode = request.getParameter("postcode");
         String plaats = request.getParameter("plaats");
+        int bsn = Integer.parseInt(request.getParameter("bsn"));
+        long tel = Long.parseLong(request.getParameter("tel"));
+        int nummer = Integer.parseInt(request.getParameter("nummer"));
+        String toevoeging = request.getParameter("toevoeging");
 
-        ChangeData change = new ChangeData(mail, ini, sex, adres, postcode, plaats, request, response);
+        ChangeData change = new ChangeData(ini, sex, adres, postcode, plaats, naam, bsn, tel, nummer, toevoeging, request, response);
 
         response.sendRedirect("Ingelogd.jsp");
         

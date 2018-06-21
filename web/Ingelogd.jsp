@@ -36,15 +36,18 @@
             String postcode = null;
             String plaats = null;
             String adres = null;*/
-
-            String userName = patient.getMail();
-            
+            String mail = patient.getMail();
+            String naam = patient.getNaam();
             String ini = patient.getIni();
             String sex = patient.getSex();
             String postcode = patient.getPostcode();
             String plaats = patient.getPlaats();
             String adres = patient.getAdres();
-            
+            int huisNummer = patient.getHuisNummer();
+            long tel = patient.getTelNummer();
+            String toev = patient.getToevoeging();
+            int bsn = patient.getBSN();
+
             /*Cookie[] cookies = request.getCookies();
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
@@ -112,14 +115,15 @@
 
                 <div id="content">
                     <p align="center" id="titel">Gegevens</p>
-                    <table class="data">
+                    <table align="center">
+
 
                         <tr>
                             <td>
-                                <p>Mail:</p>
+                                <p>Naam:</p>
                             </td>
                             <td>
-                                <input id=“Naam” name="vNaam" value="<%=userName%>" type="text"  readonly>
+                                <input id="veld" name="vNaam" value="<%=naam%>" type="text"  readonly>
                             </td>
                         </tr>
                         <tr>
@@ -127,7 +131,15 @@
                                 <p>Initialen:</p>
                             </td>
                             <td>
-                                <input id=“Naam” name="ww" value="<%=ini%>" type="text"   readonly>
+                                <input id="veld" name="ww" value="<%=ini%>" type="text"   readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>BSN:</p>
+                            </td>
+                            <td>
+                                <input id="veld" name="vNaam" value="<%=bsn%>" type="text"  readonly>
                             </td>
                         </tr>
                         <tr>
@@ -135,7 +147,7 @@
                                 <p>Geslacht:</p>
                             </td>
                             <td>
-                                <input id=“Naam” name="ww" value="<%=sex%>" type="text"  readonly>
+                                <input id="veld" name="ww" value="<%=sex%>" type="text"  readonly>
                             </td>
                         </tr>
                         <tr>
@@ -143,7 +155,16 @@
                                 <p>Adres:</p>
                             </td>
                             <td>
-                                <input id=“Naam” name="ww" value="<%=adres%>" type="text"   readonly>
+                                <input id="veld" name="ww" value="<%=adres%>" type="text"   readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Huisnummer/ toevoeging:</p>
+                            </td>
+                            <td>
+                                <input id=“Naam” type="text" class="nr2" name="nu" value="<%=huisNummer%>" readonly>
+                                <input id=“Naam” type="text" class="tv2" name="toevoeging" value="<%=toev%>" readonly>
                             </td>
                         </tr>
                         <tr>
@@ -151,7 +172,7 @@
                                 <p>Postcode:</p>
                             </td>
                             <td>
-                                <input id=“Naam” name="ww" value="<%=postcode%>" type="text" readonly>
+                                <input id="veld" name="ww" value="<%=postcode%>" type="text" readonly>
                             </td>
                         </tr>
                         <tr>
@@ -159,7 +180,23 @@
                                 <p>Plaats:</p>
                             </td>
                             <td>
-                                <input id=“Naam” name="ww" value="<%=plaats%>" type="text" readonly>
+                                <input id="veld" name="ww" value="<%=plaats%>" type="text" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Telefoonnummer:</p>
+                            </td>
+                            <td>
+                                <input id="veld" name="vNaam" value="<%=tel%>" type="text"  readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Mail:</p>
+                            </td>
+                            <td>
+                                <input id="veld" name="vNaam" value="<%=mail%>" type="text"  readonly>
                             </td>
                         </tr>
 
@@ -171,7 +208,7 @@
                     </div>
                 </form>-->
 
-                    <div id="knop4">
+                    <div align="center" id="knop4">
                         <a href="Wijzig.jsp"><button class="buttonInlog">Wijzig gegevens</button></a>
                     </div>
 
