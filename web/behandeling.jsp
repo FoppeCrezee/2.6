@@ -86,14 +86,14 @@
                     <p align="center" id="titel">Arts</p>
 
                     <div id="plaatje">
-                        plaatje
+                        placeholder
                     </div>
                     <div id="Artsinfo">
                         <%=heeftArts%>
                         <table>
                             <tr>
                                 <td>
-                                    Naam:
+                                    <b>Naam:</b><br>
                                 </td>
                                 <td>
                                     <%=artsNaam%>
@@ -101,7 +101,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Initialen:
+                                    <b>Initialen:</b>
                                 </td>
                                 <td>
                                     <%=artsIni%>
@@ -109,7 +109,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Specialisme:
+                                    <b>Specialisme:</b>
                                 </td>
                                 <td>
                                     <%=artsSpec%>
@@ -117,7 +117,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Email:
+                                    <b>Email:</b>
                                 </td>
                                 <td>
                                     <%=artsMail%>
@@ -129,6 +129,8 @@
                         <textarea id="bio" rows="4" cols="50" readonly><%=artsBio%></textarea>
 
                     </div>
+                </div>
+                <div id="artsPicto" class="pictogram">
                 </div>
             </div>
         </div>

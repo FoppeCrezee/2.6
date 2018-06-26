@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "PatientInfoServlet", urlPatterns = {"/PatientInfoServlet"})
 public class PatientInfoServlet extends HttpServlet {
+
     private Patient patient;
 
     /**
@@ -70,21 +71,38 @@ public class PatientInfoServlet extends HttpServlet {
                     + "                    </form>\n"
                     + "                </div>\n"
                     + "            </div>\n"
-                    + "\n"
                     + "            <div id=\"gegevens2\">\n"
-                    + "\n"
-                    + "\n"
+                    + "             <div id=\"menu\">\n"
+                    + "                    <a href=\"artsGegevens.jsp\">\n"
+                    + "                        <div class=\"menuKnop\" id=\"eerste\">\n"
+                    + "                            <p class=\"boven\">Mijn gegevens</p>\n"
+                    + "                        </div>\n"
+                    + "                    </a>\n"
+                    + "                    <a href=\"Patienten\">\n"
+                    + "                        <div class=\"menuKnopGekozen\" id=\"tweede\">\n"
+                    + "                            <p class=\"gekozen\">Patient aanvragen</p>\n"
+                    + "                            <div id=\"driehoek\">\n"
+                    + "                            </div>\n"
+                    + "                        </div>\n"
+                    + "                    </a>\n"
+                    + "                         <div class=\"menuKnopLeeg\" id=\"derde\">\n"
+                    + "                         </div>\n"
+                    + "                     </a>\n"
+                    + "                         <div class=\"menuKnopLeeg\" id=\"vierde\">\n"
+                    + "                         </div>\n"
+                    + "                     </a>		\n"
+                    + "                </div>"
                     + "                <div id=\"content\">\n"
                     + "                    <p align=\"center\" id=\"titel\">Gegevens</p>\n"
-                    + "                        <table class=\"data\">\n"
-                    + "\n"
+                    + "                       "
+                    + "                      <table class=\"data\">\n"
                     + "						<form action=\"PatientInfoServlet\" method=\"GET\">\n"
                     + "                            <tr>\n"
                     + "                                <td>\n"
                     + "                                    <p>Achternaam: </p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
-                    + "                                    <input id=“Naam” name=\"vNaam\" value=\"" + patient.getNaam() + "\" type=\"text\"  readonly>\n"
+                    + "                                    <input id=\"veld\" name=\"vNaam\" value=\"" + patient.getNaam() + "\" type=\"text\"  readonly>\n"
                     + "                                </td>\n"
                     + "                            </tr>\n"
                     + "                            <tr>\n"
@@ -92,7 +110,7 @@ public class PatientInfoServlet extends HttpServlet {
                     + "                                    <p>Mail:</p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
-                    + "                                    <input id=“Naam” name=\"mail\" value=\"" + patient.getMail() + "\" type=\"text\"  readonly>\n"
+                    + "                                    <input id=\"veld\" name=\"mail\" value=\"" + patient.getMail() + "\" type=\"text\"  readonly>\n"
                     + "                                </td>\n"
                     + "                            </tr>\n"
                     + "                            <tr>\n"
@@ -100,7 +118,7 @@ public class PatientInfoServlet extends HttpServlet {
                     + "                                    <p>Initialen:</p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
-                    + "                                    <input id=“Naam” name=\"ww\" value=\"" + patient.getIni() + "\" type=\"text\"   readonly>\n"
+                    + "                                    <input id=\"veld\" name=\"ww\" value=\"" + patient.getIni() + "\" type=\"text\"   readonly>\n"
                     + "                                </td>\n"
                     + "                            </tr>\n"
                     + "                            <tr>\n"
@@ -108,7 +126,7 @@ public class PatientInfoServlet extends HttpServlet {
                     + "                                    <p>Geslacht:</p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
-                    + "                                    <input id=“Naam” name=\"ww\" value=\"" + patient.getSex() + "\" type=\"text\"  readonly>\n"
+                    + "                                    <input id=\"veld\" name=\"ww\" value=\"" + patient.getSex() + "\" type=\"text\"  readonly>\n"
                     + "                                </td>\n"
                     + "                            </tr>\n"
                     + "                            <tr>\n"
@@ -116,7 +134,7 @@ public class PatientInfoServlet extends HttpServlet {
                     + "                                    <p>BSN:</p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
-                    + "                                    <input id=“Naam” name=\"vNaam\" value=\"" + patient.getBSN() + "\" type=\"text\"  readonly>\n"
+                    + "                                    <input id=\"veld\" name=\"vNaam\" value=\"" + patient.getBSN() + "\" type=\"text\"  readonly>\n"
                     + "                                </td>\n"
                     + "                            </tr>\n"
                     + "                            <tr>\n"
@@ -124,7 +142,7 @@ public class PatientInfoServlet extends HttpServlet {
                     + "                                    <p>GeboorteDatum:</p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
-                    + "                                    <input id=“Naam” name=\"vNaam\" value=\"" + patient.getDatum() + "\" type=\"date\"  readonly>\n"
+                    + "                                    <input id=\"veld\" name=\"vNaam\" value=\"" + patient.getDatum() + "\" type=\"date\"  readonly>\n"
                     + "                                </td>\n"
                     + "                            </tr>\n"
                     + "                            <tr>\n"
@@ -132,7 +150,7 @@ public class PatientInfoServlet extends HttpServlet {
                     + "                                    <p>Telefoonnummer:</p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
-                    + "                                    <input id=“Naam” name=\"vNaam\" value=\"" + patient.getTelNummer() + "\" type=\"text\"  readonly>\n"
+                    + "                                    <input id=\"veld\" name=\"vNaam\" value=\"" + patient.getTelNummer() + "\" type=\"text\"  readonly>\n"
                     + "                                </td>\n"
                     + "                            </tr>\n"
                     + "                            <tr>\n"
@@ -140,7 +158,7 @@ public class PatientInfoServlet extends HttpServlet {
                     + "                                    <p>Adres:</p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
-                    + "                                    <input id=“Naam” name=\"ww\" value=\"" + patient.getAdres() + "\" type=\"text\"   readonly>\n"
+                    + "                                    <input id=\"veld\" name=\"ww\" value=\"" + patient.getAdres() + "\" type=\"text\"   readonly>\n"
                     + "                                </td>\n"
                     + "                            </tr>\n"
                     + "                            <tr>\n"
@@ -157,7 +175,7 @@ public class PatientInfoServlet extends HttpServlet {
                     + "                                    <p>Postcode:</p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
-                    + "                                    <input id=“Naam” name=\"ww\" value=\"" + patient.getPostcode() + "\" type=\"text\" readonly>\n"
+                    + "                                    <input id=\"veld\" name=\"ww\" value=\"" + patient.getPostcode() + "\" type=\"text\" readonly>\n"
                     + "                                </td>\n"
                     + "                            </tr>\n"
                     + "                            <tr>\n"
@@ -165,7 +183,7 @@ public class PatientInfoServlet extends HttpServlet {
                     + "                                    <p>Plaats:</p>\n"
                     + "                                </td>\n"
                     + "                                <td>\n"
-                    + "                                    <input id=“Naam” name=\"ww\" value=\"" + patient.getPlaats() + "\" type=\"text\" readonly>\n"
+                    + "                                    <input id=\"veld\" name=\"ww\" value=\"" + patient.getPlaats() + "\" type=\"text\" readonly>\n"
                     + "                                </td>\n"
                     + "                            </tr>\n"
                     + "\n"
@@ -175,12 +193,14 @@ public class PatientInfoServlet extends HttpServlet {
                     //+ "						<form action=\"PatientInfoServlet\" method=\"GET\">\n"
                     + "  							<input type=\"radio\" name=\"stadium\" " + getStadium(0) + "value=\"0\"> Aanvraag is ingediend<br><br>\n"
                     + "  							<input type=\"radio\" name=\"stadium\" " + getStadium(1) + "value=\"1\"> Medisch dossier is opgevraagd<br><br>\n"
-                    + "  							<input type=\"radio\" name=\"stadium\" "+ getStadium(2) + "value=\"2\"> Medisch dossier is binnen<br>  <br>\n"
-                    + "                                                         <input type=\"radio\" name=\"stadium\" "+ getStadium(3) + "value=\"3\"> Aanvraag wordt besproken<br>  <br>\n"
-                    + "                                                         <input type=\"radio\" name=\"stadium\" "+ getStadium(4) + "value=\"4\"> Aanvraag is besproken<br>  <br>\n"
+                    + "  							<input type=\"radio\" name=\"stadium\" " + getStadium(2) + "value=\"2\"> Medisch dossier is binnen<br>  <br>\n"
+                    + "                                                         <input type=\"radio\" name=\"stadium\" " + getStadium(3) + "value=\"3\"> Aanvraag wordt besproken<br>  <br>\n"
+                    + "                                                         <input type=\"radio\" name=\"stadium\" " + getStadium(4) + "value=\"4\"> Aanvraag is besproken<br>  <br>\n"
                     + "  						<input type=\"submit\" value=\"Submit\">\n"
                     + "						</form>\n"
                     + "					</div>"
+                    + "<div id=\"patientPicto\" class=\"pictogram\">\n"
+                    + "                </div>"
                     + "                </div>\n"
                     + "            </div>\n"
                     + "        </div>\n"
@@ -189,14 +209,14 @@ public class PatientInfoServlet extends HttpServlet {
         }
     }
 
-    private String getStadium(int i){
+    private String getStadium(int i) {
         String form = "";
-            if(patient.getStadium() == i){
-                form = "checked ";
-            }
+        if (patient.getStadium() == i) {
+            form = "checked ";
+        }
         return form;
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -209,7 +229,7 @@ public class PatientInfoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
         String user = request.getParameter("mail");
         String artsMail = (String) session.getAttribute("user");
@@ -217,7 +237,7 @@ public class PatientInfoServlet extends HttpServlet {
         ChangeData data = new ChangeData();
         data.changeStadium(user, artsMail, stadium);
         processRequest(request, response);
-        
+
     }
 
     /**

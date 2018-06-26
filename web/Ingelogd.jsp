@@ -213,7 +213,8 @@
                     </div>
 
                 </div>
-
+                <div id="patientPicto" class="pictogram">
+                </div>
 
             </div>
         </div>

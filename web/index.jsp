@@ -17,20 +17,19 @@
 
         <div id="main">
             <div id="header" class="hoofd">
-                <h1>Secondopinion.nl</h1>
-                <h2>Zekerheid over uw diagnose binnen 72 uur</h2>
+                <h1 align="center"><b>SECOND OPINION PORTAAL</b></h1>
+                <p id="ondertitel" align="center"><i>Zekerheid over uw diagnose binnen 72 uur</i></p>
 
-                <a href="inlog.html"><h3 id="login">Inloggen</h3></a>
-
+                <a href="inlog.html"><button class="inlogKnop"><h3 id="login">Inloggen</h3></button></a>
             </div>
 
             <div id="gegevens">
 
                 <div id="knop1">
-                    <a href="patientAanvraag.html"><button class="button">U bent een pati&euml;nt</button></a>
+                    <a href="patientAanvraag.html"><button class="button">Ik ben pati&euml;nt</button></a>
                 </div>
                 <div id="knop2">
-                    <a href= "arts.html"><button class="button">U bent een arts</button></a>
+                    <a href= "https://formulieren.avl.nl/verwijzers.aspx "><button class="button">Ik ben een arts</button></a>
                 </div>
                 <img src="https://www.avl.nl/media/8869707/logo-NL-Antoni-van-Leeuwenhoek_jpeg_grootformaat.jpg" id="avl" >
 

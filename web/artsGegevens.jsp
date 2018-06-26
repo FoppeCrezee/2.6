@@ -68,30 +68,26 @@
                             <p class="boven">Patient aanvragen</p>
                         </div>
                     </a>
-                    <!-- <a href="behandeling.jsp">
-                         <div class="menuKnop" id="derde">
-                             <p class="boven">Mijn arts</p>
-                         </div>
-                     </a>
-                     <a href="contact.jsp">
-                         <div class="menuKnop" id="vierde">
-                             <p class="boven">Contact</p>
-                         </div>
-                     </a>-->			
+                    <div class="menuKnopLeeg" id="derde">
+                    </div>
+                    </a>
+                    <div class="menuKnopLeeg" id="vierde">
+                    </div>
+                    </a>		
                 </div>
 
                 <div id="content">
                     <p align="center" id="titel">Arts</p>
 
                     <div id="plaatje">
-                        plaatje
+                        placeholder
                     </div>
                     <div id="Artsinfo">
                         <%=heeftArts%>
                         <table>
                             <tr>
                                 <td>
-                                    Naam:
+                                    <b>Naam:</b><br>
                                 </td>
                                 <td>
                                     <%=artsNaam%>
@@ -99,7 +95,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Initialen:
+                                    <b>Initialen:</b>
                                 </td>
                                 <td>
                                     <%=artsIni%>
@@ -107,7 +103,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Specialisme:
+                                    <b>Specialisme:</b>
                                 </td>
                                 <td>
                                     <%=artsSpec%>
@@ -115,7 +111,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Email:
+                                    <b>Email:</b>
                                 </td>
                                 <td>
                                     <%=artsMail%>
@@ -128,20 +124,13 @@
 
                     </div>
                 </div>	
-
-                    <!--<div id="knop4">
-                        <input type="submit" class="buttonInlog" value="Wijzigen">
-                    </div>
-                </form>-->
-
-                    <!--<div id="knop4">
-                <a href="Wijzig.jsp"><button class="buttonInlog">Wijzig gegevens</button></a>
-            </div>-->
-
+                <div id="artsPicto" class="pictogram">
                 </div>
 
-
             </div>
+
+
         </div>
-    </body>
+    </div>
+</body>
 </html>

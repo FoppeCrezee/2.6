@@ -128,7 +128,7 @@ public class Patient {
         return wachtwoord;
     } */
     public void setNaam(String naam) {
-        this.mail = mail;
+        this.naam = naam;
     }
 
     /*public void setWachtwoord(String wachtwoord){
