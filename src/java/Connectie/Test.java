@@ -162,7 +162,7 @@ public class Test extends HttpServlet {
         response.addCookie(naam);
         
         try {
-            response.sendRedirect("artsGegevens.jsp");
+            response.sendRedirect("Patienten");
         } catch (IOException ex) {
         }
     }

@@ -115,7 +115,7 @@ public class RequestData {
     }
     
     public ArrayList<Patient> getPatienten(){
-        String query = "SELECT * FROM patient";
+        String query = "SELECT * FROM patient ORDER BY stadium";
         
         ArrayList<Patient> lijst = new ArrayList<Patient>();
         

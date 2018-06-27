@@ -56,6 +56,11 @@
             <div id="gegevens2">
 
                 <div id="menu">
+                    <a href="Patienten">
+                        <div class="menuKnop" id="tweede">
+                            <p class="boven">Patient aanvragen</p>
+                        </div>
+                    </a>
                     <a href="artsGegevens.jsp">
                         <div class="menuKnopGekozen" id="eerste">
                             <p class="gekozen">Mijn gegevens</p>
@@ -63,11 +68,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="Patienten">
-                        <div class="menuKnop" id="tweede">
-                            <p class="boven">Patient aanvragen</p>
-                        </div>
-                    </a>
+                    
                     <div class="menuKnopLeeg" id="derde">
                     </div>
                     </a>

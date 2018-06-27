@@ -118,8 +118,8 @@
                 <div id="content">
                     <p align="center" id="titel">Gegevens</p>
 
-
-                    <form id="Wijzigen gegevens" onsubmit="return validateWijzigingen()" action="WijzigServlet" method="post">
+<!--onsubmit="return validateWijzigingen()"-->
+                    <form id="Wijzigen gegevens"  action="WijzigServlet" method="post">
                         <table align="center">
 
                             <tr>
@@ -151,7 +151,11 @@
                                     <p>Geslacht:</p>
                                 </td>
                                 <td>
-                                    <input id="veld" name="sex" value="<%=sex%>" type="text" onfocusout= "naam(this, naamReg)">
+<!--                                    Altijd man geselecteerd-->
+                                    <select name="sex" value>
+                                        <option selected>Man</option>
+                                        <option>Vrouw</option>
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
@@ -200,6 +204,7 @@
                                     <p>Mail:</p>
                                 </td>
                                 <td>
+<!--                                    <p id="wijzigGegevens"><%=mail%></p>-->
                                     <input id="veld" name="mail" value="<%=mail%>" type="text" readonly>
                                 </td>
                             </tr>

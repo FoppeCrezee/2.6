@@ -106,12 +106,6 @@ public class Patienten extends HttpServlet {
                 + "            <div id=\"gegevens2\">\n"
                 + "\n"
                 + "                <div id=\"menu\">\n"
-                + "                    <a href=\"artsGegevens.jsp\">\n"
-                + "                        <div class=\"menuKnop\" id=\"eerste\">\n"
-                + "                            <p class=\"boven\">Mijn gegevens</p>\n"
-                + "                            \n"
-                + "                        </div>\n"
-                + "                    </a>\n"
                 + "                    <a href=\"Patienten\">\n"
                 + "                        <div class=\"menuKnopGekozen\" id=\"tweede\">\n"
                 + "                            <p class=\"gekozen\">Patient aanvragen</p>\n"
@@ -119,7 +113,13 @@ public class Patienten extends HttpServlet {
                 + "                            </div>\n"
                 + "                        </div>\n"
                 + "                    </a>\n"
-               // + "                   <a href=\"behandeling.jsp\">\n"
+                + "                    <a href=\"artsGegevens.jsp\">\n"
+                + "                        <div class=\"menuKnop\" id=\"eerste\">\n"
+                + "                            <p class=\"boven\">Mijn gegevens</p>\n"
+                + "                            \n"
+                + "                        </div>\n"
+                + "                    </a>\n"
+                // + "                   <a href=\"behandeling.jsp\">\n"
                 + "                        <div class=\"menuKnopLeeg\" id=\"derde\">\n"
                 //+ "                            <p class=\"boven\">Mijn arts</p>\n"
                 + "                        </div>\n"
@@ -128,12 +128,28 @@ public class Patienten extends HttpServlet {
                 + "                        <div class=\"menuKnopLeeg\" id=\"vierde\">\n"
                 //+ "                            <p class=\"boven\">Contact</p>\n"
                 + "                        </div>\n"
-               // + "                    </a>			\n"
+                // + "                    </a>			\n"
                 + "                </div>\n"
                 + "\n"
                 + "                <div id=\"content\">\n"
                 + "                    <p align=\"center\" id=\"titel\">Gegevens</p>\n"
-                + "                        <table class=\"data\">\n"
+                + "                        <table class=\"data\" id=\"tableGegevens\">\n"
+                + "                         <tr>"
+                + "                             <th>"
+                + "Naam:"
+                + "                             </th>"
+                + "                             <th>"
+                + "Initialen: "
+                + "                             </th>"
+                + "                             <th>"
+                + "Geb datum:"
+                + "                             </th>"
+                + "                             <th>"
+                + "Stadium:"
+                + "                             </th>"
+                + "                             <th>"
+                + "                             </th>"
+                + "                         </tr>"
                 + "\n"
                 + getPatienten()
                 + "\n"
@@ -172,8 +188,18 @@ public class Patienten extends HttpServlet {
                     + "						</td>\n"
                     + "					</tr>";*/ "<form action=\"PatientInfoServlet\" method=\"post\">\n"
                     + "								<tr>\n"
+                    + "										<input id=\"veld\" type=\"hidden\" value=\"" + patient.getMail() + "\" name=\"mail\" readonly>\n"
                     + "									<td>\n"
-                    + "										<input id=\"veld\" type=\"text\" value=\"" + patient.getMail() + "\" name=\"mail\" readonly>\n"
+                    + "                                                                         " + aanRoep(patient) + patient.getNaam()
+                    + "									</td>\n"
+                    + "                                                                 <td>\n"
+                    + "                                                                         " + patient.getIni()
+                    + "									</td>\n"
+                    + "									<td>\n"
+                    + "                                                                         " + patient.getDatum()
+                    + "									</td>\n"
+                    + "									<td>\n"
+                    + "                                                                         " + patient.getStadium()
                     + "									</td>\n"
                     + "									<td>\n"
                     + "										<input id=\"rij\" type=\"submit\" class=\"buttonInlog\" value=\"Meer gegevens\">\n"
@@ -186,6 +212,16 @@ public class Patienten extends HttpServlet {
             return "Geen patienten gevonden";
         } else {
             return allemaal;
+        }
+    }
+
+    private String aanRoep(Patient patient) {
+        String man = "Dhr ";
+        String vrouw = "Mvr ";
+        if (patient.getSex().equals("man")) {
+            return man;
+        } else {
+            return vrouw;
         }
     }
 

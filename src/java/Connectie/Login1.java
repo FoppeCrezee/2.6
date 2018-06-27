@@ -11,6 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.servlet.annotation.WebServlet;
@@ -68,6 +71,11 @@ public class Login1 {
             }*/
             System.out.println(s);
             System.out.println(wacht);
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+            Date date = new Date();
+            System.out.println(dateFormat.format(date));
+            
 
             //statement.executeUpdate("INSERT into ding values(" + vNaa + "," + vNaa + ")");
         } catch (SQLException e) {

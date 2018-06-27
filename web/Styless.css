@@ -20,6 +20,10 @@ and open the template in the editor.
     margin: 10px;
     text-align: left;
     position: relative;
+    height: 80px;
+}
+#wijzigGegevens{
+    font-size: 13.33333px;
 }
 
 #knop1{
@@ -173,6 +177,14 @@ and open the template in the editor.
 .button:hover{
     background-color: red;
 }
+#toelichting{
+    position: absolute;
+    border: 0px solid black;
+    bottom: 20px;
+    left: 20px;
+    height: 150px;
+    width: 1287px;
+}
 
 .buttonInlog{
     background-color: #af1c23;
@@ -300,6 +312,9 @@ table{
     font-size: 17px;
     font-family:verdana;
 }
+#tableGegevens{
+    width: 100%;
+}
 .inlog{
     position: absolute;
     left: 30%;
@@ -345,7 +360,7 @@ td{
     border: none;
     color: white;
     width: 100%;
-    height: 100%;
+    height: 30px;
     border-radius: 5px;
     text-align: center;
     font-size: 15px;

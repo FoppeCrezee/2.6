@@ -18,7 +18,7 @@
         <div id="main">
             <div id="header" class="hoofd">
                 <h1 align="center"><b>SECOND OPINION PORTAAL</b></h1>
-                <p id="ondertitel" align="center"><i>Zekerheid over uw diagnose binnen 72 uur</i></p>
+<!--                <p id="ondertitel" align="center"><i>Zekerheid over uw diagnose binnen 72 uur</i></p>-->
 
                 <a href="inlog.html"><button class="inlogKnop"><h3 id="login">Inloggen</h3></button></a>
             </div>
@@ -26,7 +26,7 @@
             <div id="gegevens">
 
                 <div id="knop1">
-                    <a href="patientAanvraag.html"><button class="button">Ik ben pati&euml;nt</button></a>
+                    <a href="patientAanvraag.html"><button class="button">Ik ben een pati&euml;nt</button></a>
                 </div>
                 <div id="knop2">
                     <a href= "https://formulieren.avl.nl/verwijzers.aspx "><button class="button">Ik ben een arts</button></a>

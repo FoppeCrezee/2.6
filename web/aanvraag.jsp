@@ -4,6 +4,7 @@
     Author     : foppe
 --%>
 
+<%@page import="Connectie.Toelichting"%>
 <%@page import="Connectie.Patient"%>
 <%@page import="Data.RequestData"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -30,6 +31,8 @@
             String sessionID = null;
             Patient patient;
             int stadium;
+            String toelichting = null;
+            
             RequestData data = new RequestData();
             
             Cookie[] cookies = request.getCookies();
@@ -45,6 +48,8 @@
             }
             patient = data.getPatientData(userName);
             stadium = patient.getStadium();
+            Toelichting deToelichting = new Toelichting(stadium);
+            toelichting = deToelichting.getToelichting();
         %>
 
         <div id="main">
@@ -88,6 +93,11 @@
                 <div id="content">
                     <p align="center" id="titel">Aanvraag</p>
                     <img src="pictures/stadium<%=stadium%>.png" class="stadium" >
+                    <div id="toelichting">
+                        <br>
+                        <b>Toelichting:</b><br><br>
+                        <%=toelichting%>
+                    </div>
                 </div>
             </div>
         </div>

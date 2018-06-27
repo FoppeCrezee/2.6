@@ -81,7 +81,7 @@
                 </div>
                 <div id="content">
                     <p align="center" id="titel">Contact</p>
-                    <%=wachtwoord%>
+                    Contact opvragen komt nog
                 </div>
 
 
