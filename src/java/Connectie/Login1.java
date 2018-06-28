@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -74,7 +75,11 @@ public class Login1 {
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
             Date date = new Date();
+            Time time = new Time(date.getTime());
             System.out.println(dateFormat.format(date));
+            
+            
+            //System.out.println(date.setTime(time));
             
 
             //statement.executeUpdate("INSERT into ding values(" + vNaa + "," + vNaa + ")");

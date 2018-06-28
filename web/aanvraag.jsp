@@ -4,6 +4,9 @@
     Author     : foppe
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="Connectie.Toelichting"%>
 <%@page import="Connectie.Patient"%>
 <%@page import="Data.RequestData"%>
@@ -33,6 +36,7 @@
             int stadium;
             String toelichting = null;
             
+            
             RequestData data = new RequestData();
             
             Cookie[] cookies = request.getCookies();
@@ -46,7 +50,28 @@
                     }
                 }
             }
+            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
             patient = data.getPatientData(userName);
+            
+            String tijd0 = dateFormat.format(patient.getTijd0());
+            
+            String tijd1 = "";
+            if(patient.getTijd1() != null){
+                tijd1 = dateFormat.format(patient.getTijd1());
+            }
+            String tijd2 = "";
+            if(patient.getTijd2() != null){
+                tijd2 = dateFormat.format(patient.getTijd2());
+            }
+            String tijd3 = "";
+            if(patient.getTijd3() != null){
+                tijd3 = dateFormat.format(patient.getTijd3());
+            }
+            String tijd4 = "";
+            if(patient.getTijd4() != null){
+                tijd4 = dateFormat.format(patient.getTijd4());
+            }
+  
             stadium = patient.getStadium();
             Toelichting deToelichting = new Toelichting(stadium);
             toelichting = deToelichting.getToelichting();
@@ -93,6 +118,21 @@
                 <div id="content">
                     <p align="center" id="titel">Aanvraag</p>
                     <img src="pictures/stadium<%=stadium%>.png" class="stadium" >
+                    <div class="tijd">
+                        <%=tijd0%>
+                    </div>
+                    <div class="tijd" id="tijd1">
+                        <%=tijd1%>
+                    </div>
+                    <div class="tijd" id="tijd2">
+                        <%=tijd2%>
+                    </div>
+                    <div class="tijd" id="tijd3">
+                        <%=tijd3%>
+                    </div>
+                    <div class="tijd" id="tijd4">
+                        <%=tijd4%>
+                    </div>
                     <div id="toelichting">
                         <br>
                         <b>Toelichting:</b><br><br>

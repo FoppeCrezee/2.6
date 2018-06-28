@@ -153,8 +153,8 @@
                                 <td>
 <!--                                    Altijd man geselecteerd-->
                                     <select name="sex" value>
-                                        <option selected>Man</option>
-                                        <option>Vrouw</option>
+                                        <option selected>man</option>
+                                        <option>vrouw</option>
                                     </select>
                                 </td>
                             </tr>

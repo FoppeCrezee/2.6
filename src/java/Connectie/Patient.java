@@ -5,7 +5,7 @@
  */
 package Connectie;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -32,6 +32,11 @@ public class Patient {
     private long telNummer;
     private int stadium;
     private String arts;
+    private Date tijd0;
+    private Date tijd1;
+    private Date tijd2;
+    private Date tijd3;
+    private Date tijd4;
     //private boolean avl_Geweest;
 
     
@@ -46,7 +51,9 @@ public class Patient {
      * @param telNummer telefoonnummer
      */
     public Patient(String naam, String mail, int BSN, String initialen, String sex, Date geb_datum,
-            String adres, String postcode, String plaats, long telNummer, int huisNummer, String toevoeging, int stadium, String arts) {
+                   String adres, String postcode, String plaats, long telNummer, int huisNummer, 
+                   String toevoeging, int stadium, String arts, Date tijd0, Date tijd1, Date tijd2,
+                   Date tijd3, Date tijd4) {
         this.naam = naam;
         this.huisNummer = huisNummer;
         this.mail = mail;
@@ -60,6 +67,11 @@ public class Patient {
         this.telNummer = telNummer;
         this.stadium = stadium;
         this.arts = arts;
+        this.tijd0 = tijd0;
+        this.tijd1 = tijd1;
+        this.tijd2 = tijd2;
+        this.tijd3 = tijd3;
+        this.tijd4 = tijd4;
         if(toevoeging == null){
             toevoeging = "";
             this.toevoeging = "";
@@ -122,6 +134,51 @@ public class Patient {
 
     public String getArts(){
         return arts;
+    }
+    
+    public Date getTijd0(){
+        return tijd0;
+    }
+    
+    public Date getTijd1(){
+        if(tijd1 == null)
+            return null;
+        else
+            return tijd1;
+    }
+    
+    public Date getTijd2(){
+        if(tijd2 == null)
+            return null;
+        else
+            return tijd2;
+    }
+    
+    public Date getTijd3(){
+        if(tijd3 == null)
+            return null;
+        else
+            return tijd3;
+    }
+    
+    public Date getTijd4(){
+        if(tijd4 == null)
+            return null;
+        else
+            return tijd4;
+    }
+    
+    public Date getTijdLaatsteStadium(){
+        if(stadium == 0)
+            return tijd0;
+        else if(stadium == 1)
+            return tijd1;
+        else if(stadium == 2)
+            return tijd2;
+        else if(stadium == 3)
+            return tijd3;
+        else
+            return tijd4;
     }
     //vervangen door andere gegevens
     /* public String getWachtwoord(){

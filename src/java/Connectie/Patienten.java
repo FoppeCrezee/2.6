@@ -8,7 +8,13 @@ package Connectie;
 import Data.RequestData;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Time;
+import java.util.Date;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -148,6 +154,12 @@ public class Patienten extends HttpServlet {
                 + "Stadium:"
                 + "                             </th>"
                 + "                             <th>"
+                + "Tijd laatste stadium: "
+                + "                             </th>"
+                + "                             <th>"
+                + "Tijd tot 72 uur voorbij is: "
+                + "                             </th>"
+                + "                             <th>"
                 + "                             </th>"
                 + "                         </tr>"
                 + "\n"
@@ -179,6 +191,7 @@ public class Patienten extends HttpServlet {
 
         RequestData data = new RequestData();
         ArrayList<Patient> lijst = new ArrayList<Patient>();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         lijst = data.getPatienten();
         for (Patient patient : lijst) {
             allemaal = allemaal
@@ -202,6 +215,13 @@ public class Patienten extends HttpServlet {
                     + "                                                                         " + patient.getStadium()
                     + "									</td>\n"
                     + "									<td>\n"
+                    + "                                                                         " + dateFormat.format(patient.getTijdLaatsteStadium())
+                    + "									</td>\n"
+                    + "									<td>\n"
+                    + "                                                                         " + getTijdPlus(patient.getTijdLaatsteStadium(), patient.getStadium())
+                    //                    + "                                                                         " + dateFormat.format(getTijdPlus(patient.getTijdLaatsteStadium()))
+                    + "									</td>\n"
+                    + "									<td>\n"
                     + "										<input id=\"rij\" type=\"submit\" class=\"buttonInlog\" value=\"Meer gegevens\">\n"
                     + "									</td>\n"
                     + "								</tr>\n"
@@ -223,6 +243,40 @@ public class Patienten extends HttpServlet {
         } else {
             return vrouw;
         }
+    }
+
+    private String getTijdPlus(Date date, int stadium) {
+
+        if (stadium > 1) {
+            Date date2 = new Date();
+            Calendar cal2 = Calendar.getInstance(); // creates calendar
+            //cal2.setTimeInMillis(date.getTime()); // sets calendar time/date
+            cal2.add(Calendar.HOUR_OF_DAY, -2); // adds one hour
+            date2 = cal2.getTime(); // returns new date object, one hour in the future
+
+            Calendar cal = Calendar.getInstance(); // creates calendar
+            cal.setTimeInMillis(date.getTime()); // sets calendar time/date
+            cal.add(Calendar.HOUR_OF_DAY, 70); // adds one hour
+            date = cal.getTime(); // returns new date object, one hour in the future
+
+            long diff = date.getTime() - date2.getTime();
+            //Time time = new Time(diff);
+            int verschil = (int) diff / (1000 * 60 * 60);
+            double minuten = (double) diff / (1000 * 60 * 60) - verschil;
+            minuten = minuten * 60;
+
+            // time.setTime(diff);
+            //date.setTime(diff);
+            //int verschil = cal.compareTo(cal2);
+            //Timestamp timestamp = new Timestamp(cal.compareTo(cal2));
+            if (minuten < 10) {
+                return (verschil + ":0" + (int) minuten);
+            } else {
+                return (verschil + ":" + (int) minuten);
+            }
+        }
+        else
+            return "Dossier is nog niet binnen";
     }
 
     /**

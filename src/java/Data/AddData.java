@@ -25,9 +25,11 @@ public class AddData {
 
         String queryUser = "INSERT INTO User (Emailadres, Wachtwoord) VALUES (?,?);";
         String query = "INSERT INTO Patient (BSN, Achternaam, Initialen, Geslacht, Geboortedatum, Adres, Huisnummer, toevoeging, Postcode, Plaats, Telefoonnummer, "
-                + "Emailadres, AVL_geweest, stadium) VALUES (?, ?, ?, ?,str_to_date(?,'%d-%m-%Y'), ?, ?, ?, ?, ?, ?, ?, ?, 0);";
+                + "Emailadres, AVL_geweest, stadium, tijd0, tijd1, tijd2, tijd3, tijd4) VALUES (?, ?, ?, ?, str_to_date(?,'%d-%m-%Y'), ?, ?, ?, ?, ?, ?, ?, ?, 0, str_to_date(?,'%d-%m-%Y %H:%i'), '', '', '' , '');";
         PreparedStatement pst = null;
         PreparedStatement us = null;
+        Time time = new Time();
+        String tijd = time.getCurrentTime();
         try {
             us = con.prepareStatement(queryUser);
             us.setString(1, mail);
@@ -48,6 +50,7 @@ public class AddData {
                 pst.setInt(11, tel);
                 pst.setString(12, mail);
                 pst.setInt(13, geweest);
+                pst.setString(14, tijd);
 
                 pst.execute();
                 return 1;

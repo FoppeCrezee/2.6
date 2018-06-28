@@ -185,7 +185,26 @@ and open the template in the editor.
     height: 150px;
     width: 1287px;
 }
-
+.tijd{
+    position: absolute;
+    border: 0px solid black;
+    bottom: 170px;
+    height: 30px;
+    width: 130px;
+    left: 70px;
+}
+#tijd1{
+    left: 320px;
+}
+#tijd2{
+    left: 590px;
+}
+#tijd3{
+    left: 870px;
+}
+#tijd4{
+    left: 1140px;
+}
 .buttonInlog{
     background-color: #af1c23;
     border: none;

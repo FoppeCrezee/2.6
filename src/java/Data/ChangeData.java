@@ -133,15 +133,15 @@ public class ChangeData {
     }
 
     public void changeStadium(String patientNaam, String artsNaam, int stadium) {
-        String query0 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd0 = ? WHERE Emailadres = ?;";
-        String query1 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd1 = ? WHERE Emailadres = ?;";
-        String query2 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd2 = ? WHERE Emailadres = ?;";
-        String query3 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd3 = ? WHERE Emailadres = ?;";
-        String query4 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd4 = ? WHERE Emailadres = ?;";
-        String terug0 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd0 = ?, tijd1 = '', tijd2 = '', tijd3 = '', tijd4 = '' WHERE Emailadres = ?;";
-        String terug1 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd1 = ?, tijd2 = '', tijd3 = '', tijd4 = '' WHERE Emailadres = ?;";
-        String terug2 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd2 = ?, tijd3 = '', tijd4 = '' WHERE Emailadres = ?;";
-        String terug3 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd3 = ?, tijd4 = '' WHERE Emailadres = ?;";
+        String query0 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd0 = str_to_date(?,'%d-%m-%Y %H:%i') WHERE Emailadres = ?;";
+        String query1 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd1 = str_to_date(?,'%d-%m-%Y %H:%i') WHERE Emailadres = ?;";
+        String query2 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd2 = str_to_date(?,'%d-%m-%Y %H:%i') WHERE Emailadres = ?;";
+        String query3 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd3 = str_to_date(?,'%d-%m-%Y %H:%i') WHERE Emailadres = ?;";
+        String query4 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd4 = str_to_date(?,'%d-%m-%Y %H:%i') WHERE Emailadres = ?;";
+        String terug0 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd0 = str_to_date(?,'%d-%m-%Y %H:%i'), tijd1 = null, tijd2 = null, tijd3 = null, tijd4 = null WHERE Emailadres = ?;";
+        String terug1 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd1 = str_to_date(?,'%d-%m-%Y %H:%i'), tijd2 = null, tijd3 = null, tijd4 = null WHERE Emailadres = ?;";
+        String terug2 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd2 = str_to_date(?,'%d-%m-%Y %H:%i'), tijd3 = null, tijd4 = null WHERE Emailadres = ?;";
+        String terug3 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd3 = str_to_date(?,'%d-%m-%Y %H:%i'), tijd4 = null WHERE Emailadres = ?;";
 
         RequestData data = new RequestData();
         Patient patient = data.getPatientData(patientNaam);
