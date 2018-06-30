@@ -39,18 +39,6 @@ and open the template in the editor.
                                 <input id=“aNaam” type="text" class="input" name="na" onfocusout="naam(this, naamReg)">
                             </td>
                         </tr>
-<!--                        <hr id="lijn">-->
-
-                        <tr>
-                            <td>
-                            </td>
-                            <td>
-                                <p>Wachtwoord:</p>
-                            </td>
-                            <td>
-                                <input id=“aNaam” type="password" class="input" name="ww" onfocusout="naam(this, naamReg)">
-                            </td>
-                        </tr>
                         <tr>
                             <td>
                             </td>
@@ -69,19 +57,20 @@ and open the template in the editor.
                             </td>
                             <td>
                                 <select class="input" name="sex">
-                                    <option>Man</option>
-                                    <option>Vrouw</option>
+                                    <option>man</option>
+                                    <option>vrouw</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <td>
+                                <p id="achttien" class="reden">Je moet 18 zijn</p>
                             </td>
                             <td>
                                 <p>Geboortedatum:</p>
                             </td>
                             <td>
-                                <input id=“date” type="date" class="input" name="datum" onfocusout="nummer(this)">
+                                <input id=“date” type="date" class="input" name="datum" onfocusout="validateDatum()">
                             </td>
                         </tr>
                         <tr>
@@ -101,8 +90,8 @@ and open the template in the editor.
                                 <p>Huisnummer/ toevoeging:</p>
                             </td>
                             <td>
-                                <input id=“Naam” type="text" class="nr" name="nu" onfocusout="naam(this, numReg)">
-                                <input id=“Naam” type="text" class="tv" name="toevoeging">
+                                <input  type="text" class="nr" name="nu" onfocusout="naam(this, numReg)">
+                                <input  type="text" class="tv" name="toevoeging">
                             </td>
                         </tr>
                         <tr>
@@ -132,7 +121,7 @@ and open the template in the editor.
                                 <p>Telefoonnummer:</p>
                             </td>
                             <td>
-                                <input id=“Naam” type="number" class="input" name="teli" onfocusout="naam(this, telReg)">
+                                <input type="number" class="input" name="teli" onfocusout="naam(this, telReg)">
                             </td>
                         </tr>
                         <tr>
@@ -142,7 +131,7 @@ and open the template in the editor.
                                 <p>Emailadres:</p>
                             </td>
                             <td>
-                                <input id=“Naam” type="text" class="input" name="madres" onfocusout="naam(this, mailReg)">
+                                <input  type="text" class="input" name="madres" onfocusout="naam(this, mailReg)">
                             </td>
                         </tr>
                         <tr>
@@ -152,7 +141,7 @@ and open the template in the editor.
                                 <p>BSN</p>
                             </td>
                             <td>
-                                <input id=“Naam” type="number" class="input" name="bsNummer" onfocusout="naam(this, bsnReg)">
+                                <input type="number" class="input" name="bsNummer" onfocusout="naam(this, bsnReg)">
                             </td>
                         </tr>
                         <tr>
@@ -162,7 +151,7 @@ and open the template in the editor.
                                 <p>Reeds in het AVL geweest?</p>
                             </td>
                             <td>
-                                <input id=“Naam” type="checkbox" class="input" name="geweest">
+                                <input  type="checkbox" class="input" name="geweest">
                             </td>
                         </tr>
                         <tr>
@@ -172,7 +161,7 @@ and open the template in the editor.
                                 <p>Huidig ziekenhuis</p>
                             </td>
                             <td>
-                                <input id=“Naam” type="text" class="input" name="hZiekenhuis" onfocusout="naam(this, naamReg)">
+                                <input type="text" class="input" name="hZiekenhuis" onfocusout="naam(this, naamReg)">
                             </td>
                         </tr>
                         <tr>
@@ -182,7 +171,7 @@ and open the template in the editor.
                                 <p>Huidige behandelaar</p>
                             </td>
                             <td>
-                                <input id=“Naam” type="text" class="input" name="hBehandelaar" onfocusout="naam(this, naamReg)">
+                                <input type="text" class="input" name="hBehandelaar" onfocusout="naam(this, naamReg)">
                             </td>
                         </tr>
                         <tr>
@@ -208,98 +197,30 @@ and open the template in the editor.
                                 </select>
                             </td>
                         </tr>
-<!--                        <tr>
-                            <td colspan="3">
-                                <hr id="lijn">	
-                            </td>
-
-                        </tr>
                         <tr>
                             <td>
-                                <p class="p1">Afspraakbevestiging</p>
+                                <p id="niet" class="reden">Niet ingevuld</p>
                             </td>
                             <td>
-                                <p>Afspraakbevestiging sturen aan</p>
+                                <p>Wachtwoord:</p>
                             </td>
                             <td>
-                                <input id=“Naam” type="checkbox"><label>Pati&euml;nt</label><br>
-                                <input id=“Naam” type="checkbox"><label>Familie</label><br>
-                                <input id=“Naam” type="checkbox"><label>Verwijzer</label>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td colspan="3">
-                                <hr id="lijn">
+                                <input id=“ww” type="password" class="input" name="ww" onfocusout="naam(this, wwReg)">
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p class="p1">Verwijsmateriaal</p>
+                                <p id="waarom" class="reden">Komt niet overeen</p>
+                                
                             </td>
                             <td>
-                                <p>Verwijsbrief</p>
+                                <p>Wachtwoord bevestigen:</p>
                             </td>
                             <td>
-                                <input id=“Naam” type="file" class="input">
+                                <input id=“wwB” type="password" class="input" name="wwB" onfocusout="validateWachtwoord()">
                             </td>
+<!--                            <td></td>-->
                         </tr>
-                        <tr>
-                            <td>
-                            </td>
-                            <td width="240px">
-                                <p>Indien de verwijsbrief (nog) niet beschikbaar is, hier vraagstelling en eerder uitgevoerde onderzoeken beschrijven</p>
-                            </td>
-                            <td>
-                                <textarea id="Naam" type="text" rows="2" class="textArea"> </textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            </td>
-                            <td>
-                                <p>Verslagen</p>
-                            </td>
-                            <td>
-                                <input id=“Naam” type="file" class="input">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                <input id=“Naam” type="file" class="input">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                <input id=“Naam” type="file" class="input">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                <input id=“Naam” type="file" class="input">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                <input id=“Naam” type="file" class="input">
-                            </td>
-                        </tr>-->
                         <tr>
                             <td colspan="3">
                                 <hr id="lijn">

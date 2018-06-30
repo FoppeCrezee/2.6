@@ -9,7 +9,6 @@ import Connectie.Arts;
 import Connectie.Connectie;
 import Connectie.Patient;
 import java.sql.Connection;
-import java.sql.Time;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -60,21 +59,20 @@ public class RequestData {
         } catch (NullPointerException e) {
         } catch (Exception e) {
         }
+        //con.close();
         return arts;
+
     }
 
-    public Patient getPatientData(String id) {
+    public Patient getPatientData(String id){
         //Voor andere tabel, in AccountCheck wordt alleen ww met id aangevraagd. Hier komt de hele tabel... geen wachtwoord
         //ding wordt patient
         String query = "SELECT * FROM patient where Emailadres = ?";
-        //String query = "SELECT * FROM ding where een = ?";
         String mail = null;
         int BSN = 0;
         String initialen = null;
         String naam = null;
-        //man = 
         String sex = null;
-        //TODO ff naar kijken String?
         Date gebDatum = null;
         String adres = null;
         String toevoeging = null;
@@ -112,17 +110,6 @@ public class RequestData {
                 stadium = rs.getInt("stadium");
                 arts = rs.getString("beh_Arts");
 
-//                Date d = rs.getDate("tijd0");
-//                //int i = d.getTime();
-// 
-//                
-//                Time t = rs.getTime("tijd0");
-//                //d.setTime(t.getTime());
-//                
-//                Timestamp stamp = rs.getTimestamp("tijd0");
-//                
-//                
-                //Time t = rs.getTime("tijd0");
                 tijd0 = rs.getTimestamp("tijd0");
                 if (tijd0 != null) {
                     tijd0.setTime(getActTijd(tijd0).getTime());
@@ -150,11 +137,13 @@ public class RequestData {
         } catch (NullPointerException e) {
         } catch (Exception e) {
         }
+       // con.close();
         return patient;
+
     }
 
     public ArrayList<Patient> getPatienten() {
-        String query = "SELECT * FROM patient ORDER BY stadium desc";
+        String query = "SELECT * FROM patient order by case WHEN stadium < 4 THEN stadium END desc;";
 
         ArrayList<Patient> lijst = new ArrayList<Patient>();
 
@@ -183,10 +172,7 @@ public class RequestData {
         try {
             PreparedStatement pst = null;
             pst = con.prepareStatement(query);
-            //System.out.println("1");
-            //pst.setString(1, id);
             rs = pst.executeQuery();
-            //System.out.println("2");
             while (rs.next()) {
                 naam = rs.getString("Achternaam");
                 mail = rs.getString("Emailadres");
@@ -222,41 +208,17 @@ public class RequestData {
                 if (tijd4 != null) {
                     tijd4.setTime(getActTijd(tijd4).getTime());
                 }
-//                if(tijd3 != null)
-//                    tijd3.setTime(getActTijd(tijd3).getTime());
-//                if(tijd4 != null)
-//                    tijd4.setTime(getActTijd(tijd4).getTime());
-//                Calendar cal = Calendar.getInstance();
-//                cal.setTimeInMillis(tijd0.getTime());
-//                cal.add(Calendar.HOUR, -2);
-//                Timestamp timestamp = new Timestamp(cal.getTime().getTime());
-                //tijd0.setTime(timestamp.getTime());
 
-                //tijd1 = rs.getTimestamp("tijd1");
-                //tijd1.setTime(getActTijd(tijd1).getTime());
-                //tijd1 = getActTijd(tijd1);
-                //tijd2 = rs.getTimestamp("tijd2");
-                //tijd2.setTime(getActTijd(tijd2).getTime());
-                //tijd2 = getActTijd(tijd2);
-                //tijd3 = rs.getTimestamp("tijd3");
-                //tijd3.setTime(getActTijd(tijd3).getTime());
-                //tijd3 = getActTijd(tijd3);
-                //tijd4 = rs.getTimestamp("tijd4");
-                //tijd4.setTime(getActTijd(tijd4).getTime());
-                //tijd4 = getActTijd(tijd4);
                 Patient patient = new Patient(naam, mail, BSN, initialen, sex, gebDatum, adres, postcode, plaats, telNummer,
                         huisNummer, toevoeging, stadium, arts, tijd0, tijd1, tijd2, tijd3, tijd4);
                 lijst.add(patient);
-                //System.out.println("3");
             }
-
-            //System.out.println(patient.getMail());
         } catch (NullPointerException e) {
             System.out.println(e);
         } catch (Exception e) {
             System.out.println(e);
         }
-
+        //con.close();
         return lijst;
 
     }

@@ -20,6 +20,7 @@ public class AddData {
 
     public int addPatient(String naam, String ini, String sex, String datum, String adres, int nummer, String toev,
             String postcode, String plaats, int tel, String mail, int bsn, int geweest, String ww) {
+        
         Connectie conn = new Connectie();
         con = conn.connectie();
 
@@ -53,6 +54,7 @@ public class AddData {
                 pst.setString(14, tijd);
 
                 pst.execute();
+                //con.close();
                 return 1;
 
             } catch (SQLException ex) {
@@ -63,10 +65,13 @@ public class AddData {
                 del.setString(1, mail);
                 del.setString(2, ww);
                 del.executeUpdate();
+               // con.close();
                 return 2;
             }
+            
         } catch (Exception e) {
             System.out.println(e);
+            //con.close();
             return 3;
         }
     }

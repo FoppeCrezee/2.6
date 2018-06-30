@@ -10,9 +10,6 @@ import Connectie.Patient;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -43,7 +40,20 @@ public class ChangeData {
         Connectie conn = new Connectie();
         con = conn.connectie();
     }
-
+    /**
+     * @param ini zijn de initialen
+     * @param sex is het geslacht
+     * @param adres is het adres van de patient
+     * @param postcode is de postcode van de patient
+     * @param plaats is de plaats waar de patient woont
+     * @param naam is de achternaam van de patient
+     * @param bsn is het bsn van de patient
+     * @param tel is het telefoonnummer van de patient
+     * @param nummer is het huisnummer van de patient
+     * @param toevoeging is de eventuele toevoeging bij het huisnummer
+     * @param request is de HttpServletRequest van de inlogsessie
+     * @param response is de HttpServletResponse van de inlogsessie
+     */
     public ChangeData(String ini, String sex, String adres, String postcode, String plaats,
             String naam, int bsn, long tel, int nummer, String toevoeging, HttpServletRequest request, HttpServletResponse response) {
 
@@ -66,13 +76,12 @@ public class ChangeData {
         this.request = request;
         this.response = response;
         this.main();
-
     }
 
-    public void main() {
+    private void main() {
         String query = "UPDATE patient SET Achternaam = ?, BSN = ?, Huisnummer = ?, toevoeging = ?, Telefoonnummer = ?, "
                 + "Initialen = ? , Geslacht = ? , Adres = ? , Postcode = ? , Plaats = ? WHERE Emailadres = ?";
-        PreparedStatement pst = null;
+        PreparedStatement pst;
         try {
             pst = con.prepareStatement(query);
             pst.setString(1, naam);
@@ -90,48 +99,14 @@ public class ChangeData {
 
         } catch (SQLException ex) {
         }
-        /*Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("user")) {
-                    cookie.setValue(mail);
-                    //cookie.setMaxAge(30*60);
-                    response.addCookie(cookie);
-                }
-                if (cookie.getName().equals("init")) {
-                    cookie.setValue(ini);
-                    //cookie.setMaxAge(30*60);
-                    response.addCookie(cookie);
-                }
-                if (cookie.getName().equals("sex")) {
-                    cookie.setValue(sex);
-                    //cookie.setMaxAge(30*60);
-                    response.addCookie(cookie);
-                }
-                if (cookie.getName().equals("adres")) {
-                    cookie.setValue(adres);
-                    //cookie.setMaxAge(30*60);
-                    response.addCookie(cookie);
-                }
-                if (cookie.getName().equals("postcode")) {
-                    cookie.setValue(postcode);
-                    //cookie.setMaxAge(30*60);
-                    response.addCookie(cookie);
-                }
-                if (cookie.getName().equals("plaats")) {
-                    cookie.setValue(plaats);
-                    //cookie.setMaxAge(30*60);
-                    response.addCookie(cookie);
-                }
-                
-            
-
-            }
-
-        }*/
 
     }
-
+    /**
+     * Verandert het stadium waar de patient nu in zit, en verandert zijn behandelend arts indien nodig.
+     * @param patientNaam is de naam van de patient waarvan het stadium gewijzigd moet worden
+     * @param artsNaam is de naa van de arts die de wijziging doorbrengt
+     * @param stadium is het nieuwe stadium dat de arts meegeeft
+     */
     public void changeStadium(String patientNaam, String artsNaam, int stadium) {
         String query0 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd0 = str_to_date(?,'%d-%m-%Y %H:%i') WHERE Emailadres = ?;";
         String query1 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd1 = str_to_date(?,'%d-%m-%Y %H:%i') WHERE Emailadres = ?;";
@@ -146,7 +121,7 @@ public class ChangeData {
         RequestData data = new RequestData();
         Patient patient = data.getPatientData(patientNaam);
         String query;
-        PreparedStatement pst = null;
+        PreparedStatement pst;
         Time time = new Time();
         String tijd = time.getCurrentTime();
         

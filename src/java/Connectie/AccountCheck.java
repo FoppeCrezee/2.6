@@ -79,11 +79,7 @@ public class AccountCheck {
             if (rs.next()) {
                 email = rs.getString("Emailadres");
             }
-            if (email == null) {
-                return false;
-            } else {
-                return true;
-            }
+            return email != null;
         } catch (Exception e) {
             return false;
         }

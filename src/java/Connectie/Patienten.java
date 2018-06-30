@@ -8,16 +8,13 @@ package Connectie;
 import Data.RequestData;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Time;
 import java.util.Date;
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -70,21 +67,6 @@ public class Patienten extends HttpServlet {
             user = (String) session.getAttribute("user");
         }
 
-        String naam = null;
-        String mail = null;
-
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("naam")) {
-                    naam = cookie.getValue();
-                }
-                if (cookie.getName().equals("mail")) {
-                    mail = cookie.getValue();
-                }
-            }
-        }
-
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println(
@@ -108,9 +90,7 @@ public class Patienten extends HttpServlet {
                 + "                    </form>\n"
                 + "                </div>\n"
                 + "            </div>\n"
-                + "\n"
                 + "            <div id=\"gegevens2\">\n"
-                + "\n"
                 + "                <div id=\"menu\">\n"
                 + "                    <a href=\"Patienten\">\n"
                 + "                        <div class=\"menuKnopGekozen\" id=\"tweede\">\n"
@@ -125,16 +105,10 @@ public class Patienten extends HttpServlet {
                 + "                            \n"
                 + "                        </div>\n"
                 + "                    </a>\n"
-                // + "                   <a href=\"behandeling.jsp\">\n"
                 + "                        <div class=\"menuKnopLeeg\" id=\"derde\">\n"
-                //+ "                            <p class=\"boven\">Mijn arts</p>\n"
                 + "                        </div>\n"
-                //+ "                    </a>\n"
-                //+ "                    <a href=\"contact.jsp\">\n"
                 + "                        <div class=\"menuKnopLeeg\" id=\"vierde\">\n"
-                //+ "                            <p class=\"boven\">Contact</p>\n"
                 + "                        </div>\n"
-                // + "                    </a>			\n"
                 + "                </div>\n"
                 + "\n"
                 + "                <div id=\"content\">\n"
@@ -190,16 +164,12 @@ public class Patienten extends HttpServlet {
         String allemaal = "";
 
         RequestData data = new RequestData();
-        ArrayList<Patient> lijst = new ArrayList<Patient>();
+        ArrayList<Patient> lijst;
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         lijst = data.getPatienten();
         for (Patient patient : lijst) {
             allemaal = allemaal
-                    + /*+ "<tr>\n"
-                    + "						<td>\n"
-                    + "							<a href=\"PatientInfoServlet\">" + patient.getMail() + "</a>\n"
-                    + "						</td>\n"
-                    + "					</tr>";*/ "<form action=\"PatientInfoServlet\" method=\"post\">\n"
+                    + "<form action=\"PatientInfoServlet\" method=\"post\">\n"
                     + "								<tr>\n"
                     + "										<input id=\"veld\" type=\"hidden\" value=\"" + patient.getMail() + "\" name=\"mail\" readonly>\n"
                     + "									<td>\n"
@@ -212,14 +182,13 @@ public class Patienten extends HttpServlet {
                     + "                                                                         " + patient.getDatum()
                     + "									</td>\n"
                     + "									<td>\n"
-                    + "                                                                         " + patient.getStadium()
+                    + "                                                                         " + (patient.getStadium()+1)
                     + "									</td>\n"
                     + "									<td>\n"
                     + "                                                                         " + dateFormat.format(patient.getTijdLaatsteStadium())
                     + "									</td>\n"
                     + "									<td>\n"
-                    + "                                                                         " + getTijdPlus(patient.getTijdLaatsteStadium(), patient.getStadium())
-                    //                    + "                                                                         " + dateFormat.format(getTijdPlus(patient.getTijdLaatsteStadium()))
+                    + "                                                                         " + getTijdPlus(patient.getTijd2(), patient.getStadium())               
                     + "									</td>\n"
                     + "									<td>\n"
                     + "										<input id=\"rij\" type=\"submit\" class=\"buttonInlog\" value=\"Meer gegevens\">\n"
@@ -245,12 +214,19 @@ public class Patienten extends HttpServlet {
         }
     }
 
+    /**
+     * Geeft een string die weergeeft hoe lang het nog duurt voordat de 72 uur is omgegaan vanaf het 3e stadium
+     * @param date is de datum dat het 3e stadium is ingegaan
+     * @param stadium is het huidige stadium
+     * @return String met de tijd, of een String die aangeeft dat het 3e stadium nog niet is berijkt
+     */
     private String getTijdPlus(Date date, int stadium) {
 
-        if (stadium > 1) {
-            Date date2 = new Date();
+        if(stadium == 4)
+            return "Aanvraag is afgerond";
+        else if (stadium > 1) {
+            Date date2;
             Calendar cal2 = Calendar.getInstance(); // creates calendar
-            //cal2.setTimeInMillis(date.getTime()); // sets calendar time/date
             cal2.add(Calendar.HOUR_OF_DAY, -2); // adds one hour
             date2 = cal2.getTime(); // returns new date object, one hour in the future
 
@@ -260,17 +236,18 @@ public class Patienten extends HttpServlet {
             date = cal.getTime(); // returns new date object, one hour in the future
 
             long diff = date.getTime() - date2.getTime();
-            //Time time = new Time(diff);
             int verschil = (int) diff / (1000 * 60 * 60);
             double minuten = (double) diff / (1000 * 60 * 60) - verschil;
+            
             minuten = minuten * 60;
-
-            // time.setTime(diff);
-            //date.setTime(diff);
-            //int verschil = cal.compareTo(cal2);
-            //Timestamp timestamp = new Timestamp(cal.compareTo(cal2));
-            if (minuten < 10) {
+            
+            //tijd is voorbij
+            if(verschil < 0 || minuten < 0)
+                return "00:00";
+            //minuten kleiner dan 10 toch weergeven in twee cijfers
+            else if (minuten < 10) {
                 return (verschil + ":0" + (int) minuten);
+            //minuten en uren weergeven
             } else {
                 return (verschil + ":" + (int) minuten);
             }
@@ -288,5 +265,4 @@ public class Patienten extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
