@@ -24,6 +24,7 @@ $(function () {
     $('#waarom').hide();
     $('#niet').hide();
     $('#achttien').hide();
+    $('#toestemmingGegeven').hide();
 });
 
 
@@ -54,6 +55,7 @@ function validateForm() {
     naam($('input[name="hBehandelaar"]').get(0), naamReg);
     validateWachtwoord();
     validateDatum();
+    validateToestemming();
 
     if (naam($('input[name="na"]').get(0), naamReg) ||
             naam($('input[name="ini"]').get(0), initReg) ||
@@ -68,8 +70,8 @@ function validateForm() {
             naam($('input[name="hBehandelaar"]').get(0), naamReg) ||
             naam($('input[name="ww"]').get(0), wwReg) ||
             validateWachtwoord() ||
-            validateDatum()){
-        //) {
+            validateDatum() ||
+            validateToestemming()) {
         alert("Niet alles is ingevuld");
         return false;
     } else {
@@ -145,5 +147,18 @@ function validateDatum() {
         $($('input[name="datum"]').get(0)).css({'background-color': 'red'});
         $('#achttien').show();
         return false;
+    }
+}
+
+function validateToestemming() {
+    'use strict';
+    var toestemming = $('input[name="toestemming"]').get(0).checked;
+    if (toestemming) {
+        $('#toestemmingGegeven').hide();
+        return true;
+    } else
+    {
+        $('#toestemmingGegeven').show();
+        return false;   
     }
 }

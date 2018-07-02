@@ -26,7 +26,8 @@ public class AddData {
 
         String queryUser = "INSERT INTO User (Emailadres, Wachtwoord) VALUES (?,?);";
         String query = "INSERT INTO Patient (BSN, Achternaam, Initialen, Geslacht, Geboortedatum, Adres, Huisnummer, toevoeging, Postcode, Plaats, Telefoonnummer, "
-                + "Emailadres, AVL_geweest, stadium, tijd0, tijd1, tijd2, tijd3, tijd4) VALUES (?, ?, ?, ?, str_to_date(?,'%d-%m-%Y'), ?, ?, ?, ?, ?, ?, ?, ?, 0, str_to_date(?,'%d-%m-%Y %H:%i'), '', '', '' , '');";
+                + "Emailadres, AVL_geweest, stadium, tijd0, tijd1, tijd2, tijd3, tijd4) "
+                + "VALUES (?, ?, ?, ?, str_to_date(?,'%d-%m-%Y'), ?, ?, ?, ?, ?, ?, ?, ?, 0, str_to_date(?,'%d-%m-%Y %H:%i'), '', '', '' , '');";
         PreparedStatement pst = null;
         PreparedStatement us = null;
         Time time = new Time();

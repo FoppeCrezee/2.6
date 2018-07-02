@@ -25,8 +25,32 @@ public class RequestData {
     protected Connection con = null;
     protected String id;
     protected ResultSet rs;
-    private Patient patient;
     private Arts arts;
+
+    private String mail = null;
+    private int BSN = 0;
+    private String initialen = null;
+    private String naam = null;
+    private String sex = null;
+    private Date gebDatum = null;
+    private String adres = null;
+    private String toevoeging = null;
+    private String postcode = null;
+    private String plaats = null;
+    private long telNummer = 0;
+    private int huisNummer = 0;
+    private int stadium = 0;
+    private String artsB = null;
+    //boolean avl_Geweest;
+    private Timestamp tijd0 = null;
+    private Timestamp tijd1 = null;
+    private Timestamp tijd2 = null;
+    private Timestamp tijd3 = null;
+    private Timestamp tijd4 = null;
+
+    private String hBehandelaar;
+    private String hZiekenhuis;
+    private String verdenking;
 
     //true als patient
     public RequestData() {
@@ -64,81 +88,24 @@ public class RequestData {
 
     }
 
-    public Patient getPatientData(String id){
-        //Voor andere tabel, in AccountCheck wordt alleen ww met id aangevraagd. Hier komt de hele tabel... geen wachtwoord
-        //ding wordt patient
+    public Patient getPatientData(String id) {
         String query = "SELECT * FROM patient where Emailadres = ?";
-        String mail = null;
-        int BSN = 0;
-        String initialen = null;
-        String naam = null;
-        String sex = null;
-        Date gebDatum = null;
-        String adres = null;
-        String toevoeging = null;
-        String postcode = null;
-        String plaats = null;
-        long telNummer = 0;
-        int huisNummer = 0;
-        int stadium = 0;
-        String arts = null;
-        //boolean avl_Geweest;
-        Timestamp tijd0 = null;
-        Timestamp tijd1 = null;
-        Timestamp tijd2 = null;
-        Timestamp tijd3 = null;
-        Timestamp tijd4 = null;
-
+        Patient patientje = null;
         try {
             PreparedStatement pst = null;
             pst = con.prepareStatement(query);
             pst.setString(1, id);
             rs = pst.executeQuery();
+
             if (rs.next()) {
-                naam = rs.getString("Achternaam");
-                mail = rs.getString("Emailadres");
-                BSN = rs.getInt("BSN");
-                initialen = rs.getString("Initialen");
-                sex = rs.getString("Geslacht");
-                adres = rs.getString("Adres");
-                postcode = rs.getString("Postcode");
-                plaats = rs.getString("Plaats");
-                telNummer = rs.getLong("Telefoonnummer");
-                gebDatum = rs.getDate("Geboortedatum");
-                huisNummer = rs.getInt("Huisnummer");
-                toevoeging = rs.getString("toevoeging");
-                stadium = rs.getInt("stadium");
-                arts = rs.getString("beh_Arts");
-
-                tijd0 = rs.getTimestamp("tijd0");
-                if (tijd0 != null) {
-                    tijd0.setTime(getActTijd(tijd0).getTime());
-                }
-                tijd1 = rs.getTimestamp("tijd1");
-                if (tijd1 != null) {
-                    tijd1.setTime(getActTijd(tijd1).getTime());
-                }
-                tijd2 = rs.getTimestamp("tijd2");
-                if (tijd2 != null) {
-                    tijd2.setTime(getActTijd(tijd2).getTime());
-                }
-                tijd3 = rs.getTimestamp("tijd3");
-                if (tijd3 != null) {
-                    tijd3.setTime(getActTijd(tijd3).getTime());
-                }
-                tijd4 = rs.getTimestamp("tijd4");
-                if (tijd4 != null) {
-                    tijd4.setTime(getActTijd(tijd4).getTime());
-                }
-
+                patientje = getPatient(rs);
             }
-            patient = new Patient(naam, mail, BSN, initialen, sex, gebDatum, adres, postcode, plaats, telNummer, huisNummer,
-                    toevoeging, stadium, arts, tijd0, tijd1, tijd2, tijd3, tijd4);
+
         } catch (NullPointerException e) {
         } catch (Exception e) {
         }
-       // con.close();
-        return patient;
+        // con.close();
+        return patientje;
 
     }
 
@@ -146,72 +113,13 @@ public class RequestData {
         String query = "SELECT * FROM patient order by case WHEN stadium < 4 THEN stadium END desc;";
 
         ArrayList<Patient> lijst = new ArrayList<Patient>();
-
-        String mail = null;
-        String initialen = null;
-        String sex = null;
-        String naam = null;
-        int BSN = 0;
-        //TODO ff naar kijken String?
-        Date gebDatum = null;
-        long telNummer = 0;
-        int huisNummer = 0;
-        String adres = null;
-        String postcode = null;
-        String plaats = null;
-        String toevoeging = null;
-        int stadium = 0;
-        String arts = null;
-        Timestamp tijd0 = null;
-        Timestamp tijd1 = null;
-        Timestamp tijd2 = null;
-        Timestamp tijd3 = null;
-        Timestamp tijd4 = null;
-        //boolean avl_Geweest;
-
         try {
             PreparedStatement pst = null;
             pst = con.prepareStatement(query);
             rs = pst.executeQuery();
             while (rs.next()) {
-                naam = rs.getString("Achternaam");
-                mail = rs.getString("Emailadres");
-                BSN = rs.getInt("BSN");
-                initialen = rs.getString("Initialen");
-                sex = rs.getString("Geslacht");
-                adres = rs.getString("Adres");
-                postcode = rs.getString("Postcode");
-                plaats = rs.getString("Plaats");
-                gebDatum = rs.getDate("Geboortedatum");
-                telNummer = rs.getLong("Telefoonnummer");
-                huisNummer = rs.getInt("Huisnummer");
-                toevoeging = rs.getString("toevoeging");
-                stadium = rs.getInt("stadium");
-                arts = rs.getString("beh_Arts");
-                tijd0 = rs.getTimestamp("tijd0");
-                if (tijd0 != null) {
-                    tijd0.setTime(getActTijd(tijd0).getTime());
-                }
-                tijd1 = rs.getTimestamp("tijd1");
-                if (tijd1 != null) {
-                    tijd1.setTime(getActTijd(tijd1).getTime());
-                }
-                tijd2 = rs.getTimestamp("tijd2");
-                if (tijd2 != null) {
-                    tijd2.setTime(getActTijd(tijd2).getTime());
-                }
-                tijd3 = rs.getTimestamp("tijd3");
-                if (tijd3 != null) {
-                    tijd3.setTime(getActTijd(tijd3).getTime());
-                }
-                tijd4 = rs.getTimestamp("tijd4");
-                if (tijd4 != null) {
-                    tijd4.setTime(getActTijd(tijd4).getTime());
-                }
-
-                Patient patient = new Patient(naam, mail, BSN, initialen, sex, gebDatum, adres, postcode, plaats, telNummer,
-                        huisNummer, toevoeging, stadium, arts, tijd0, tijd1, tijd2, tijd3, tijd4);
-                lijst.add(patient);
+                Patient patientje = getPatient(rs);
+                lijst.add(patientje);
             }
         } catch (NullPointerException e) {
             System.out.println(e);
@@ -223,6 +131,53 @@ public class RequestData {
 
     }
 
+    private Patient getPatient(ResultSet rs) {
+        try {
+            naam = rs.getString("Achternaam");
+            mail = rs.getString("Emailadres");
+            BSN = rs.getInt("BSN");
+            initialen = rs.getString("Initialen");
+            sex = rs.getString("Geslacht");
+            adres = rs.getString("Adres");
+            postcode = rs.getString("Postcode");
+            plaats = rs.getString("Plaats");
+            telNummer = rs.getLong("Telefoonnummer");
+            gebDatum = rs.getDate("Geboortedatum");
+            huisNummer = rs.getInt("Huisnummer");
+            toevoeging = rs.getString("toevoeging");
+            stadium = rs.getInt("stadium");
+            artsB = rs.getString("beh_Arts");
+            hBehandelaar = rs.getString("hBehandelaar");
+            hZiekenhuis = rs.getString("hZiekenhuis");
+            verdenking = rs.getString("verdenking");
+
+            tijd0 = rs.getTimestamp("tijd0");
+            if (tijd0 != null) {
+                tijd0.setTime(getActTijd(tijd0).getTime());
+            }
+            tijd1 = rs.getTimestamp("tijd1");
+            if (tijd1 != null) {
+                tijd1.setTime(getActTijd(tijd1).getTime());
+            }
+            tijd2 = rs.getTimestamp("tijd2");
+            if (tijd2 != null) {
+                tijd2.setTime(getActTijd(tijd2).getTime());
+            }
+            tijd3 = rs.getTimestamp("tijd3");
+            if (tijd3 != null) {
+                tijd3.setTime(getActTijd(tijd3).getTime());
+            }
+            tijd4 = rs.getTimestamp("tijd4");
+            if (tijd4 != null) {
+                tijd4.setTime(getActTijd(tijd4).getTime());
+            }
+        } catch (Exception e) {
+        }
+        Patient patientje = new Patient(naam, mail, BSN, initialen, sex, gebDatum, adres, postcode, plaats, telNummer,
+                huisNummer, toevoeging, stadium, artsB, tijd0, tijd1, tijd2, tijd3, tijd4, hZiekenhuis, hBehandelaar, verdenking);
+        return patientje;
+    }
+
     private Timestamp getActTijd(Timestamp tijd) {
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(tijd.getTime());
@@ -230,5 +185,4 @@ public class RequestData {
         Timestamp timestamp = new Timestamp(cal.getTime().getTime());
         return timestamp;
     }
-
 }

@@ -91,32 +91,70 @@ public class registerServlet extends HttpServlet {
         int bSN = Integer.parseInt(bsn);
         String avl_geweest = request.getParameter("geweest");
         String ww = request.getParameter("ww");
-        
-        if(avl_geweest.equals("on")){
+        //String toestemming = request.getParameter("toestemming");
+        String hZiekenhuis = request.getParameter("hZiekenhuis");
+        String hBehandelaar = request.getParameter("hBehandelaar");
+        String verdenkking = request.getParameter("verdenking");
+
+        if (avl_geweest.equals("on")) {
             geweest = 1;
         }
-        
-        
+        int done = 0;
+
         AddData add = new AddData();
-        int done = add.addPatient(naam, ini, geslacht, datum, adres, num, toevoeging, postcode, plaats, tel, mail, bSN, geweest, ww);
-        
-        if(done == 1){
+        done = add.addPatient(naam, ini, geslacht, datum, adres, num, toevoeging, postcode, plaats, tel, mail, bSN, geweest, ww);
+
+        if (done == 1) {
             gelukt(request, response);
-        }else if (done == 2){
-        }else if (done == 3){
+        } else if (done == 2) {
+        } else if (done == 3) {
         }
-        
+
         //processRequest(request, response);
     }
-    
-    private void gelukt(HttpServletRequest request, HttpServletResponse response) throws IOException{
+
+    private void gelukt(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("");
-        
+        out.println("<html>\n"
+                + "    <head>\n"
+                + "        <title>Second opinion</title>\n"
+                + "        <link rel=\"stylesheet\" href=\"Styless.css\"> \n"
+                + "        <script src=\"https://code.jquery.com/jquery-3.2.1.min.js\"></script>\n"
+                + "        <script src=\"script.js\"></script>    \n"
+                + "    </head>\n"
+                + "    <body>\n"
+                + "\n"
+                + "        <div id=\"main\">\n"
+                + "            <div id=\"header\" class=\"hoofd\">\n"
+                + "                <h1 align=\"center\"><b>SECOND OPINION PORTAAL</b></h1>\n"
+                + "                <p id=\"ondertitel\" align=\"center\"><i>Uw aanvraag is in behandeling genomen</i></p>\n"
+                + "\n"
+                + "                <a href=\"inlog.html\"><button class=\"inlogKnop\"><h3 id=\"login\">Inloggen</h3></button></a>\n"
+                + "            </div>\n"
+                + "\n"
+                + "            <div id=\"gegevens\">\n"
+                + "\n"
+                + "                <div id=\"knop1\">\n"
+                + "                    <a href=\"patientAanvraag.html\"><button class=\"button\">Ik ben een pati&euml;nt</button></a>\n"
+                + "                </div>\n"
+                + "                <div id=\"knop2\">\n"
+                + "                    <a href= \"https://formulieren.avl.nl/verwijzers.aspx \"><button class=\"button\">Ik ben een arts</button></a>\n"
+                + "                </div>\n"
+                + "                <img src=\"https://www.avl.nl/media/8869707/logo-NL-Antoni-van-Leeuwenhoek_jpeg_grootformaat.jpg\" id=\"avl\" >\n"
+                + "\n"
+                + "            </div>\n"
+                + "        </div>\n"
+                + "\n"
+                + "\n"
+                + "    </body>\n"
+                + "\n"
+                + "</html>");
+
     }
-    
-    private void fout(){}
+
+    private void fout() {
+    }
 
     /**
      * Returns a short description of the servlet.

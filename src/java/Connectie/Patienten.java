@@ -220,7 +220,7 @@ public class Patienten extends HttpServlet {
      * @param stadium is het huidige stadium
      * @return String met de tijd, of een String die aangeeft dat het 3e stadium nog niet is berijkt
      */
-    private String getTijdPlus(Date date, int stadium) {
+    public String getTijdPlus(Date date, int stadium) {
 
         if(stadium == 4)
             return "Aanvraag is afgerond";
@@ -235,6 +235,8 @@ public class Patienten extends HttpServlet {
             cal.add(Calendar.HOUR_OF_DAY, 70); // adds one hour
             date = cal.getTime(); // returns new date object, one hour in the future
 
+            
+            
             long diff = date.getTime() - date2.getTime();
             int verschil = (int) diff / (1000 * 60 * 60);
             double minuten = (double) diff / (1000 * 60 * 60) - verschil;
@@ -245,6 +247,12 @@ public class Patienten extends HttpServlet {
             if(verschil < 0 || minuten < 0)
                 return "00:00";
             //minuten kleiner dan 10 toch weergeven in twee cijfers
+            else if (verschil < 10 && minuten < 10){
+                return ("0" + verschil + ":" + "0" + (int) minuten);
+            }
+            else if (verschil < 10){
+                return ("0" + verschil + ":" + (int) minuten);
+            }
             else if (minuten < 10) {
                 return (verschil + ":0" + (int) minuten);
             //minuten en uren weergeven

@@ -16,13 +16,9 @@ public class Patient {
     //velden
     private String naam;
     private String mail;
-    //private String wachtwoord;
     private int bsn;
     private String initialen;
-    //man = 1
-    //vrouw = 2
     private String sex;
-    //TODO ff naar kijken String?
     private Date gebDatum;
     private String adres;
     private int huisNummer;
@@ -38,9 +34,14 @@ public class Patient {
     private Date tijd3;
     private Date tijd4;
     //private boolean avl_Geweest;
+    //private boolean toestemming;
+    private String hZiekenhuis;
+    private String hBehandelaar;
+    private String verdenking;
 
     
     /**
+     * @param naam Achternaam
      * @param mail mailadres
      * @param BSN bsn
      * @param initialen initialen
@@ -49,11 +50,24 @@ public class Patient {
      * @param postcode postcode
      * @param plaats plaats
      * @param telNummer telefoonnummer
+     * @param geb_datum geboortedatum
+     * @param huisNummer huisNummer
+     * @param toevoeging toevoeging van het huisnummer
+     * @param stadium stadium van waar de behandeling op dit moment is (0-4)
+     * @param arts arts die de behandeling gaat regelen
+     * @param tijd0 tijd wanneer aanvraag is ingediend
+     * @param tijd1 tijd wanneer stadium1 is ingegaan
+     * @param tijd2 tijd wanneer stadium2 is ingegaan
+     * @param tijd3 tijd wanneer stadium3 is ingegaan
+     * @param tijd4 tijd wanneer stadium4 is ingegaan
+     * @param hZiekenhuis is het ziekenhuis waar de patient op dit moment wordt behandeld
+     * @param hBehandelaar is de arts die op dit moment de patient in het huidige ziekenhuis behandeld
+     * @param verdenking is de verdenking die de huidige arts heeft
      */
     public Patient(String naam, String mail, int BSN, String initialen, String sex, Date geb_datum,
                    String adres, String postcode, String plaats, long telNummer, int huisNummer, 
                    String toevoeging, int stadium, String arts, Date tijd0, Date tijd1, Date tijd2,
-                   Date tijd3, Date tijd4) {
+                   Date tijd3, Date tijd4, String hZiekenhuis, String hBehandelaar, String verdenking) {
         this.naam = naam;
         this.huisNummer = huisNummer;
         this.mail = mail;
@@ -72,17 +86,34 @@ public class Patient {
         this.tijd2 = tijd2;
         this.tijd3 = tijd3;
         this.tijd4 = tijd4;
+        this.hZiekenhuis = hZiekenhuis;
+        this.hBehandelaar = hBehandelaar;
+        this.verdenking = verdenking;
+        
+        
+        
+        
         if(toevoeging == null){
             toevoeging = "";
             this.toevoeging = "";
         }else
             this.toevoeging = toevoeging;
-        
-        //this.wachtwoord = wachtwoord;
     }
 
     public String getMail() {
         return mail;
+    }
+    
+    public String getHuidigeBehandelaar(){
+        return hBehandelaar;
+    }
+    
+    public String getHuidigZiekenuis(){
+        return hZiekenhuis;
+    }
+    
+    public String getVerdenking(){
+        return verdenking;
     }
     
     public int getStadium(){
@@ -180,15 +211,4 @@ public class Patient {
         else
             return tijd4;
     }
-    //vervangen door andere gegevens
-    /* public String getWachtwoord(){
-        return wachtwoord;
-    } */
-    public void setNaam(String naam) {
-        this.naam = naam;
-    }
-
-    /*public void setWachtwoord(String wachtwoord){
-        this.wachtwoord = wachtwoord;
-    }*/
 }

@@ -23,23 +23,6 @@
             } else {
                 user = (String) session.getAttribute("user");
             }
-            String userName = null;
-            String wachtwoord = null;
-            String sessionID = null;
-            Cookie[] cookies = request.getCookies();
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
-                    if (cookie.getName().equals("user")) {
-                        userName = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("JSESSIONID")) {
-                        sessionID = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("wachtwoord")) {
-                        wachtwoord = cookie.getValue();
-                    }
-                }
-            }
         %>
 
         <div id="main">

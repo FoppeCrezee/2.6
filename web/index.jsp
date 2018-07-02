@@ -18,7 +18,6 @@
         <div id="main">
             <div id="header" class="hoofd">
                 <h1 align="center"><b>SECOND OPINION PORTAAL</b></h1>
-<!--                <p id="ondertitel" align="center"><i>Zekerheid over uw diagnose binnen 72 uur</i></p>-->
 
                 <a href="inlog.html"><button class="inlogKnop"><h3 id="login">Inloggen</h3></button></a>
             </div>

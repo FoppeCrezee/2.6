@@ -17,7 +17,7 @@
     </head>
     <body>
         <%
-//allow access only if session exists
+            //allow access only if session exists
             String user = null;
             if (session.getAttribute("user") == null || session.getAttribute("beroep") != "patient") {
                 response.sendRedirect("inlog.html");
@@ -25,17 +25,9 @@
                 user = (String) session.getAttribute("user");
             }
 
-            //String naam = request.getParameter("mail");
             RequestData data = new RequestData();
             Patient patient = data.getPatientData(user);
 
-            /*String userName = null;
-            String sessionID = null;
-            String ini = null;
-            String sex = null;
-            String postcode = null;
-            String plaats = null;
-            String adres = null;*/
             String mail = patient.getMail();
             String naam = patient.getNaam();
             String ini = patient.getIni();
@@ -47,33 +39,6 @@
             long tel = patient.getTelNummer();
             String toev = patient.getToevoeging();
             int bsn = patient.getBSN();
-
-            /*Cookie[] cookies = request.getCookies();
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
-                    if (cookie.getName().equals("user")) {
-                        userName = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("JSESSIONID")) {
-                        sessionID = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("init")) {
-                        ini = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("sex")) {
-                        sex = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("adres")) {
-                        adres = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("postcode")) {
-                        postcode = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("plaats")) {
-                        plaats = cookie.getValue();
-                    }
-                }
-            }*/
         %>
         <div id="main">
             <div id="header" class="hoofd">
@@ -202,11 +167,6 @@
 
 
                     </table>	
-
-                    <!--<div id="knop4">
-                        <input type="submit" class="buttonInlog" value="Wijzigen">
-                    </div>
-                </form>-->
 
                     <div align="center" id="knop4">
                         <a href="Wijzig.jsp"><button class="buttonInlog">Wijzig gegevens</button></a>
