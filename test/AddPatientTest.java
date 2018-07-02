@@ -10,7 +10,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -42,22 +41,25 @@ public class AddPatientTest {
     //
      @Test
      public void test() {
-        String naam = "test";
-        String ini = "T.";
-        String geslacht = "man";
-        String datum = "12-09-1998";
-        String adres = "test";
-        int huis_num = 1;
+        String naam = "Peterson";
+        String ini = "P.";
+        String geslacht = "vrouw";
+        String datum = "1983-09-12";
+        String adres = "testF";
+        int huis_num = 12;
         String toevoeging = null;
-        String postcode = "1111 AA";
-        String plaats = "Test";
+        String postcode = "1211 FF";
+        String plaats = "TestF";
         int tel_nummer = 044567;
-        String mail = "test@test.test";
-        int bsn = 1111111;
-        int geweest = 1;
+        String mail = "iu@hotmail.com";
+        int bsn = 1612211;
+        int geweest = 0;
         String ww = "test";
+        String hBehandelaar = "Foppe";
+        String hZiekenhuis = "UMC";
+        String verdenking = "Urologie";
         
         AddData add = new AddData();
-        add.addPatient(naam, ini, geslacht, datum, adres, huis_num, toevoeging, postcode, plaats, tel_nummer, mail, bsn, geweest, ww);
+        System.out.println(add.addPatient(naam, ini, geslacht, datum, adres, huis_num, toevoeging, postcode, plaats, tel_nummer, mail, bsn, geweest, ww, hBehandelaar, hZiekenhuis, verdenking));
      }
 }

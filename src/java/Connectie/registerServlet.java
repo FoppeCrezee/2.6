@@ -21,6 +21,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "registerservlet", urlPatterns = {"/registerservlet"})
 public class registerServlet extends HttpServlet {
 
+    private final String aangenomen = "Uw aanvraag is in behandeling genomen";
+    private final String fout = "Er ging iets fout";
+    private final String bestaat = "Deze user bestaat al";
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -89,31 +93,37 @@ public class registerServlet extends HttpServlet {
         String mail = request.getParameter("madres");
         String bsn = request.getParameter("bsNummer");
         int bSN = Integer.parseInt(bsn);
+        
         String avl_geweest = request.getParameter("geweest");
+        
         String ww = request.getParameter("ww");
-        //String toestemming = request.getParameter("toestemming");
         String hZiekenhuis = request.getParameter("hZiekenhuis");
         String hBehandelaar = request.getParameter("hBehandelaar");
-        String verdenkking = request.getParameter("verdenking");
-
-        if (avl_geweest.equals("on")) {
+        String verdenking = request.getParameter("verdenking");
+        
+        if(avl_geweest == null){
+            geweest = 0;
+        }
+        else if(avl_geweest.equals("ja")) {
             geweest = 1;
         }
         int done = 0;
 
         AddData add = new AddData();
-        done = add.addPatient(naam, ini, geslacht, datum, adres, num, toevoeging, postcode, plaats, tel, mail, bSN, geweest, ww);
+        done = add.addPatient(naam, ini, geslacht, datum, adres, num, toevoeging, postcode, plaats, tel, mail, bSN, geweest, ww, hBehandelaar, hZiekenhuis, verdenking);
 
         if (done == 1) {
-            gelukt(request, response);
+            gelukt(request, response, aangenomen);
         } else if (done == 2) {
+            gelukt(request, response, fout);
         } else if (done == 3) {
+            gelukt(request, response, bestaat);
         }
 
         //processRequest(request, response);
     }
 
-    private void gelukt(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void gelukt(HttpServletRequest request, HttpServletResponse response, String message) throws IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println("<html>\n"
@@ -128,7 +138,7 @@ public class registerServlet extends HttpServlet {
                 + "        <div id=\"main\">\n"
                 + "            <div id=\"header\" class=\"hoofd\">\n"
                 + "                <h1 align=\"center\"><b>SECOND OPINION PORTAAL</b></h1>\n"
-                + "                <p id=\"ondertitel\" align=\"center\"><i>Uw aanvraag is in behandeling genomen</i></p>\n"
+                + "                <p id=\"ondertitel\" align=\"center\"><i>"+message+" </i></p>\n"
                 + "\n"
                 + "                <a href=\"inlog.html\"><button class=\"inlogKnop\"><h3 id=\"login\">Inloggen</h3></button></a>\n"
                 + "            </div>\n"

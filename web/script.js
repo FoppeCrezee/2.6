@@ -27,18 +27,6 @@ $(function () {
     $('#toestemmingGegeven').hide();
 });
 
-
-function naam(obj, regex) {
-    'use strict';
-    if (obj.value.match(regex)) {
-        $(obj).css({'background-color': 'white'});
-        return false;
-    } else {
-        $(obj).css({'background-color': 'red'});
-        return true;
-    }
-}
-
 function validateForm() {
     'use strict';
     naam($('input[name="na"]').get(0), naamReg);
@@ -57,27 +45,29 @@ function validateForm() {
     validateDatum();
     validateToestemming();
 
-    if (naam($('input[name="na"]').get(0), naamReg) ||
-            naam($('input[name="ini"]').get(0), initReg) ||
-            naam($('input[name="nu"]').get(0), numReg) ||
-            naam($('input[name="adres"]').get(0), naamReg) ||
-            naam($('input[name="postCode"]').get(0), postReg) ||
-            naam($('input[name="plaats"]').get(0), naamReg) ||
-            naam($('input[name="teli"]').get(0), telReg) ||
-            naam($('input[name="bsNummer"]').get(0), bsnReg) ||
-            naam($('input[name="madres"]').get(0), mailReg) ||
-            naam($('input[name="hZiekenhuis"]').get(0), naamReg) ||
-            naam($('input[name="hBehandelaar"]').get(0), naamReg) ||
-            naam($('input[name="ww"]').get(0), wwReg) ||
-            validateWachtwoord() ||
-            validateDatum() ||
-            validateToestemming()) {
+    if (!naam($('input[name="na"]').get(0), naamReg) ||
+            !naam($('input[name="ini"]').get(0), initReg) ||
+            !naam($('input[name="nu"]').get(0), numReg) ||
+            !naam($('input[name="adres"]').get(0), naamReg) ||
+            !naam($('input[name="postCode"]').get(0), postReg) ||
+            !naam($('input[name="plaats"]').get(0), naamReg) ||
+            !naam($('input[name="teli"]').get(0), telReg) ||
+            !naam($('input[name="bsNummer"]').get(0), bsnReg) ||
+            !naam($('input[name="madres"]').get(0), mailReg) ||
+            !naam($('input[name="hZiekenhuis"]').get(0), naamReg) ||
+            !naam($('input[name="hBehandelaar"]').get(0), naamReg) ||
+            !naam($('input[name="ww"]').get(0), wwReg) ||
+            !validateWachtwoord() ||
+            !validateDatum() ||
+            !validateToestemming()) {
         alert("Niet alles is ingevuld");
         return false;
     } else {
         return true;
     }
 }
+
+
 //TODO deze uitbreiden voor alle wijzigingen
 function validateWijzigingen() {
     'use strict';
@@ -93,6 +83,18 @@ function validateWijzigingen() {
     }
 }
 
+function naam(obj, regex) {
+    'use strict';
+    if (obj.value.match(regex)) {
+        $(obj).css({'background-color': 'white'});
+        return true;
+    } else {
+        $(obj).css({'background-color': 'red'});
+        return false;
+    }
+}
+
+
 function validateWachtwoord() {
     'use strict';
     var ww = $('input[name="ww"]').get(0).value;
@@ -101,16 +103,17 @@ function validateWachtwoord() {
     if (ww === "") {
         $($('input[name="wwB"]').get(0)).css({'background-color': 'red'});
         $('#niet').show();
+        return false;
     } else if (ww === bevestiging)
     {
         $($('input[name="wwB"]').get(0)).css({'background-color': 'green'});
         $('#waarom').hide();
-        //return true;
+        return true;
     } else
     {
         $($('input[name="wwB"]').get(0)).css({'background-color': 'red'});
         $('#waarom').show();
-        //return false;
+        return false;
     }
 }
 

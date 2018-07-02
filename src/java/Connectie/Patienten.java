@@ -125,6 +125,9 @@ public class Patienten extends HttpServlet {
                 + "Geb datum:"
                 + "                             </th>"
                 + "                             <th>"
+                + "Verdenking:"
+                + "                             </th>"
+                + "                             <th>"
                 + "Stadium:"
                 + "                             </th>"
                 + "                             <th>"
@@ -182,13 +185,16 @@ public class Patienten extends HttpServlet {
                     + "                                                                         " + patient.getDatum()
                     + "									</td>\n"
                     + "									<td>\n"
-                    + "                                                                         " + (patient.getStadium()+1)
+                    + "                                                                         " + patient.getVerdenking()
+                    + "									</td>\n"
+                    + "									<td>\n"
+                    + "                                                                         " + (patient.getStadium() + 1)
                     + "									</td>\n"
                     + "									<td>\n"
                     + "                                                                         " + dateFormat.format(patient.getTijdLaatsteStadium())
                     + "									</td>\n"
                     + "									<td>\n"
-                    + "                                                                         " + getTijdPlus(patient.getTijd2(), patient.getStadium())               
+                    + "                                                                         " + getTijdPlus(patient.getTijd2(), patient.getStadium())
                     + "									</td>\n"
                     + "									<td>\n"
                     + "										<input id=\"rij\" type=\"submit\" class=\"buttonInlog\" value=\"Meer gegevens\">\n"
@@ -215,16 +221,19 @@ public class Patienten extends HttpServlet {
     }
 
     /**
-     * Geeft een string die weergeeft hoe lang het nog duurt voordat de 72 uur is omgegaan vanaf het 3e stadium
+     * Geeft een string die weergeeft hoe lang het nog duurt voordat de 72 uur
+     * is omgegaan vanaf het 3e stadium
+     *
      * @param date is de datum dat het 3e stadium is ingegaan
      * @param stadium is het huidige stadium
-     * @return String met de tijd, of een String die aangeeft dat het 3e stadium nog niet is berijkt
+     * @return String met de tijd, of een String die aangeeft dat het 3e stadium
+     * nog niet is berijkt
      */
     public String getTijdPlus(Date date, int stadium) {
 
-        if(stadium == 4)
+        if (stadium == 4) {
             return "Aanvraag is afgerond";
-        else if (stadium > 1) {
+        } else if (stadium > 1) {
             Date date2;
             Calendar cal2 = Calendar.getInstance(); // creates calendar
             cal2.add(Calendar.HOUR_OF_DAY, -2); // adds one hour
@@ -235,33 +244,29 @@ public class Patienten extends HttpServlet {
             cal.add(Calendar.HOUR_OF_DAY, 70); // adds one hour
             date = cal.getTime(); // returns new date object, one hour in the future
 
-            
-            
             long diff = date.getTime() - date2.getTime();
             int verschil = (int) diff / (1000 * 60 * 60);
             double minuten = (double) diff / (1000 * 60 * 60) - verschil;
-            
+
             minuten = minuten * 60;
-            
+
             //tijd is voorbij
-            if(verschil < 0 || minuten < 0)
+            if (verschil < 0 || minuten < 0) {
                 return "00:00";
-            //minuten kleiner dan 10 toch weergeven in twee cijfers
-            else if (verschil < 10 && minuten < 10){
+            } //minuten kleiner dan 10 toch weergeven in twee cijfers
+            else if (verschil < 10 && minuten < 10) {
                 return ("0" + verschil + ":" + "0" + (int) minuten);
-            }
-            else if (verschil < 10){
+            } else if (verschil < 10) {
                 return ("0" + verschil + ":" + (int) minuten);
-            }
-            else if (minuten < 10) {
+            } else if (minuten < 10) {
                 return (verschil + ":0" + (int) minuten);
-            //minuten en uren weergeven
+                //minuten en uren weergeven
             } else {
                 return (verschil + ":" + (int) minuten);
             }
-        }
-        else
+        } else {
             return "Dossier is nog niet binnen";
+        }
     }
 
     /**

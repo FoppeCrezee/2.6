@@ -85,8 +85,8 @@ public class RequestData {
         }
         //con.close();
         return arts;
-
     }
+    
 
     public Patient getPatientData(String id) {
         String query = "SELECT * FROM patient where Emailadres = ?";
