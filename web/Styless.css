@@ -149,7 +149,6 @@ and open the template in the editor.
     left: 15px;
 }
 .button{
-
     background-color: #af1c23;
     border: none;
     color: white;
@@ -161,6 +160,22 @@ and open the template in the editor.
     font-size: 22px;
     cursor: pointer;
 }
+
+#vraag2{
+    left: 400px;
+}
+
+#vraag2a{
+    left: 400px;
+}
+#vraag3{
+    left: 780px;
+}
+
+#vraag3a{
+    left: 780px;
+}
+
 .input{
     border-style: solid;
     border-width: 2px;
@@ -312,6 +327,41 @@ body{
     border-width: 10px 0 10px 20px;
     border-color: transparent transparent transparent #ff0000;
 }
+
+.kweeste{
+    width: 350px;
+    height: 50px;
+    position: absolute;
+    top: 180px;
+    left: 20px;
+    background-color:#acacac;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;   
+}
+.kweeste:hover{
+    background-color:#979797;
+}
+
+#vraagje{
+    font-size: 15px;
+}
+
+#vragen{
+    font-size: 20px;
+    color: red;
+}
+
+.bar{
+    width: 350px;
+    position: absolute;
+    background-color: lightgrey;
+    top: 230px;
+    left: 20px;
+}
+
 .boven{
     padding-top: 32px;
     font-family: sans-serif;

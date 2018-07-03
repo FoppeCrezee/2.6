@@ -25,6 +25,10 @@ $(function () {
     $('#niet').hide();
     $('#achttien').hide();
     $('#toestemmingGegeven').hide();
+    $('#vraag2').hide();
+    $('#vraag1').hide();
+    $('#vraag3').hide();
+//    $('#bar').hide();
 });
 
 function validateForm() {
@@ -160,5 +164,59 @@ function validateToestemming() {
     } else {
         $('#toestemmingGegeven').show();
         return false;
+    }
+}
+
+function klik(button_id) {
+    var el = document.getElementById(button_id);
+    if (el.firstChild.data === "Waar wordt bij een second opinion precies naar gekeken?")
+    {
+        el.firstChild.data = "Waar wordt bij een second opinion precies naar gekeken? \n\
+        Antwoord:";
+        $('#vraag1').slideDown();
+        $('#vraag2').slideUp();
+        $('#vraag3').slideUp();
+        document.getElementById('vraag2a').firstChild.data = "Wat gebeurt er bij een second opinion afspraak?";
+        document.getElementById('vraag3a').firstChild.data = "Wordt een second opinion vergoed door uw zorgverzekeraar?";
+    } else
+    {
+        el.firstChild.data = "Waar wordt bij een second opinion precies naar gekeken?";
+        $('#vraag1').slideUp();
+    }
+}
+
+function klik2(button_id) {
+    var el = document.getElementById(button_id);
+    if (el.firstChild.data === "Wat gebeurt er bij een second opinion afspraak?")
+    {
+        el.firstChild.data = "Wat gebeurt er bij een second opinion afspraak? \n\
+        Antwoord:";
+        $('#vraag2').slideDown();
+        $('#vraag1').slideUp();
+        $('#vraag3').slideUp();
+        document.getElementById('buton_id').firstChild.data = "Waar wordt bij een second opinion precies naar gekeken?";
+        document.getElementById('vraag3a').firstChild.data = "Wordt een second opinion vergoed door uw zorgverzekeraar?";
+    } else
+    {
+        el.firstChild.data = "Wat gebeurt er bij een second opinion afspraak?";
+        $('#vraag2').slideUp();
+    }
+}
+
+function klik3(button_id) {
+    var el = document.getElementById(button_id);
+    if (el.firstChild.data === "Wordt een second opinion vergoed door uw zorgverzekeraar?")
+    {
+        el.firstChild.data = "Wordt een second opinion vergoed door uw zorgverzekeraar? \n\
+        Antwoord:";
+        $('#vraag3').slideDown();
+        $('#vraag1').slideUp();
+        $('#vraag2').slideUp();
+        document.getElementById('buton_id').firstChild.data = "Waar wordt bij een second opinion precies naar gekeken?";
+        document.getElementById('vraag2a').firstChild.data = "Wat gebeurt er bij een second opinion afspraak?";
+    } else
+    {
+        el.firstChild.data = "Wat gebeurt er bij een second opinion afspraak?";
+        $('#vraag3').slideUp();
     }
 }

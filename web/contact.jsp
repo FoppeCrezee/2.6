@@ -64,10 +64,61 @@
                 </div>
                 <div id="content">
                     <p align="center" id="titel">Contact</p>
-                    Contact opvragen komt nog
+
+                    <b>Heeft u nog vragen?</b><br>
+                    Neem dan telefonisch contact met ons op via 020 512 9111 of kijk hieronder bij veel gestelde vragen of u uw antwoord kan vinden.
+
+                    <p id="vragen"><br><b>Veelgestelde vragen</b></p>
+
+                    <button id="buton_id" class="kweeste" onclick="klik(this.id)">Waar wordt bij een second opinion precies naar gekeken?</button>
+                    <div class="bar" id="vraag1">
+                        <p id="vraagje">
+                            De specialist of huisarts die u doorverwijst
+                            zal in de verwijsbrief moeten formuleren waar
+                            u een second opinion over wilt hebben. Met
+                            andere woorden, welke vragen wilt u door de
+                            specialist van het Antoni van Leeuwenhoek
+                            beantwoord zien? Uiteraard is er ruimte voor
+                            aanvullende vragen als die tijdens het
+                            gesprek met de arts ontstaan. Maar houdt u
+                            er rekening mee dat hoe duidelijker de vraag
+                            voor een second opinion is gesteld, hoe
+                            beter wij aan uw verwachtingen kunnen
+                            voldoen.</p>
+                    </div>
+
+                    <button id="vraag2a" class="kweeste" onclick="klik2(this.id)">Wat gebeurt er bij een second opinion afspraak?</button>
+                    <div class="bar" id="vraag2"><p id="vraagje">
+                            De specialist zal aan de hand van uw
+                            medische gegevens:<br>
+                            1.  met u over uw aandoening praten<br>
+                            2.  U (eventueel) lichamelijk onderzoeken<br>
+                            3.  (eventueel) met uw behandelend artsen
+                            overleggen<br><br>
+                            In veel gevallen zal de specialist u aan het
+                            einde van het eerste gesprek een advies
+                            geven. Als blijkt dat aanvullende onderzoek
+                            noodzakelijk is of er meer gegevens nodig
+                            zijn, kan een aanvullende afspraak worden
+                            gemaakt.</p>
+                    </div>
+
+                    <button id="vraag3a" class="kweeste" onclick="klik3(this.id)">Wordt een second opinion vergoed door uw zorgverzekeraar?</button>
+                    <div class="bar" id="vraag3"><p id="vraagje">
+                            Hiervoor kunt u het beste contact opnemen
+                            met uw eigen zorgverzekeraar of uw
+                            zorgpolis checken. De vergoeding is
+                            afhankelijk van het soort zorgverzekering dat
+                            u heeft afgesloten. Bij de meeste
+                            zorgverzekeraars zit de vergoeding voor een
+                            second opinion in het basispakket. Sommige
+                            budgetpolissen vergoeden dit echter alleen
+                            als u verwezen wordt door de specialist en
+                            niet door de huisarts.</p>
+                    </div>
+
+
                 </div>
-
-
             </div>
         </div>
     </body>
