@@ -104,13 +104,11 @@ function validateWachtwoord() {
         $($('input[name="wwB"]').get(0)).css({'background-color': 'red'});
         $('#niet').show();
         return false;
-    } else if (ww === bevestiging)
-    {
+    } else if (ww === bevestiging) {
         $($('input[name="wwB"]').get(0)).css({'background-color': 'green'});
         $('#waarom').hide();
         return true;
-    } else
-    {
+    } else {
         $($('input[name="wwB"]').get(0)).css({'background-color': 'red'});
         $('#waarom').show();
         return false;
@@ -159,9 +157,8 @@ function validateToestemming() {
     if (toestemming) {
         $('#toestemmingGegeven').hide();
         return true;
-    } else
-    {
+    } else {
         $('#toestemmingGegeven').show();
-        return false;   
+        return false;
     }
 }

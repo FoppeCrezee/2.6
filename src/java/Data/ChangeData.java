@@ -10,6 +10,8 @@ import Connectie.Patient;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -101,6 +103,23 @@ public class ChangeData {
         }
 
     }
+    
+    public void changeArts(String mail, String naam, String ini, String spec, String bio){
+        String query = "UPDATE Arts SET Achternaam = ?, Initialen = ?, Specialisme = ?, Biografie = ? WHERE Emailadres = ?;";
+        try {
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, naam);
+            pst.setString(2, ini);
+            pst.setString(3, spec);
+            pst.setString(4, bio);
+            pst.setString(5, mail);
+            pst.executeUpdate();
+        } catch (Exception ex) {
+        System.out.println("||||" + ex);}
+    }
+    
+    
+    
     /**
      * Verandert het stadium waar de patient nu in zit, en verandert zijn behandelend arts indien nodig.
      * @param patientNaam is de naam van de patient waarvan het stadium gewijzigd moet worden

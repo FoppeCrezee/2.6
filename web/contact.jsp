@@ -51,7 +51,7 @@
                     </a>
                     <a href="behandeling.jsp">
                         <div class="menuKnop" id="derde">
-                            <p class="boven">Mijn arts</p>
+                            <p class="boven">Mijn second <br>opinion team</p>
                         </div>
                     </a>
                     <a href="contact.jsp">

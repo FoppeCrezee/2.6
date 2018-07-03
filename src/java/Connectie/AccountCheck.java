@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * @author Foppe Crezee
- * Class is gemaakt voor het valideren van de wachtwoorden en checkt of de user een arts, of een patient is
+ * @author Foppe Crezee Class is gemaakt voor het valideren van de wachtwoorden
+ * en checkt of de user een arts, of een patient is
  */
 public class AccountCheck {
 
@@ -27,12 +27,12 @@ public class AccountCheck {
     }
 
     /**
-     * Valideert het mailadres en het bijbehorende wachtwoord. 
-     * @return geeft een int terug voor hoe de validatie is verlopen:
-     * 1 betekent dat de user is gevalideert en een patient is.
-     * 2 betekent dat de user is gevalideert en een arts is.
-     * 3 betekent dat het wachtwoord niet klopte.
-     * 4 betekent dat de user niet is gevonden.
+     * Valideert het mailadres en het bijbehorende wachtwoord.
+     *
+     * @return geeft een int terug voor hoe de validatie is verlopen: 1 betekent
+     * dat de user is gevalideert en een patient is. 2 betekent dat de user is
+     * gevalideert en een arts is. 3 betekent dat het wachtwoord niet klopte. 4
+     * betekent dat de user niet is gevonden.
      */
     public int con() {
         String query = "SELECT * FROM user where Emailadres = ?";
@@ -49,13 +49,14 @@ public class AccountCheck {
             }
         } catch (NullPointerException | SQLException e) {
         }
-        
+
         if (s.equals(vNaam)) {
             if (w.equals(ww)) {
-                if(checkPatient())
+                if (checkPatient()) {
                     return 1;
-                else if(checkArts())
+                } else if (checkArts()) {
                     return 2;
+                }
             }
             return 3;
         } else {
@@ -63,10 +64,11 @@ public class AccountCheck {
         }
     }
 
-    
     /**
      * Checkt of de User nadat deze is gevalideerd in de tabel van patient staat
-     * @return true als deze in de tabel van patient staat, false als deze niet in de tabel van patient staat
+     *
+     * @return true als deze in de tabel van patient staat, false als deze niet
+     * in de tabel van patient staat
      */
     public boolean checkPatient() {
         String queryP = "SELECT * FROM patient where Emailadres = ?";
@@ -85,9 +87,11 @@ public class AccountCheck {
         }
     }
 
-     /**
+    /**
      * Checkt of de User nadat deze is gevalideerd in de tabel van arts staat
-     * @return true als deze in de tabel van arts staat, false als deze niet in de tabel van arts staat
+     *
+     * @return true als deze in de tabel van arts staat, false als deze niet in
+     * de tabel van arts staat
      */
     public boolean checkArts() {
         String queryA = "SELECT * FROM Arts where Emailadres = ?";

@@ -256,7 +256,14 @@ public class PatientInfoServlet extends HttpServlet {
         String artsMail = (String) session.getAttribute("user");
         int stadium = Integer.parseInt(request.getParameter("stadium"));
         ChangeData data = new ChangeData();
-        data.changeStadium(user, artsMail, stadium);
+        
+        if(stadium > patient.getStadium()+1){
+            for(int i = patient.getStadium() + 1;  i <=stadium; i++){
+                data.changeStadium(user, artsMail, i);
+            }
+        }else
+            data.changeStadium(user, artsMail, stadium);
+        
         processRequest(request, response);
 
     }

@@ -20,6 +20,10 @@
         <servlet-name>registerServlet</servlet-name>
         <servlet-class>Connectie.registerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>WijzigArtsGegevens</servlet-name>
+        <servlet-class>Connectie.WijzigArtsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>registerServlet</servlet-name>
         <url-pattern>/registerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WijzigArtsGegevens</servlet-name>
+        <url-pattern>/WijzigArtsGegevens</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

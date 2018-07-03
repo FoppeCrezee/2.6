@@ -38,7 +38,7 @@ public class Patient {
     private String hZiekenhuis;
     private String hBehandelaar;
     private String verdenking;
-
+    private int behandelTeam;
     
     /**
      * @param naam Achternaam
@@ -67,7 +67,7 @@ public class Patient {
     public Patient(String naam, String mail, int BSN, String initialen, String sex, Date geb_datum,
                    String adres, String postcode, String plaats, long telNummer, int huisNummer, 
                    String toevoeging, int stadium, String arts, Date tijd0, Date tijd1, Date tijd2,
-                   Date tijd3, Date tijd4, String hZiekenhuis, String hBehandelaar, String verdenking) {
+                   Date tijd3, Date tijd4, String hZiekenhuis, String hBehandelaar, String verdenking, int behandelTeam) {
         this.naam = naam;
         this.huisNummer = huisNummer;
         this.mail = mail;
@@ -89,6 +89,7 @@ public class Patient {
         this.hZiekenhuis = hZiekenhuis;
         this.hBehandelaar = hBehandelaar;
         this.verdenking = verdenking;
+        this.behandelTeam = behandelTeam;
         
         
         
@@ -100,6 +101,10 @@ public class Patient {
             this.toevoeging = toevoeging;
     }
 
+    public int getBehandelTeam(){
+        return behandelTeam;
+    }
+    
     public String getMail() {
         return mail;
     }

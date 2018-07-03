@@ -4,6 +4,7 @@
     Author     : foppe
 --%>
 
+<%@page import="Connectie.BehandelTeam"%>
 <%@page import="Connectie.Arts"%>
 <%@page import="Data.RequestData"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -27,20 +28,20 @@
             }
             RequestData data = new RequestData();
             Arts arts = data.getArtsData(user);
-            String artsNaam = "";
-            String artsMail = "";
-            String artsBio = "";
-            String artsSpec = "";
-            String artsIni = "";
-            String heeftArts = "U heeft nog geen behandelend arts";
-            if (arts.getNaam() != null) {
-                artsNaam = arts.getNaam();
-                artsMail = arts.getMail();
-                artsBio = arts.getBio();
-                artsSpec = arts.getSpec();
-                artsIni = arts.getIni();
-                heeftArts = "";
-            }
+//            String artsNaam = "";
+//            String artsBio = "";
+//            String artsSpec = "";
+//            String artsIni = "";
+//            String heeftArts = "U heeft nog geen behandelend arts";
+//            if (arts.getNaam() != null) {
+//                artsNaam = arts.getNaam();
+//                artsBio = arts.getBio();
+//                artsSpec = arts.getSpec();
+//                artsIni = arts.getIni();
+//                heeftArts = "";
+//            }
+            
+            BehandelTeam team = new BehandelTeam(arts.getBehandelTeam());
         %>
         <div id="main">
             <div id="header" class="hoofd">
@@ -68,62 +69,134 @@
                             </div>
                         </div>
                     </a>
-                    
-                    <div class="menuKnopLeeg" id="derde">
-                    </div>
+                    <a href="WijzigArtsServlet">
+                        <div class="menuKnop" id="derde">
+                            <p class="boven">Wijzig mijn gegevens</p>
+                        </div>
                     </a>
                     <div class="menuKnopLeeg" id="vierde">
                     </div>
-                    </a>		
+                    		
                 </div>
 
                 <div id="content">
                     <p align="center" id="titel">Arts</p>
 
-                    <div id="plaatje">
-                        placeholder
-                    </div>
-                    <div id="Artsinfo">
-                        <%=heeftArts%>
-                        <table>
-                            <tr>
-                                <td>
-                                    <b>Naam:</b><br>
-                                </td>
-                                <td>
-                                    <%=artsNaam%>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>Initialen:</b>
-                                </td>
-                                <td>
-                                    <%=artsIni%>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>Specialisme:</b>
-                                </td>
-                                <td>
-                                    <%=artsSpec%>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>Email:</b>
-                                </td>
-                                <td>
-                                    <%=artsMail%>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div id="biografie">
-                        <textarea id="bio" rows="4" cols="50" readonly><%=artsBio%></textarea>
-
-                    </div>
+                    <table id="tableGegevens">
+                        <tr>
+                            <td>
+                                <div id="plaatje">
+                                    placeholder
+                                </div>
+                                <div id="Artsinfo">
+                                    <%--<%=heeftArts%>--%>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <b>Naam:</b><br>
+                                            </td>
+                                            <td>
+                                                <%=team.getArts1().getNaam()%>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>Initialen:</b>
+                                            </td>
+                                            <td>
+                                                <%=team.getArts1().getIni() %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>Specialisme:</b>
+                                            </td>
+                                            <td>
+                                                <%=team.getArts1().getSpec() %>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div id="biografie">
+                                    <textarea id="bio" rows="4" cols="50" readonly><%=team.getArts1().getBio() %></textarea>
+                                </div>
+                            </td>
+                            <td>
+                                <div id="plaatje">
+                                    placeholder
+                                </div>
+                                <div id="Artsinfo">
+                                    <%--<%=heeftArts%>--%>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <b>Naam:</b><br>
+                                            </td>
+                                            <td>
+                                                <%=team.getArts2().getNaam()%>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>Initialen:</b>
+                                            </td>
+                                            <td>
+                                                <%=team.getArts2().getIni() %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>Specialisme:</b>
+                                            </td>
+                                            <td>
+                                                <%=team.getArts2().getSpec() %>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div id="biografie">
+                                    <textarea id="bio" rows="4" cols="50" readonly><%=team.getArts2().getBio() %></textarea>
+                                </div>
+                            </td>
+                            <td>
+                                <div id="plaatje">
+                                    placeholder
+                                </div>
+                                <div id="Artsinfo">
+                                    <%--<%= //heeftArts%>--%>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <b>Naam:</b><br>
+                                            </td>
+                                            <td>
+                                                <%=team.getArts3().getNaam()%>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>Initialen:</b>
+                                            </td>
+                                            <td>
+                                                <%=team.getArts3().getIni() %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>Specialisme:</b>
+                                            </td>
+                                            <td>
+                                                <%=team.getArts3().getSpec() %>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div id="biografie">
+                                    <textarea id="bio" rows="4" cols="50" readonly><%=team.getArts3().getBio() %></textarea>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>	
                 <div id="artsPicto" class="pictogram">
                 </div>

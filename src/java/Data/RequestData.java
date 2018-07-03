@@ -6,6 +6,7 @@
 package Data;
 
 import Connectie.Arts;
+import Connectie.BehandelTeam;
 import Connectie.Connectie;
 import Connectie.Patient;
 import java.sql.Connection;
@@ -51,21 +52,39 @@ public class RequestData {
     private String hBehandelaar;
     private String hZiekenhuis;
     private String verdenking;
+    private int behandelTeam;
 
+    //226
     //true als patient
     public RequestData() {
         Connectie conn = new Connectie();
         con = conn.connectie();
     }
 
-    public Arts getArtsData(String id) {
-        String query = "SELECT * FROM arts WHERE Emailadres = ?";
-
+    
+    private Arts getArts(ResultSet rs){
         String mail = null;
         String naam = null;
         String ini = null;
         String spec = null;
         String bio = null;
+        int behandelTeam = 0;
+        Arts artsje = null;
+        try{
+            mail = rs.getString("Emailadres");
+                naam = rs.getString("Achternaam");
+                ini = rs.getString("Initialen");
+                spec = rs.getString("Specialisme");
+                bio = rs.getString("Biografie");
+                behandelTeam = rs.getInt("BehandelGroep");
+                artsje = new Arts(mail, naam, ini, spec, bio, behandelTeam);
+        }catch(Exception e){}
+        return artsje;  
+    }
+    
+    
+    public Arts getArtsData(String id) {
+        String query = "SELECT * FROM arts WHERE Emailadres = ?";
 
         try {
             PreparedStatement pst = null;
@@ -73,20 +92,34 @@ public class RequestData {
             pst.setString(1, id);
             rs = pst.executeQuery();
             if (rs.next()) {
-                mail = rs.getString("Emailadres");
-                naam = rs.getString("Achternaam");
-                ini = rs.getString("Initialen");
-                spec = rs.getString("Specialisme");
-                bio = rs.getString("Biografie");
+            arts = getArts(rs);
             }
-            arts = new Arts(mail, naam, ini, spec, bio);
         } catch (NullPointerException e) {
         } catch (Exception e) {
         }
         //con.close();
         return arts;
     }
-    
+
+    public ArrayList<Arts> getBehandelTeam(int team) {
+        String query = "SELECT * FROM arts WHERE BehandelGroep = ?";
+
+        ArrayList<Arts> lijst = new ArrayList<Arts>();
+        try {
+            PreparedStatement pst = null;
+            pst = con.prepareStatement(query);
+            pst.setInt(1, team);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                arts = getArts(rs);
+                lijst.add(arts);
+            }
+
+        } catch (NullPointerException e) {
+        } catch (Exception e) {
+        }
+        return lijst;
+    }
 
     public Patient getPatientData(String id) {
         String query = "SELECT * FROM patient where Emailadres = ?";
@@ -150,6 +183,7 @@ public class RequestData {
             hBehandelaar = rs.getString("hBehandelaar");
             hZiekenhuis = rs.getString("hZiekenhuis");
             verdenking = rs.getString("verdenking");
+            behandelTeam = rs.getInt("BehandelTeam");
 
             tijd0 = rs.getTimestamp("tijd0");
             if (tijd0 != null) {
@@ -174,7 +208,7 @@ public class RequestData {
         } catch (Exception e) {
         }
         Patient patientje = new Patient(naam, mail, BSN, initialen, sex, gebDatum, adres, postcode, plaats, telNummer,
-                huisNummer, toevoeging, stadium, artsB, tijd0, tijd1, tijd2, tijd3, tijd4, hZiekenhuis, hBehandelaar, verdenking);
+                huisNummer, toevoeging, stadium, artsB, tijd0, tijd1, tijd2, tijd3, tijd4, hZiekenhuis, hBehandelaar, verdenking, behandelTeam);
         return patientje;
     }
 
