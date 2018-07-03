@@ -25,14 +25,6 @@
             } else {
                 user = (String) session.getAttribute("user");
             }
-
-            /*String userName = null;
-            String sessionID = null;
-            String ini = null;
-            String sex = null;
-            String postcode = null;
-            String plaats = null;
-            String adres = null;*/
             RequestData data = new RequestData();
             Patient patient = data.getPatientData(user);
 
@@ -49,33 +41,6 @@
             long tel = patient.getTelNummer();
             String toev = patient.getToevoeging();
             int bsn = patient.getBSN();
-
-            /*Cookie[] cookies = request.getCookies();
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
-                    if (cookie.getName().equals("user")) {
-                        userName = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("JSESSIONID")) {
-                        sessionID = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("init")) {
-                        ini = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("sex")) {
-                        sex = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("adres")) {
-                        adres = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("postcode")) {
-                        postcode = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("plaats")) {
-                        plaats = cookie.getValue();
-                    }
-                }
-            }*/
         %>
         <div id="main">
             <div id="header" class="hoofd">
@@ -117,8 +82,6 @@
 
                 <div id="content">
                     <p align="center" id="titel">Gegevens</p>
-
-<!--onsubmit="return validateWijzigingen()"-->
                     <form id="Wijzigen gegevens"  action="WijzigServlet" method="post">
                         <table align="center">
 
@@ -151,7 +114,6 @@
                                     <p>Geslacht:</p>
                                 </td>
                                 <td>
-<!--                                    Altijd man geselecteerd-->
                                     <select name="sex" value>
                                         <option selected>man</option>
                                         <option>vrouw</option>
@@ -204,7 +166,6 @@
                                     <p>Mail:</p>
                                 </td>
                                 <td>
-<!--                                    <p id="wijzigGegevens"><%=mail%></p>-->
                                     <input id="veld" name="mail" value="<%=mail%>" type="text" readonly>
                                 </td>
                             </tr>
@@ -215,10 +176,7 @@
                                 <a href="Ingelogd.jsp"><button class="buttonInlog">Annuleren</button></a>
                             </div>
                     </form>
-
                 </div>
-
-
             </div>
         </div>
     </body>

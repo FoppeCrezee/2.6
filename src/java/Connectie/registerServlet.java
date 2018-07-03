@@ -120,7 +120,6 @@ public class registerServlet extends HttpServlet {
             gelukt(request, response, bestaat);
         }
 
-        //processRequest(request, response);
     }
 
     private void gelukt(HttpServletRequest request, HttpServletResponse response, String message) throws IOException {

@@ -57,8 +57,6 @@ public class AccountCheckJUnitTest {
         AccountCheck wrongWw = new AccountCheck(vNaam, wrongN);
         
         Assert.assertEquals(1, check.con());
-        //Assert.assertEquals(2, wrongWw.con());
-        //Assert.assertEquals(3, wrongName.con());
         
         Assert.assertEquals(true, check.checkPatient());
         Assert.assertEquals(false, check.checkArts());

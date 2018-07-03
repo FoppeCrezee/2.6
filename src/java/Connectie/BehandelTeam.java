@@ -19,7 +19,6 @@ public class BehandelTeam {
     
     public BehandelTeam(int BehandelTeam){
         RequestData data = new RequestData();
-//        ArrayList<Arts> lijst = new ArrayList<Arts>();
         ArrayList<Arts> lijstje = data.getBehandelTeam(BehandelTeam);
         this.arts1 = lijstje.get(0);
         this.arts2 = lijstje.get(1);

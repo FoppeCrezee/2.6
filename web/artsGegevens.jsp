@@ -28,19 +28,6 @@
             }
             RequestData data = new RequestData();
             Arts arts = data.getArtsData(user);
-//            String artsNaam = "";
-//            String artsBio = "";
-//            String artsSpec = "";
-//            String artsIni = "";
-//            String heeftArts = "U heeft nog geen behandelend arts";
-//            if (arts.getNaam() != null) {
-//                artsNaam = arts.getNaam();
-//                artsBio = arts.getBio();
-//                artsSpec = arts.getSpec();
-//                artsIni = arts.getIni();
-//                heeftArts = "";
-//            }
-            
             BehandelTeam team = new BehandelTeam(arts.getBehandelTeam());
         %>
         <div id="main">
@@ -89,7 +76,6 @@
                                     placeholder
                                 </div>
                                 <div id="Artsinfo">
-                                    <%--<%=heeftArts%>--%>
                                     <table>
                                         <tr>
                                             <td>
@@ -126,7 +112,6 @@
                                     placeholder
                                 </div>
                                 <div id="Artsinfo">
-                                    <%--<%=heeftArts%>--%>
                                     <table>
                                         <tr>
                                             <td>
@@ -163,7 +148,6 @@
                                     placeholder
                                 </div>
                                 <div id="Artsinfo">
-                                    <%--<%= //heeftArts%>--%>
                                     <table>
                                         <tr>
                                             <td>
@@ -202,8 +186,6 @@
                 </div>
 
             </div>
-
-
         </div>
     </div>
 </body>

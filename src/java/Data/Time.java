@@ -20,7 +20,6 @@ public class Time {
     public String getCurrentTime(){
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 	Date date = new Date();
-	//System.out.println(dateFormat.format(date));
         return dateFormat.format(date);
     }
 }

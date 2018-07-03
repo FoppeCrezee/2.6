@@ -28,7 +28,6 @@ $(function () {
     $('#vraag2').hide();
     $('#vraag1').hide();
     $('#vraag3').hide();
-//    $('#bar').hide();
 });
 
 function validateForm() {

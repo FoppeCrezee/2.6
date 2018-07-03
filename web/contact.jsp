@@ -116,8 +116,6 @@
                             als u verwezen wordt door de specialist en
                             niet door de huisarts.</p>
                     </div>
-
-
                 </div>
             </div>
         </div>

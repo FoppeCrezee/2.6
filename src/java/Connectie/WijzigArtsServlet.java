@@ -49,7 +49,6 @@ public class WijzigArtsServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>\n"
                     + "<html>\n"
                     + "    <head>\n"
@@ -174,15 +173,7 @@ public class WijzigArtsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        HttpSession session = request.getSession();
-//        String mail = (String) session.getAttribute("user");
-//        String naam = request.getParameter("artsNaam");
-//        String ini = request.getParameter("artsIni");
-//        String spec = request.getParameter("artsSpec");
-//        String bio = request.getParameter("artsBio");
-//        ChangeData data = new ChangeData();
-//        data.changeArts(mail, naam, ini, spec, bio);
-//        processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**

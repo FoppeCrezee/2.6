@@ -42,7 +42,6 @@ public class RequestData {
     private int huisNummer = 0;
     private int stadium = 0;
     private String artsB = null;
-    //boolean avl_Geweest;
     private Timestamp tijd0 = null;
     private Timestamp tijd1 = null;
     private Timestamp tijd2 = null;
@@ -54,7 +53,6 @@ public class RequestData {
     private String verdenking;
     private int behandelTeam;
 
-    //226
     //true als patient
     public RequestData() {
         Connectie conn = new Connectie();

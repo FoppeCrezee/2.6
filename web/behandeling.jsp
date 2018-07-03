@@ -29,19 +29,6 @@
             }
             RequestData data = new RequestData();
             Patient patient = data.getPatientData(user);
-//            Arts arts = data.getArtsData(patient.getArts());
-//            String artsNaam = "";
-//            String artsBio = "";
-//            String artsSpec = "";
-//            String artsIni = "";
-//            String heeftArts = "U heeft nog geen behandelend arts";
-//            if (arts.getNaam() != null) {
-//                artsNaam = arts.getNaam();
-//                artsBio = arts.getBio();
-//                artsSpec = arts.getSpec();
-//                artsIni = arts.getIni();
-//                heeftArts = "";
-//            }
             BehandelTeam team = new BehandelTeam(patient.getBehandelTeam());
 
         %>
@@ -130,7 +117,6 @@
                                     placeholder
                                 </div>
                                 <div id="Artsinfo">
-                                    <%--<%=heeftArts%>--%>
                                     <table>
                                         <tr>
                                             <td>
@@ -167,7 +153,6 @@
                                     placeholder
                                 </div>
                                 <div id="Artsinfo">
-                                    <%--<%= //heeftArts%>--%>
                                     <table>
                                         <tr>
                                             <td>

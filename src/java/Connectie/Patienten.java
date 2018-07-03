@@ -53,7 +53,6 @@ public class Patienten extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
     }
 
     protected void allPatients(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -23,7 +23,7 @@ public class Arts {
         this.bio = bio;
         this.ini = ini;
         this.spec = spec;
-        this.behandelTeam = behandelTeam;;
+        this.behandelTeam = behandelTeam;
         
     }
     

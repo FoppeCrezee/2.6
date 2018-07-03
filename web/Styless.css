@@ -20,7 +20,6 @@ and open the template in the editor.
     font-size: 12px;
 }
 .hoofd{
-    /*    color: dimgrey;*/
     margin: 10px;
     text-align: left;
     position: relative;
@@ -53,9 +52,6 @@ and open the template in the editor.
     height: 75px;
 }
 #knop4{
-    /*    position: absolute;
-        top: 370px;
-        left: 327px;*/
     border: 0px solid black;
     height: 30px;
 }
@@ -264,7 +260,6 @@ body{
     height: 550px;
     top: 100px;
     border-top: 1px solid lightgray;
-    /*    border: 0px solid gray;*/
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 #menu{
@@ -401,9 +396,6 @@ h2{
     text-align: left;
 }
 h3{
-    /*    position: absolute;
-        top: 5px;
-        right: 5px;*/
     text-decoration: underline;
 }
 #titel{
@@ -474,7 +466,6 @@ td{
     width: 1287px;
 }
 #plaatje{
-    /*position: absolute;*/
     width: 300px;
     height: 200px;
     border: 1px solid black;
@@ -483,7 +474,6 @@ td{
 }
 
 #plaatjeWijzig{
-    /*position: absolute;*/
     width: 250px;
     height: 250px;
     border: 1px solid black;
@@ -493,17 +483,12 @@ td{
 
 #Artsinfo{
     position: absolute;
-    /*width: 80%;*/
-    /*height: 200px;*/
-    /*left: 200px;*/
     top: 210px;
     border: 0px solid black;
 }
 
 #ArtsinfoWijzig{
     position: absolute;
-    /*width: 80%;*/
-    /*height: 200px;*/
     left: 300px;
     top: 30px;
     border: 0px solid black;
@@ -518,7 +503,6 @@ td{
 
 #biografieWijzig{
     position: absolute;
-    /*width: 300px;*/
     height: 170px;
     top: 310px;
 }
