@@ -15,11 +15,11 @@ public class Connectie {
     private String vNaam;
     private String ww;
     private java.sql.Connection con = null;
-    private String url = "jdbc:mysql://localhost:3306/login?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&verifyServerCertificate=false&useSSL=true";
+    private final String url = "jdbc:mysql://localhost:3306/login?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&verifyServerCertificate=false&useSSL=true";
 
     
     /**
-     * Maakt de connectie
+     * Maakt de connectie met de database
      */
     public java.sql.Connection connectie() {
         try {

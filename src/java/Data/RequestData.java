@@ -9,6 +9,7 @@ import Connectie.Arts;
 import Connectie.BehandelTeam;
 import Connectie.Connectie;
 import Connectie.Patient;
+import Connectie.Patienten;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -213,7 +214,7 @@ public class RequestData {
     private Timestamp getActTijd(Timestamp tijd) {
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(tijd.getTime());
-        cal.add(Calendar.HOUR, -2);
+        cal.add(Calendar.HOUR, -Patienten.TIJDSVERSCHIL);
         Timestamp timestamp = new Timestamp(cal.getTime().getTime());
         return timestamp;
     }

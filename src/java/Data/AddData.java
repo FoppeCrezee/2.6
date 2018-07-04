@@ -19,6 +19,11 @@ import java.util.Date;
  */
 public class AddData {
 
+    public static final int GELUKT = 1;
+    public static final int FOUT_PATIENT = 2;
+    public static final int FOUT_USER = 3;
+    public static final int BESTAAT_AL = 0;
+    
     protected Connection con = null;
 
     public int addPatient(String naam, String ini, String sex, String datum, String adres, int nummer, String toev,
@@ -38,7 +43,6 @@ public class AddData {
             Date time = new Date();
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
             String tijd = dateFormat.format(time);
-            //String datum = dateFormat.format(dates);
             try {
                 us = con.prepareStatement(queryUser);
                 us.setString(1, mail);
@@ -65,7 +69,7 @@ public class AddData {
                     pst.setString(17, verdenking);
 
                     pst.execute();
-                    return 1;
+                    return GELUKT;
 
                 } catch (SQLException ex) {
                     System.out.println(ex);
@@ -74,16 +78,15 @@ public class AddData {
                     del = con.prepareStatement(queryDelete);
                     del.setString(1, mail);
                     del.executeUpdate();
-                    // con.close();
-                    return 2;
+                    return FOUT_PATIENT;
                 }
 
             } catch (Exception e) {
                 System.out.println(e);
-                return 3;
+                return FOUT_USER;
             }
         } else {
-            return 0;
+            return BESTAAT_AL;
         }
     }
 }

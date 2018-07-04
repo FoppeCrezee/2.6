@@ -18,6 +18,14 @@ var bsnReg = new RegExp(/^\d{7}$/);
 var mailReg = new RegExp(/^\w+@\w+\.\w+$/);
 var datumReg = new RegExp(/^([0-2]\d|3[0-1])-(0[0-9]|1[0-2])-(\d{4})$/);
 
+const VOLWASSEN = 18;
+const BEGIN_JAAR = 0;
+const EIND_JAAR = 4;
+const BEGIN_MAAND = 5;
+const EIND_MAAND = 7;
+const BEGIN_DAG = 8;
+const EIND_DAG = 10;
+
 
 $(function () {
     'use strict';
@@ -121,18 +129,18 @@ function validateWachtwoord() {
 function validateDatum() {
     'use strict';
     var ww = $('input[name="datum"]').get(0).value;
-    var dag = parseInt(ww.substring(8, 10));
-    var maand = parseInt(ww.substring(5, 7));
-    var jaar = parseInt(ww.substring(0, 4));
+    var dag = parseInt(ww.substring(BEGIN_DAG, EIND_DAG));
+    var maand = parseInt(ww.substring(BEGIN_MAAND, EIND_MAAND));
+    var jaar = parseInt(ww.substring(BEGIN_JAAR, EIND_JAAR));
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth() + 1; //January is 0!
     var yyyy = today.getFullYear();
-    if (jaar < yyyy - 18 && (jaar !== '' || maand !== '' || dag !== '')) {
+    if (jaar < yyyy - VOLWASSEN && (jaar !== '' || maand !== '' || dag !== '')) {
         $($('input[name="datum"]').get(0)).css({'background-color': 'green'});
         $('#achttien').hide();
         return true;
-    } else if (jaar === yyyy - 18 && maand <= mm) {
+    } else if (jaar === yyyy - VOLWASSEN && maand <= mm) {
 
         if ((maand === mm) && dag <= dd) {
             $($('input[name="datum"]').get(0)).css({'background-color': 'green'});

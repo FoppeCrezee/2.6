@@ -143,13 +143,13 @@ public class ChangeData {
         String tijd = time.getCurrentTime();
         
         if (patient.getStadium() < stadium) {
-            if (stadium == 0) {
+            if (stadium == Patient.STADIUM0) {
                 query = query0;
-            } else if (stadium == 1) {
+            } else if (stadium == Patient.STADIUM1) {
                 query = query1;
-            } else if (stadium == 2) {
+            } else if (stadium == Patient.STADIUM2) {
                 query = query2;
-            } else if (stadium == 3) {
+            } else if (stadium == Patient.STADIUM3) {
                 query = query3;
             } else {
                 query = query4;
@@ -165,11 +165,11 @@ public class ChangeData {
                 System.out.println(ex);
             }
         } else if (stadium < patient.getStadium()) {
-            if (stadium == 0) {
+            if (stadium == Patient.STADIUM0) {
                 query = terug0;
-            } else if (stadium == 1) {
+            } else if (stadium == Patient.STADIUM1) {
                 query = terug1;
-            } else if (stadium == 2) {
+            } else if (stadium == Patient.STADIUM2) {
                 query = terug2;
             } else {
                 query = terug3;

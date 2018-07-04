@@ -251,6 +251,7 @@ public class PatientInfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        //Veranderd het stadium indien gewijzigd door de arts.
         HttpSession session = request.getSession();
         String user = request.getParameter("mail");
         String artsMail = (String) session.getAttribute("user");

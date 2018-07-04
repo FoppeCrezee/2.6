@@ -13,6 +13,13 @@ import java.util.Date;
  */
 public class Patient {
 
+    public static final int STADIUM0 = 0;
+    public static final int STADIUM1 = 1;
+    public static final int STADIUM2 = 2;
+    public static final int STADIUM3 = 3;
+    public static final int STADIUM4 = 4;
+    
+    
     //velden
     private String naam;
     private String mail;
@@ -33,8 +40,6 @@ public class Patient {
     private Date tijd2;
     private Date tijd3;
     private Date tijd4;
-    //private boolean avl_Geweest;
-    //private boolean toestemming;
     private String hZiekenhuis;
     private String hBehandelaar;
     private String verdenking;
@@ -63,6 +68,7 @@ public class Patient {
      * @param hZiekenhuis is het ziekenhuis waar de patient op dit moment wordt behandeld
      * @param hBehandelaar is de arts die op dit moment de patient in het huidige ziekenhuis behandeld
      * @param verdenking is de verdenking die de huidige arts heeft
+     * @param behandelTeam is het behandelteam wat bij de patient is toegewezen
      */
     public Patient(String naam, String mail, int BSN, String initialen, String sex, Date geb_datum,
                    String adres, String postcode, String plaats, long telNummer, int huisNummer, 
@@ -91,11 +97,8 @@ public class Patient {
         this.verdenking = verdenking;
         this.behandelTeam = behandelTeam;
         
-        
-        
-        
         if(toevoeging == null){
-            toevoeging = "";
+            //toevoeging = "";
             this.toevoeging = "";
         }else
             this.toevoeging = toevoeging;
@@ -205,13 +208,13 @@ public class Patient {
     }
     
     public Date getTijdLaatsteStadium(){
-        if(stadium == 0)
+        if(stadium == STADIUM0)
             return tijd0;
-        else if(stadium == 1)
+        else if(stadium == STADIUM1)
             return tijd1;
-        else if(stadium == 2)
+        else if(stadium == STADIUM2)
             return tijd2;
-        else if(stadium == 3)
+        else if(stadium == STADIUM3)
             return tijd3;
         else
             return tijd4;

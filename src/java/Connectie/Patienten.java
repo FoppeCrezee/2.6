@@ -26,7 +26,15 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "Patienten", urlPatterns = {"/Patienten"})
 public class Patienten extends HttpServlet {
-
+        
+    public static final int MILISECONDEN = 1000;
+    public static final int SECONDEN = 60;
+    public static final int MINUTEN = 60;
+    public static final int DECIMAL = 10;
+    public static final int TIJDSVERSCHIL = 2;
+    public static final int WACHTTIJD = 72;
+    
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -140,18 +148,7 @@ public class Patienten extends HttpServlet {
                 + "                         </tr>"
                 +                       getPatienten()
                 + "                        </table>\n"
-//                + "                        <!--<div id=\"knop4\">\n"
-//                + "                            <input type=\"submit\" class=\"buttonInlog\" value=\"Wijzigen\">\n"
-//                + "                        </div>\n"
-//                + "                    </form>-->\n"
-                + "                        \n"
-                + "                        <!--<div id=\"knop4\">\n"
-                + "                    <a href=\"Wijzig.jsp\"><button class=\"buttonInlog\">Wijzig gegevens</button></a>\n"
-                + "                </div>-->\n"
-                + "\n"
                 + "                </div>\n"
-                + "\n"
-                + "\n"
                 + "            </div>\n"
                 + "        </div>\n"
                 + "    </body>\n"
@@ -206,6 +203,9 @@ public class Patienten extends HttpServlet {
         }
     }
 
+    /**
+     * @return de aanroep van de persoon. Dhr als het gaat om een man, Mvr als het gaat om een vrouw
+     */
     private String aanRoep(Patient patient) {
         String man = "Dhr ";
         String vrouw = "Mvr ";
@@ -232,29 +232,29 @@ public class Patienten extends HttpServlet {
         } else if (stadium > 1) {
             Date date2;
             Calendar cal2 = Calendar.getInstance(); // creates calendar
-            cal2.add(Calendar.HOUR_OF_DAY, -2); // adds one hour
+            cal2.add(Calendar.HOUR_OF_DAY, -TIJDSVERSCHIL); // adds one hour
             date2 = cal2.getTime(); // returns new date object, one hour in the future
 
             Calendar cal = Calendar.getInstance(); // creates calendar
             cal.setTimeInMillis(date.getTime()); // sets calendar time/date
-            cal.add(Calendar.HOUR_OF_DAY, 70); // adds one hour
+            cal.add(Calendar.HOUR_OF_DAY, WACHTTIJD - TIJDSVERSCHIL); // adds one hour
             date = cal.getTime(); // returns new date object, one hour in the future
 
             long diff = date.getTime() - date2.getTime();
-            int verschil = (int) diff / (1000 * 60 * 60);
-            double minuten = (double) diff / (1000 * 60 * 60) - verschil;
+            int verschil = (int) diff / (MILISECONDEN * MINUTEN * SECONDEN);
+            double minuten = (double) diff / (MILISECONDEN * SECONDEN * MINUTEN) - verschil;
 
-            minuten = minuten * 60;
+            minuten = minuten * SECONDEN;
 
             //tijd is voorbij
             if (verschil < 0 || minuten < 0) {
                 return "00:00";
             } //minuten kleiner dan 10 toch weergeven in twee cijfers
-            else if (verschil < 10 && minuten < 10) {
+            else if (verschil < DECIMAL && minuten < DECIMAL) {
                 return ("0" + verschil + ":" + "0" + (int) minuten);
-            } else if (verschil < 10) {
+            } else if (verschil < DECIMAL) {
                 return ("0" + verschil + ":" + (int) minuten);
-            } else if (minuten < 10) {
+            } else if (minuten < DECIMAL) {
                 return (verschil + ":0" + (int) minuten);
                 //minuten en uren weergeven
             } else {

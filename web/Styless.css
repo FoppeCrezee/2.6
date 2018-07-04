@@ -81,6 +81,15 @@ and open the template in the editor.
     transform: translate(-50%, -50%);
     bottom: 130px;
 }
+
+#knop8{
+    position: absolute;
+    left: 18%;
+    border: 0px solid black;
+    height: 60px;
+    left: 427px;
+    top: 150px;
+}
 #lijn{
     margin: auto;
     width: 740px;

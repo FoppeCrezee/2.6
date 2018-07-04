@@ -111,8 +111,8 @@ public class Test extends HttpServlet {
         Cookie mail = new Cookie("mail", arts.getMail());
         Cookie naam = new Cookie("naam", arts.getNaam());
         
-        mail.setMaxAge(30 * 60);
-        naam.setMaxAge(30 * 60);
+        mail.setMaxAge((Patienten.SECONDEN /2) * Patienten.MINUTEN);
+        naam.setMaxAge((Patienten.SECONDEN /2) * Patienten.MINUTEN);
         
         response.addCookie(mail);
         response.addCookie(naam);

@@ -16,31 +16,28 @@ import org.junit.Test;
  * @author foppe
  */
 public class AddPatientTest {
-    
+
     public AddPatientTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-     @Test
-     public void test() {
+    @Test
+    public void test() {
         String naam = "Peterson";
         String ini = "P.";
         String geslacht = "vrouw";
@@ -58,8 +55,8 @@ public class AddPatientTest {
         String hBehandelaar = "Foppe";
         String hZiekenhuis = "UMC";
         String verdenking = "Urologie";
-        
+
         AddData add = new AddData();
         System.out.println(add.addPatient(naam, ini, geslacht, datum, adres, huis_num, toevoeging, postcode, plaats, tel_nummer, mail, bsn, geweest, ww, hBehandelaar, hZiekenhuis, verdenking));
-     }
+    }
 }

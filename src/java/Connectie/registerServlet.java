@@ -112,11 +112,11 @@ public class registerServlet extends HttpServlet {
         AddData add = new AddData();
         done = add.addPatient(naam, ini, geslacht, datum, adres, num, toevoeging, postcode, plaats, tel, mail, bSN, geweest, ww, hBehandelaar, hZiekenhuis, verdenking);
 
-        if (done == 1) {
+        if (done == AddData.GELUKT) {
             gelukt(request, response, aangenomen);
-        } else if (done == 2) {
+        } else if (done == AddData.FOUT_PATIENT) {
             gelukt(request, response, fout);
-        } else if (done == 3) {
+        } else if (done == AddData.FOUT_USER) {
             gelukt(request, response, bestaat);
         }
 

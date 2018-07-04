@@ -41,24 +41,21 @@ public class DateTest {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
     @Test
     public void test() {
         Patienten patienten = new Patienten();
         Date date = new Date();
-        System.out.println(date.getTime());
-        long sec = date.getTime() - (2 * 60 * 60 * 1000);
+
+        long sec = date.getTime() - (2 * Patienten.SECONDEN * Patienten.MINUTEN * Patienten.MILISECONDEN);
 
         Date date2 = new Date(sec);
-        sec = sec - (69 * 60 * 60 * 1000);
+        sec = sec - (69 * Patienten.SECONDEN * Patienten.MINUTEN * Patienten.MILISECONDEN);
 
         Date date3 = new Date(sec);
-        sec = sec - (55 * 60 * 1000);
+        sec = sec - (55 * Patienten.SECONDEN  * Patienten.MILISECONDEN);
 
         Date date4 = new Date(sec);
-        sec = sec - (5 * 50 * 1000);
+        sec = sec - (5 * 50 * Patienten.MILISECONDEN);
 
         Date date5 = new Date(sec);
 
