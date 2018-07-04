@@ -21,10 +21,10 @@ import javax.servlet.http.HttpSession;
  * @author foppe
  */
 @WebServlet(name = "Test", urlPatterns = {"/Test"})
-public class Test extends HttpServlet {
+public class Main extends HttpServlet {
 
-    private static final String WRONG_NAME = "Username bestaat niet";
-    private static final String WRONG_PSSWRD = "Verkeerd wachtwoord";
+    private static final String WRONG_NAME = "Username of wachtwoord is verkeerd";
+    private static final String WRONG_PSSWRD = "Username of wachtwoord is verkeerd";
     private String vNaam;
     private Patient patient;
     private Arts arts;
@@ -35,41 +35,40 @@ public class Test extends HttpServlet {
         response.sendRedirect("inlog.html");
     }
 
-    // Method to handle POST method request.
+    //Handeld de user inlog aanvraag
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         vNaam = request.getParameter("voorNaam");
         String ww = request.getParameter("wachtWoord");
-        //Patient patient;
         
         HttpSession session = request.getSession();
 
         AccountCheck check = new AccountCheck(vNaam, ww);
-        if (check.con() == 1) {
-            //setPatient(request, response);
-           // HttpSession session = request.getSession();
+        if (check.con() == AccountCheck.GELUKT_PATIENT) {
             session.setAttribute("user", vNaam);
             session.setAttribute("beroep", "patient");
             //setting session to expiry in 30 mins
-            session.setMaxInactiveInterval(30 * 60);
+            session.setMaxInactiveInterval((Patienten.MINUTEN/2) * Patienten.SECONDEN);
             setPatient(request, response);
-        } else if (check.con() == 2) {
+        } else if (check.con() == AccountCheck.GELUKT_ARTS) {
             setArts(request, response);
-            //setPatient(request, response);
             
             session.setAttribute("user", vNaam);
             session.setAttribute("beroep", "arts");
             //setting session to expiry in 30 mins
-            session.setMaxInactiveInterval(30 * 60);
+            session.setMaxInactiveInterval((Patienten.MINUTEN/2) * Patienten.SECONDEN);
            
-        } else if (check.con() == 3) {
+        } else if (check.con() == AccountCheck.VERKEERD_WW) {
             wrong(request, response, WRONG_PSSWRD);
-        } else if (check.con() == 4) {
+        } else if (check.con() == AccountCheck.VERKEERD_NAAM) {
             wrong(request, response, WRONG_NAME);
         }
     }
 
+    /**
+     * Maakt de sessie van de patient aan
+     */
     private void setPatient(HttpServletRequest request, HttpServletResponse response) {
         RequestData data = new RequestData();
         patient = data.getPatientData(vNaam);
@@ -83,12 +82,12 @@ public class Test extends HttpServlet {
         Cookie plaats = new Cookie("plaats", patient.getPlaats());
 
         //Geef ze een tijd
-        userName.setMaxAge(30 * 60);
-        init.setMaxAge(30 * 60);
-        sex.setMaxAge(30 * 60);
-        adres.setMaxAge(30 * 60);
-        postcode.setMaxAge(30 * 60);
-        plaats.setMaxAge(30 * 60);
+        userName.setMaxAge((Patienten.SECONDEN/2) * Patienten.MINUTEN);
+        init.setMaxAge((Patienten.SECONDEN/2) * Patienten.MINUTEN);
+        sex.setMaxAge((Patienten.SECONDEN/2) * Patienten.MINUTEN);
+        adres.setMaxAge((Patienten.SECONDEN/2) * Patienten.MINUTEN);
+        postcode.setMaxAge((Patienten.SECONDEN/2) * Patienten.MINUTEN);
+        plaats.setMaxAge((Patienten.SECONDEN/2) * Patienten.MINUTEN);
 
         //voeg de cookies toe
         response.addCookie(userName);
@@ -104,6 +103,9 @@ public class Test extends HttpServlet {
         }
     }
 
+    /**
+     * Maakt de sessie van de arts aan
+     */
     private void setArts(HttpServletRequest request, HttpServletResponse response) {
         RequestData data = new RequestData();
         arts = data.getArtsData(vNaam);
@@ -123,6 +125,14 @@ public class Test extends HttpServlet {
         }
     }
 
+    /**
+     * Laat de pagina zien of het inloggen is gelukt.
+     * @param request is de request
+     * @param response is de response die de gebruiker te zien krijgt
+     * @param message is het bericht wat er niet gelukt is
+     * @throws ServletException
+     * @throws IOException
+     */
     public void wrong(HttpServletRequest request, HttpServletResponse response, String message) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();

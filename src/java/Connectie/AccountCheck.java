@@ -11,6 +11,11 @@ import java.sql.SQLException;
  */
 public class AccountCheck {
 
+    public static final int GELUKT_PATIENT = 1;
+    public static final int GELUKT_ARTS = 2;
+    public static final int VERKEERD_WW = 3;
+    public static final int VERKEERD_NAAM = 4;
+    
     private String vNaam;
     private String ww;
     private Connection con = null;
@@ -53,14 +58,14 @@ public class AccountCheck {
         if (s.equals(vNaam)) {
             if (w.equals(ww)) {
                 if (checkPatient()) {
-                    return 1;
+                    return GELUKT_PATIENT;
                 } else if (checkArts()) {
-                    return 2;
+                    return GELUKT_ARTS;
                 }
             }
-            return 3;
+            return VERKEERD_WW;
         } else {
-            return 4;
+            return VERKEERD_NAAM;
         }
     }
 

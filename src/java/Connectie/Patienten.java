@@ -63,6 +63,9 @@ public class Patienten extends HttpServlet {
             throws ServletException, IOException {
     }
 
+    /**
+     * Laat een lijst zien van alle patienten met hun gegevens
+     */
     protected void allPatients(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         HttpSession session = request.getSession();
@@ -155,6 +158,9 @@ public class Patienten extends HttpServlet {
                 + "</html>");
     }
 
+    /**
+     * @return Een lijst met alle patienten in het systeem met hun gegevens
+     */
     private String getPatienten() {
 
         String allemaal = "";
@@ -227,18 +233,18 @@ public class Patienten extends HttpServlet {
      */
     public String getTijdPlus(Date date, int stadium) {
 
-        if (stadium == 4) {
+        if (stadium == Patient.STADIUM4) {
             return "Aanvraag is afgerond";
-        } else if (stadium > 1) {
+        } else if (stadium > Patient.STADIUM1) {
             Date date2;
             Calendar cal2 = Calendar.getInstance(); // creates calendar
             cal2.add(Calendar.HOUR_OF_DAY, -TIJDSVERSCHIL); // adds one hour
             date2 = cal2.getTime(); // returns new date object, one hour in the future
 
-            Calendar cal = Calendar.getInstance(); // creates calendar
-            cal.setTimeInMillis(date.getTime()); // sets calendar time/date
-            cal.add(Calendar.HOUR_OF_DAY, WACHTTIJD - TIJDSVERSCHIL); // adds one hour
-            date = cal.getTime(); // returns new date object, one hour in the future
+            Calendar cal = Calendar.getInstance(); 
+            cal.setTimeInMillis(date.getTime()); 
+            cal.add(Calendar.HOUR_OF_DAY, WACHTTIJD - TIJDSVERSCHIL); 
+            date = cal.getTime(); 
 
             long diff = date.getTime() - date2.getTime();
             int verschil = (int) diff / (MILISECONDEN * MINUTEN * SECONDEN);
@@ -273,5 +279,5 @@ public class Patienten extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 }

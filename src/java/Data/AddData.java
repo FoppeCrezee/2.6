@@ -18,7 +18,7 @@ import java.util.Date;
  * @author foppe
  */
 public class AddData {
-
+    
     public static final int GELUKT = 1;
     public static final int FOUT_PATIENT = 2;
     public static final int FOUT_USER = 3;
@@ -26,6 +26,30 @@ public class AddData {
     
     protected Connection con = null;
 
+    /**
+     * Voegt een patient toe aan de database
+     * 
+     * @param naam Achternaam
+     * @param mail mailadres
+     * @param bsn bsn
+     * @param ini initialen
+     * @param sex geslacht
+     * @param adres adres
+     * @param postcode postcode
+     * @param plaats plaats
+     * @param tel telefoonnummer
+     * @param datum geboortedatum
+     * @param nummer huisNummer
+     * @param toev toevoeging van het huisnummer
+     * @param geweest Of de patient al een keer in het AVL is geweest
+     * @param hZiekenhuis is het ziekenhuis waar de patient op dit moment wordt behandeld
+     * @param hBehandelaar is de arts die op dit moment de patient in het huidige ziekenhuis behandeld
+     * @param verdenking is de verdenking die de huidige arts heeft
+     * @param ww is het wachtwoord van de oatient
+     * 
+     * @return 1 als het is gelukt, 2 als er iets fout ging bij het toevoegen van een patient
+     *         3 als er iets fout gin bij het toevoegen van een user en 4 als de gebruiker al bestaat
+     */
     public int addPatient(String naam, String ini, String sex, String datum, String adres, int nummer, String toev,
             String postcode, String plaats, int tel, String mail, int bsn, int geweest, String ww, String hBehandelaar, String hZiekenhuis, String verdenking) {
 
@@ -44,11 +68,13 @@ public class AddData {
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
             String tijd = dateFormat.format(time);
             try {
+                //Voet een user toe
                 us = con.prepareStatement(queryUser);
                 us.setString(1, mail);
                 us.setString(2, ww);
                 us.execute();
                 try {
+                    //voegt een patient toe
                     pst = con.prepareStatement(query);
                     pst.setInt(1, bsn);
                     pst.setString(2, naam);
@@ -86,6 +112,7 @@ public class AddData {
                 return FOUT_USER;
             }
         } else {
+            //gebruiker bestaat al
             return BESTAAT_AL;
         }
     }

@@ -13,6 +13,11 @@ import java.util.ArrayList;
  * @author foppe
  */
 public class BehandelTeam {
+    
+    public static final int ARTS1 = 0;
+    public static final int ARTS2 = 1;
+    public static final int ARTS3 = 2;
+    
     private Arts arts1;
     private Arts arts2;
     private Arts arts3;
@@ -24,9 +29,9 @@ public class BehandelTeam {
     public BehandelTeam(int BehandelTeam){
         RequestData data = new RequestData();
         ArrayList<Arts> lijstje = data.getBehandelTeam(BehandelTeam);
-        this.arts1 = lijstje.get(0);
-        this.arts2 = lijstje.get(1);
-        this.arts3 = lijstje.get(2);
+        this.arts1 = lijstje.get(ARTS1);
+        this.arts2 = lijstje.get(ARTS2);
+        this.arts3 = lijstje.get(ARTS3);
     }
     
     /**

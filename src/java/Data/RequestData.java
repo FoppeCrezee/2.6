@@ -24,6 +24,7 @@ import java.util.Calendar;
  */
 public class RequestData {
 
+    //velden
     protected Connection con = null;
     protected String id;
     protected ResultSet rs;
@@ -54,13 +55,15 @@ public class RequestData {
     private String verdenking;
     private int behandelTeam;
 
-    //true als patient
     public RequestData() {
         Connectie conn = new Connectie();
         con = conn.connectie();
     }
 
-    
+    /**
+     * @param rs is de resultset gekregen uit de database
+     * @return Een arts object
+     */
     private Arts getArts(ResultSet rs){
         String mail = null;
         String naam = null;
@@ -81,7 +84,10 @@ public class RequestData {
         return artsje;  
     }
     
-    
+    /**Geeft de gegevens van een specifieke arts
+     * @param id is het id van de arts
+     * @return Een arts object
+     */
     public Arts getArtsData(String id) {
         String query = "SELECT * FROM arts WHERE Emailadres = ?";
 
@@ -96,10 +102,13 @@ public class RequestData {
         } catch (NullPointerException e) {
         } catch (Exception e) {
         }
-        //con.close();
         return arts;
     }
 
+    /**Geeft de gegevens van de artsen van een specifiek behandelteam
+     * @param team is het behandelteam van de arts
+     * @return Een arts object
+     */
     public ArrayList<Arts> getBehandelTeam(int team) {
         String query = "SELECT * FROM arts WHERE BehandelGroep = ?";
 
@@ -120,6 +129,11 @@ public class RequestData {
         return lijst;
     }
 
+    /**
+     * Geeft de gegevens van een specifieke patient
+     * @param id is het id van de patient
+     * @return Een patient object
+     */
     public Patient getPatientData(String id) {
         String query = "SELECT * FROM patient where Emailadres = ?";
         Patient patientje = null;
@@ -136,12 +150,16 @@ public class RequestData {
         } catch (NullPointerException e) {
         } catch (Exception e) {
         }
-        // con.close();
         return patientje;
 
     }
-
+    
+    /**
+     * Geeft alle patienten gesorteerd terug 
+     * @return Een arraylist met alle patienten
+     */
     public ArrayList<Patient> getPatienten() {
+        //Eerst gesorteerd van groot naar klein, dan alle patienten met stadium 5 (4 in code)
         String query = "SELECT * FROM patient order by case WHEN stadium < 4 THEN stadium END desc;";
 
         ArrayList<Patient> lijst = new ArrayList<Patient>();
@@ -158,11 +176,14 @@ public class RequestData {
         } catch (Exception e) {
             System.out.println(e);
         }
-        //con.close();
         return lijst;
 
     }
 
+    /**
+     * @param rs is de resultset van de patient(en) uit de database
+     * @return Een patient object
+     */
     private Patient getPatient(ResultSet rs) {
         try {
             naam = rs.getString("Achternaam");
@@ -210,7 +231,11 @@ public class RequestData {
                 huisNummer, toevoeging, stadium, artsB, tijd0, tijd1, tijd2, tijd3, tijd4, hZiekenhuis, hBehandelaar, verdenking, behandelTeam);
         return patientje;
     }
-
+    
+    /**
+     * @param tijd is de tijd van het stadium dat wordt meegegeven
+     * @return De actuele tijd
+     */
     private Timestamp getActTijd(Timestamp tijd) {
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(tijd.getTime());

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * In deze class worden alle gegevens aangepast van zowel de arts als van de patient
  * @author foppe
  */
 public class ChangeData {
@@ -40,7 +40,8 @@ public class ChangeData {
         Connectie conn = new Connectie();
         con = conn.connectie();
     }
-    /**
+    /**Verandert gegevens van de patient
+     * 
      * @param ini zijn de initialen
      * @param sex is het geslacht
      * @param adres is het adres van de patient
@@ -62,7 +63,6 @@ public class ChangeData {
 
         Connectie conn = new Connectie();
         con = conn.connectie();
-        //this.mail = mail;
         this.naam = naam;
         this.ini = ini;
         this.sex = sex;
@@ -78,6 +78,9 @@ public class ChangeData {
         this.main();
     }
 
+    /**
+     * Veranderd de gegevens
+     */
     private void main() {
         String query = "UPDATE patient SET Achternaam = ?, BSN = ?, Huisnummer = ?, toevoeging = ?, Telefoonnummer = ?, "
                 + "Initialen = ? , Geslacht = ? , Adres = ? , Postcode = ? , Plaats = ? WHERE Emailadres = ?";
@@ -102,6 +105,15 @@ public class ChangeData {
 
     }
     
+    /**
+     * Verandert de gegevens van de arts
+     * 
+     * @param mail Email van de arts
+     * @param naam Achternaam van de arts
+     * @param ini Initialen van de arts
+     * @param spec Specialisme van de arts
+     * @param bio Korte biografie van de arts
+     */
     public void changeArts(String mail, String naam, String ini, String spec, String bio){
         String query = "UPDATE Arts SET Achternaam = ?, Initialen = ?, Specialisme = ?, Biografie = ? WHERE Emailadres = ?;";
         try {
@@ -125,6 +137,7 @@ public class ChangeData {
      * @param stadium is het nieuwe stadium dat de arts meegeeft
      */
     public void changeStadium(String patientNaam, String artsNaam, int stadium) {
+        //SQL statements
         String query0 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd0 = str_to_date(?,'%d-%m-%Y %H:%i') WHERE Emailadres = ?;";
         String query1 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd1 = str_to_date(?,'%d-%m-%Y %H:%i') WHERE Emailadres = ?;";
         String query2 = "UPDATE patient SET stadium = ?, beh_arts = ?, tijd2 = str_to_date(?,'%d-%m-%Y %H:%i') WHERE Emailadres = ?;";
@@ -142,6 +155,7 @@ public class ChangeData {
         Time time = new Time();
         String tijd = time.getCurrentTime();
         
+        //stadium verder
         if (patient.getStadium() < stadium) {
             if (stadium == Patient.STADIUM0) {
                 query = query0;
@@ -155,6 +169,7 @@ public class ChangeData {
                 query = query4;
             }
             try {
+                //execute statement
                 pst = con.prepareStatement(query);
                 pst.setInt(1, stadium);
                 pst.setString(2, artsNaam);
@@ -164,6 +179,7 @@ public class ChangeData {
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
+        //Stadium terug
         } else if (stadium < patient.getStadium()) {
             if (stadium == Patient.STADIUM0) {
                 query = terug0;
@@ -175,6 +191,7 @@ public class ChangeData {
                 query = terug3;
             }
             try {
+                //execute statement
                 pst = con.prepareStatement(query);
                 pst.setInt(1, stadium);
                 pst.setString(2, artsNaam);

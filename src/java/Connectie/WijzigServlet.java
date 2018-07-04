@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class WijzigServlet extends HttpServlet {
     /**
+     * Wijzigt de gegevens van de patient in de database
+     * 
      * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request

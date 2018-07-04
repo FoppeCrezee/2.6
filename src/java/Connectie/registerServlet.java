@@ -67,6 +67,8 @@ public class registerServlet extends HttpServlet {
     }
 
     /**
+     * Voegt een patient toe aan de database
+     * 
      * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
@@ -78,6 +80,7 @@ public class registerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int geweest = 0;
+        //haalt de waardes op uit het formulier
         String naam = request.getParameter("na");
         String ini = request.getParameter("ini");
         String geslacht = request.getParameter("sex");
@@ -108,10 +111,12 @@ public class registerServlet extends HttpServlet {
             geweest = 1;
         }
         int done = 0;
-
+        
+        //voegt de gegevens toe aan de databse
         AddData add = new AddData();
         done = add.addPatient(naam, ini, geslacht, datum, adres, num, toevoeging, postcode, plaats, tel, mail, bSN, geweest, ww, hBehandelaar, hZiekenhuis, verdenking);
-
+        
+        //Kijkt of het is gelukt
         if (done == AddData.GELUKT) {
             gelukt(request, response, aangenomen);
         } else if (done == AddData.FOUT_PATIENT) {
@@ -122,6 +127,10 @@ public class registerServlet extends HttpServlet {
 
     }
 
+    /**
+     * Laat zien of de aanvraag al dan wel of niet gelukt is.
+     * @param message is het bericht od het al dan wel of niet gelukt is
+     */
     private void gelukt(HttpServletRequest request, HttpServletResponse response, String message) throws IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -162,8 +171,6 @@ public class registerServlet extends HttpServlet {
 
     }
 
-    private void fout() {
-    }
 
     /**
      * Returns a short description of the servlet.
@@ -173,6 +180,6 @@ public class registerServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

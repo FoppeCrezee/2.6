@@ -12,7 +12,7 @@ import java.util.Date;
  * @author foppe
  */
 public class Patient {
-
+    
     public static final int STADIUM0 = 0;
     public static final int STADIUM1 = 1;
     public static final int STADIUM2 = 2;
@@ -46,6 +46,8 @@ public class Patient {
     private int behandelTeam;
     
     /**
+     * In deze class worden de gegevens van een patient opgeslagen
+     * 
      * @param naam Achternaam
      * @param mail mailadres
      * @param BSN bsn
@@ -98,87 +100,148 @@ public class Patient {
         this.behandelTeam = behandelTeam;
         
         if(toevoeging == null){
-            //toevoeging = "";
             this.toevoeging = "";
         }else
             this.toevoeging = toevoeging;
     }
 
+    /**
+     * @return Het behandelteam dat aan de patient is toegewezen
+     */
     public int getBehandelTeam(){
         return behandelTeam;
     }
     
+    /**
+     * @return De mail van de patient
+     */
     public String getMail() {
         return mail;
     }
     
+    /**
+     * @return De huisige behandelaar van de patient in het ziekenhuis waar hij nu wordt behandel 
+     */
     public String getHuidigeBehandelaar(){
         return hBehandelaar;
     }
     
+    /**
+     * @return Het huidige ziekenhuis van de patient waar deze nu wordt behandeld
+     */
     public String getHuidigZiekenuis(){
         return hZiekenhuis;
     }
     
+    /**
+     * @return De verdenking van de tumorgroep van de patient
+     */
     public String getVerdenking(){
         return verdenking;
     }
     
+    /**
+     * @return Het stadium van het aanvraagproces waar de patient op dit moment in zit.
+     */
     public int getStadium(){
         return stadium;
     }
     
+    /**
+     * @return Toevoeging van het huisnummer
+     */
     public String getToevoeging(){
         return toevoeging;
     }
     
+    /**
+     * @return Huisnummer van de patient
+     */
     public int getHuisNummer(){
        return huisNummer;
     }
     
+    /**
+     * @return Achternaam van de patient
+     */
     public String getNaam(){
         return naam;
     }
     
+    /**
+     * @return Geboortedatum van de patient
+     */
     public Date getDatum(){
         return gebDatum;
     }
     
+    /**
+     * @return BSN van de patient
+     */
     public int getBSN(){
         return bsn;
     }
+    
+    /**
+     * @return Telefoonnummer van de patient
+     */
     public long getTelNummer(){
         return telNummer;
     }
     
+    /**
+     * @return Initialen van de patient
+     */
     public String getIni() {
         return initialen;
     }
     
+    /**
+     * @return Geslacht van de patient
+     */
     public String getSex() {
         return sex;
     }
     
+    /**
+     * @return Adres van de patient
+     */
     public String getAdres() {
         return adres;
     }
     
+    /**
+     * @return Postcode van de patient
+     */
     public String getPostcode(){
         return postcode;
     }
     
+    /**
+     * @return Woonplaats van de patient
+     */
     public String getPlaats() {
         return plaats;
     }
 
+    /**
+     * @return Huidige arts van de patient in het AVL
+     */
     public String getArts(){
         return arts;
     }
     
+    /**
+     * @return Tijd van stadium 1 (0 in de code)
+     */
     public Date getTijd0(){
         return tijd0;
     }
     
+    /**
+     * @return Tijd van stadium 2 (1 in de code)
+     * Deze hoeft niet ingevuld te zijn
+     */
     public Date getTijd1(){
         if(tijd1 == null)
             return null;
@@ -186,6 +249,10 @@ public class Patient {
             return tijd1;
     }
     
+    /**
+     * @return Tijd van stadium 3 (2 in de code)
+     * Deze hoeft niet ingevuld te zijn
+     */
     public Date getTijd2(){
         if(tijd2 == null)
             return null;
@@ -193,6 +260,10 @@ public class Patient {
             return tijd2;
     }
     
+    /**
+     * @return Tijd van stadium 4 (3 in de code)
+     * Deze hoeft niet ingevuld te zijn
+     */
     public Date getTijd3(){
         if(tijd3 == null)
             return null;
@@ -200,6 +271,10 @@ public class Patient {
             return tijd3;
     }
     
+    /**
+     * @return Tijd van stadium 5 (4 in de code)
+     * Deze hoeft niet ingevuld te zijn
+     */
     public Date getTijd4(){
         if(tijd4 == null)
             return null;
@@ -207,6 +282,10 @@ public class Patient {
             return tijd4;
     }
     
+    /**
+     * @return De tijd van het stadium waar de patient op dit moment in zit
+     * Die hem dus als laatste is toegewezen.
+     */
     public Date getTijdLaatsteStadium(){
         if(stadium == STADIUM0)
             return tijd0;
